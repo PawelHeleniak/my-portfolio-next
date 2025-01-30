@@ -7,9 +7,7 @@ import AboutMe from './components/AboutMe.vue'
 <template>
   <Nav />
   <Header />
-  <main>
-    <AboutMe />
-  </main>
+  <AboutMe />
 </template>
 
 <style scoped></style>
