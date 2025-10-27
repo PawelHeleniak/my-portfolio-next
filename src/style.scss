@@ -1,0 +1,62 @@
+@use './reset.scss' as *;
+// Variables
+:root {
+  --primary: hsl(271, 80%, 38%);
+  --secondary: hsl(268, 88%, 25%);
+  --accent: hsl(293, 100%, 35%);
+  --color-bg-primary: hsl(243, 76%, 95%);
+  --color-bg-secondary: hsl(248, 57%, 97%);
+  --color-text-primary: hsl(250, 18%, 7%);
+  --color-text-secondary: hsl(255, 24.15%, 17.88%);
+
+  --warning: hsl(0, 100%, 25%);
+  --warning-hover: hsl(0, 100%, 35%);
+  --success: hsl(125, 100%, 35%);
+
+  --border-radius-primary: 20px;
+  --border-radius-secondary: 50px;
+
+  /* Font sizes */
+  --font-stacle: 1;
+  --font-size-xs: 12px;
+  --font-size-s: 14px;
+  --font-size-base: 16px; //base
+  --font-size-m: 18px; //subheading
+  --font-size-l: 20px; //h4
+  --font-size-xl: 24px; //h3
+  --font-size-2xl: 28px; //h2
+  --font-size-3xl: 42px; //h1
+
+  // Font style
+  --font-family-base: 'Lato', sans-serif;
+}
+
+// Custom
+a,
+button {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+h1 {
+  font-size: var(--font-size-3xl);
+  line-height: 1.2;
+}
+.--box {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius-primary);
+}
+.button {
+  background-color: var(--primary);
+  width: max-content;
+  padding: 10px 24px;
+  border-radius: var(--border-radius-secondary);
+  color: var(--color-bg-primary);
+  font-weight: 600;
+  transition: 0.2s ease-in background-color;
+  &:hover {
+    background-color: var(--secondary);
+  }
+}

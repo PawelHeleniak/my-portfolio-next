@@ -1,11 +1,19 @@
-<script setup></script>
+<script setup>
+import HeroSection from './components/HeroSection.vue'
+
+console.log('s')
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <main>
+    <HeroSection />
+  </main>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+main {
+  padding: 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+</style>
