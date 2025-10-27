@@ -1,19 +1,11 @@
-<script setup lang="ts">
-import Nav from './components/Nav.vue'
-import Header from './components/Header.vue'
-import AboutMe from './components/AboutMe.vue'
-import Projects from './components/Projects.vue'
-import Technologies from './components/Technologies.vue'
-import Contact from './components/Contact.vue'
-</script>
+<script setup></script>
 
 <template>
-  <Nav />
-  <Header />
-  <AboutMe />
-  <Projects />
-  <Technologies />
-  <Contact />
+  <h1>You did it!</h1>
+  <p>
+    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
+    documentation
+  </p>
 </template>
 
 <style scoped></style>
