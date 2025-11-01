@@ -4,7 +4,7 @@
   <section class="section">
     <h2 class="section__header">Projekty</h2>
     <div class="section__list">
-      <div class="project">
+      <div class="project --box">
         <div class="project__img">
           <img src="/public/assets/projects/project_1.png" alt="" />
         </div>
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="project --dark">
+      <div class="project --dark --box">
         <div class="project__img">
           <img src="/public/assets/projects/project_1.png" alt="" />
         </div>
@@ -51,12 +51,10 @@
 }
 .project {
   width: 100%;
-  padding: 2rem;
-  background-color: var(--color-bg-secondary);
-  border-radius: var(--border-radius-primary);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
+  min-height: 40rem;
   &.--dark {
     background-color: #3a394b;
     color: #fff;

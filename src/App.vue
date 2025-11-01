@@ -1,13 +1,14 @@
 <script setup>
 import HeroSection from './components/HeroSection.vue'
 import ProjectSection from './components/ProjectSection.vue'
-console.log('s')
+import ContactSection from './components/ContactSection.vue'
 </script>
 
 <template>
   <main>
     <HeroSection />
     <ProjectSection />
+    <ContactSection />
   </main>
 </template>
 
