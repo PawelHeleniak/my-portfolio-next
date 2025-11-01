@@ -74,7 +74,7 @@
   &__description {
     display: flex;
     flex-direction: column;
-    padding: 0 40px 40px 40px;
+    padding: 0 40px 40px 0;
     gap: 30px;
     // h1 {
     //   margin-bottom: 20px;

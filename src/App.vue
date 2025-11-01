@@ -1,12 +1,13 @@
 <script setup>
 import HeroSection from './components/HeroSection.vue'
-
+import ProjectSection from './components/ProjectSection.vue'
 console.log('s')
 </script>
 
 <template>
   <main>
     <HeroSection />
+    <ProjectSection />
   </main>
 </template>
 
