@@ -2,7 +2,7 @@
 
 <template>
   <section class="section">
-    <h2 class="section__header">Projekty</h2>
+    <h2 class="section__header">Moje projekty</h2>
     <div class="section__list">
       <div class="project --box">
         <div class="project__img">
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="project --dark --box">
+      <div class="project --box">
         <div class="project__img">
           <img src="/public/assets/projects/project_1.png" alt="" />
         </div>
@@ -55,10 +55,6 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
   min-height: 40rem;
-  &.--dark {
-    background-color: #3a394b;
-    color: #fff;
-  }
   &__img {
     border-radius: var(--border-radius-primary);
     overflow: hidden;

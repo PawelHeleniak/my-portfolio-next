@@ -2,19 +2,23 @@
 import HeroSection from './components/HeroSection.vue'
 import ProjectSection from './components/ProjectSection.vue'
 import ContactSection from './components/ContactSection.vue'
+import FooterSection from './components/FooterSection.vue'
+import AboutSection from './components/AboutSection.vue'
 </script>
 
 <template>
   <main>
     <HeroSection />
+    <AboutSection />
     <ProjectSection />
     <ContactSection />
+    <FooterSection />
   </main>
 </template>
 
 <style lang="scss" scoped>
 main {
-  padding: 40px;
+  padding: 4rem;
   max-width: 1440px;
   margin: 0 auto;
 }

@@ -69,25 +69,25 @@
   &__wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    gap: 4rem;
   }
   &__description {
     display: flex;
     flex-direction: column;
-    padding: 0 40px 40px 0;
-    gap: 30px;
+    padding: 0 4rem 4rem 0;
+    gap: 3rem;
     // h1 {
     //   margin-bottom: 20px;
     // }
   }
   &__info {
-    padding: 20px;
+    padding: 2rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 1.2rem;
   }
   &__box {
-    padding: 12px;
+    padding: 1.2rem;
     background-color: hsl(243.16deg 76% 95.1%);
     border-radius: var(--border-radius-primary);
     &:nth-child(1) {
@@ -102,7 +102,7 @@
     &.--framework {
       display: flex;
       flex-direction: row;
-      gap: 60px;
+      gap: 6rem;
       align-items: center;
       justify-content: center;
       img {
@@ -117,14 +117,14 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: 2rem;
       i {
-        font-size: 26px;
+        font-size: var(--font-size-xl);
         border-radius: var(--border-radius-secondary);
         background-color: var(--color-bg-secondary);
-        padding: 12px;
-        width: 56px;
-        height: 56px;
+        padding: 1.2rem;
+        width: 5.6rem;
+        height: 5.6rem;
         display: flex;
         justify-content: center;
         align-items: center;
