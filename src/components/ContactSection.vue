@@ -20,6 +20,7 @@
         </div>
       </div>
     </div>
+    <div class="dot-blur dot-blur--contact"></div>
   </section>
 </template>
 
@@ -28,14 +29,13 @@
   display: flex;
   flex-direction: column;
   // align-items: center;
-  &__header {
-    margin-bottom: 3rem;
-  }
+  position: relative;
   &__list {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    z-index: 2;
   }
 }
 .contact {

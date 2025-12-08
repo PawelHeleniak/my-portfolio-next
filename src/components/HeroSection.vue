@@ -23,10 +23,9 @@
           accusamus, commodi error facere dolorem adipisci natus aliquam ratione?
         </div>
         <div class="header__box --framework">
-          <img src="/public/assets/angular_logo.webp" alt="angular logo" /><img
-            src="/public/assets/vue_logo.webp"
-            alt="vue logo"
-          />
+          <img src="/public/assets/angular_logo.webp" alt="angular logo" />
+          <img src="/public/assets/vue_logo.webp" alt="vue logo" />
+          <img src="/public/assets/nodejs_logo.svg" alt="nodejs logo" />
         </div>
         <div class="header__box --contacts">
           <i class="fa-solid fa-phone"></i>
@@ -36,6 +35,7 @@
         </div>
       </div>
     </div>
+    <div class="dot-blur dot-blur--hero"></div>
   </header>
 </template>
 
@@ -44,6 +44,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
   // Nawigacja
   &__navigation {
     display: flex;
@@ -102,7 +103,7 @@
     &.--framework {
       display: flex;
       flex-direction: row;
-      gap: 6rem;
+      gap: 1.6rem;
       align-items: center;
       justify-content: center;
       img {

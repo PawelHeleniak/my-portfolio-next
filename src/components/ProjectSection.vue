@@ -1,35 +1,72 @@
-<script setup></script>
+<script setup>
+import { onMounted, ref } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+gsap.registerPlugin(ScrollTrigger)
+const project_2 = ref()
+// const project_3 = ref()
+onMounted(() => {
+  gsap.to(project_2.value, {
+    scale: '1',
+    scrollTrigger: {
+      trigger: project_2.value,
+      start: 'bottom center',
+      end: '+=100%',
+      scrub: true,
+    },
+  })
+})
+</script>
 <template>
-  <section class="section">
+  <section class="section --projects">
     <h2 class="section__header">Moje projekty</h2>
-    <div class="section__list">
-      <div class="project --box">
-        <div class="project__img">
-          <img src="/public/assets/projects/project_1.png" alt="" />
-        </div>
+    <div class="section__wrapper">
+      <a
+        class="project --box"
+        href="https://github.com/PawelHeleniak/gym-sync/tree/develop/gym-sync-frontend"
+      >
+        <img class="project__img" src="/public/assets/projects/project_1.png" alt="" />
         <div class="project__content">
-          <div class="project__title">Strona internetowa</div>
-          <div class="project__box">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ea unde praesentium
-            odit veritatis at amet ipsum, facere eaque optio numquam aspernatur suscipit perferendis
-            velit molestias magni, commodi, iusto rem?
+          <div class="project__name">
+            <h3>
+              <div>GymSync</div>
+              <div>Sprawdź</div>
+            </h3>
+            <i class="fa-solid fa-arrow-right"></i>
           </div>
+          <span class="project__desc">
+            Aplikacja webowa umożliwiająca tworzenie i zarządzanie planami treningowymi,
+            rejestrowanie sesji treningowych oraz generowanie raportów. Frontend napisany w Angular
+            20, backend w Express.js z MongoDB. Projekt rozwijany początkowo prywatnie, następnie
+            jako praca inżynierska, nadal aktywnie rozwijany.
+          </span>
         </div>
-      </div>
-      <div class="project --box">
-        <div class="project__img">
-          <img src="/public/assets/projects/project_1.png" alt="" />
-        </div>
+      </a>
+      <a
+        class="project --box project_2"
+        href="https://github.com/PawelHeleniak/gym-sync/tree/develop/gym-sync-frontend"
+        ref="project_2"
+      >
+        <img class="project__img" src="/public/assets/projects/project_2.png" alt="" />
         <div class="project__content">
-          <div class="project__title">Własna aplikacja</div>
-          <div class="project__box">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ea unde praesentium
-            odit veritatis at amet ipsum, facere eaque optio numquam aspernatur suscipit perferendis
-            velit molestias magni, commodi, iusto rem?
+          <div class="project__name">
+            <h3>
+              <div>Flow Stats</div>
+              <div>Sprawdź</div>
+            </h3>
+            <i class="fa-solid fa-arrow-right"></i>
           </div>
+
+          <span class="project__desc">
+            Flow Stats to interaktywny dashboard zbudowany w Vue, stworzony do przejrzystej
+            prezentacji danych biznesowych. Korzysta z ApexCharts i GSAP, dzięki czemu łączy
+            czytelne wykresy z płynnymi animacjami. Projekt pokazuje pracę z dynamicznymi
+            komponentami, stanem aplikacji i interfejsem zbliżonym do systemów analitycznych.
+          </span>
         </div>
-      </div>
+      </a>
+      <div class="dot-blur dot-blur--project"></div>
     </div>
   </section>
 </template>
@@ -38,34 +75,79 @@
 .section {
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  &__header {
-    margin-bottom: 3rem;
-  }
-  &__list {
+  &__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    position: relative;
   }
 }
 .project {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
-  min-height: 40rem;
-  &__img {
-    border-radius: var(--border-radius-primary);
-    overflow: hidden;
-    img {
-      height: 100%;
-      object-fit: cover;
+  width: 80rem;
+  height: 63rem;
+  z-index: 3;
+  position: relative;
+  border: 1px solid hsl(243deg 94.68% 87.97%);
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 2rem;
+  transition: 0.2s ease-in box-shadow;
+  &:hover {
+    box-shadow: 0 0 1rem 0rem hsl(243, 24.95%, 37.3%);
+    .project__name {
+      i {
+        transform: translateX(0.5rem);
+      }
+      h3 {
+        div {
+          transform: translateY(-100%);
+        }
+      }
     }
   }
-  &__title {
-    font-size: 2.4rem;
-    margin-bottom: 1rem;
+  &.project_2 {
+    position: sticky;
+    z-index: 2;
+    margin-top: 2.4rem;
+    bottom: 16vh;
+    scale: 0.95;
+  }
+  &__img {
+    border-radius: var(--border-radius-primary);
+    max-height: 362rem;
+    height: 100%;
+    overflow: hidden;
+  }
+  &__name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    i {
+      transition: 0.2s ease-in transform;
+    }
+    h3 {
+      overflow: hidden;
+      position: relative;
+      div {
+        transition: 0.2s ease-out transform;
+        &:last-child {
+          position: absolute;
+        }
+      }
+    }
+  }
+  &__content {
+    background-color: var(--color-bg-primary);
+    border-radius: var(--border-radius-primary);
+    padding: 2rem;
+  }
+}
+.--projects {
+  h2 {
+    display: flex;
+    justify-content: center;
   }
 }
 </style>

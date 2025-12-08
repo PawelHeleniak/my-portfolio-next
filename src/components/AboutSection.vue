@@ -19,22 +19,23 @@
           wsparcia przy rozwoju projektu, chętnie pomogę.
         </div>
       </div>
+      <div class="dot-blur dot-blur--about"></div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-.section {
-  &__header {
-    margin-bottom: 3rem;
-  }
-}
 .about {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  position: relative;
   &__header {
     margin-bottom: 2rem;
+  }
+  &__box {
+    position: relative;
+    z-index: 2;
   }
 }
 </style>
