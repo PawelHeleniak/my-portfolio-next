@@ -2,11 +2,6 @@
 
 <template>
   <header class="header">
-    <nav class="header__navigation --box">
-      <button class="header__navigation_item header__navigation_item--active">O mnie</button>
-      <button class="header__navigation_item">Projekty</button>
-      <button class="header__navigation_item">Kontakt</button>
-    </nav>
     <div class="header__wrapper">
       <div class="header__description">
         <h1>Cześć! <br />Jestem Front-End Developerem</h1>
@@ -43,29 +38,8 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2rem;
   position: relative;
-  // Nawigacja
-  &__navigation {
-    display: flex;
-    gap: 10px;
-    padding: 10px;
-    width: calc(50% - 20px);
-    margin-left: auto;
-    &_item {
-      padding: 8px 16px;
-      cursor: pointer;
-      transition: 0.2s ease-in text-shadow;
-      &--active {
-        background-color: hsl(279deg 100% 91.76%);
-        border-radius: var(--border-radius-primary);
-        text-shadow: 0 0 1px var(--color-text-primary);
-      }
-      &:hover {
-        text-shadow: 0 0 1px var(--color-text-primary);
-      }
-    }
-  }
   // Treść
   &__wrapper {
     display: grid;
@@ -77,15 +51,30 @@
     flex-direction: column;
     padding: 0 4rem 4rem 0;
     gap: 3rem;
-    // h1 {
-    //   margin-bottom: 20px;
-    // }
+    h1,
+    span,
+    button {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    h1 {
+      animation: slideIn 1s ease forwards;
+    }
+    span {
+      animation: slideIn 1s 0.2s ease forwards;
+    }
+    button {
+      animation: slideIn 1s 0.4s ease forwards;
+    }
   }
   &__info {
     padding: 2rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
+    opacity: 0;
+    transform: translateY(1rem);
+    animation: slideIn 1s ease forwards;
   }
   &__box {
     padding: 1.2rem;

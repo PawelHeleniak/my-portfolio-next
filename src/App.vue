@@ -1,4 +1,5 @@
 <script setup>
+import NavigationSection from './components/NavigationSection.vue'
 import HeroSection from './components/HeroSection.vue'
 import ProjectSection from './components/ProjectSection.vue'
 import ContactSection from './components/ContactSection.vue'
@@ -8,6 +9,7 @@ import AboutSection from './components/AboutSection.vue'
 
 <template>
   <main>
+    <NavigationSection />
     <HeroSection />
     <AboutSection />
     <ProjectSection />

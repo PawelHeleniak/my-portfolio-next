@@ -25,6 +25,11 @@
 </template>
 
 <style lang="scss" scoped>
+.section {
+  opacity: 0;
+  transform: translateY(1rem);
+  animation: slideIn 1s 0.6s ease forwards;
+}
 .about {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
