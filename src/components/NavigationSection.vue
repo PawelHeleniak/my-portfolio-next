@@ -10,6 +10,7 @@ const navigation = ref(null)
 onMounted(() => {
   const tl = gsap.to(navigation.value, {
     marginRight: 'auto',
+    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
     duration: 0.5,
     paused: true,
   })
@@ -30,9 +31,12 @@ onMounted(() => {
 
 <template>
   <nav class="navigation --box" ref="navigation">
-    <button class="navigation_item navigation_item--active">O mnie</button>
-    <button class="navigation_item">Projekty</button>
-    <button class="navigation_item">Kontakt</button>
+    <div class="navigation__box">
+      <button class="navigation__item navigation__item--active">O mnie</button>
+      <button class="navigation__item">Projekty</button>
+      <button class="navigation__item">Kontakt</button>
+    </div>
+    <button class="navigation__switch"></button>
   </nav>
 </template>
 
@@ -52,23 +56,25 @@ onMounted(() => {
   position: sticky;
   top: 2rem;
   z-index: 99;
-  background: var(--color-bg-secondary-opacity);
+  background: var(--bg-secondary-opacity);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  &_item {
+  &__item {
     padding: 8px 16px;
     cursor: pointer;
     transition: 0.2s ease-in text-shadow;
     &--active {
       background-color: hsla(279, 100%, 91.76%, 0.8);
       border-radius: var(--border-radius-primary);
-      text-shadow: 0 0 1px var(--color-text-primary);
+      text-shadow: 0 0 1px var(--text-primary);
     }
     &:hover {
-      text-shadow: 0 0 1px var(--color-text-primary);
+      text-shadow: 0 0 1px var(--text-primary);
     }
+  }
+  &__switch {
   }
 }
 </style>

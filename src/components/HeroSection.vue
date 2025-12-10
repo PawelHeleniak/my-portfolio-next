@@ -13,9 +13,10 @@
       </div>
       <div class="header__info --box">
         <div class="header__box --info">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore obcaecati voluptatibus
-          cumque dignissimos nobis eum! Vel tempore accusantium voluptates, reprehenderit iure
-          accusamus, commodi error facere dolorem adipisci natus aliquam ratione?
+          Zajmuję się tworzeniem przejrzystych, szybkich i dopracowanych aplikacji webowych. Dbam o
+          szczegóły i trzymam się sprawdzonych praktyk, bo dobrze napisany kod to nie tylko
+          estetyka, ale też łatwiejszy rozwój projektu w przyszłości. Stawiam na czytelne
+          rozwiązania, które da się skalować bez chaosu i zbędnych komplikacji.
         </div>
         <div class="header__box --framework">
           <img src="/public/assets/angular_logo.webp" alt="angular logo" />
@@ -78,7 +79,7 @@
   }
   &__box {
     padding: 1.2rem;
-    background-color: hsl(243.16deg 76% 95.1%);
+    background: var(--bg-primary);
     border-radius: var(--border-radius-primary);
     &:nth-child(1) {
       grid-column: span 3;
@@ -111,7 +112,7 @@
       i {
         font-size: var(--font-size-xl);
         border-radius: var(--border-radius-secondary);
-        background-color: var(--color-bg-secondary);
+        background-color: var(--bg-secondary);
         padding: 1.2rem;
         width: 5.6rem;
         height: 5.6rem;

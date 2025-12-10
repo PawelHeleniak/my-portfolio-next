@@ -93,7 +93,6 @@ onMounted(() => {
   gap: 2.4rem;
   padding: 2rem;
   transition: 0.2s ease-in box-shadow;
-  background: var(--color-bg-secondary);
   &:hover {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     .project__name {
@@ -140,7 +139,7 @@ onMounted(() => {
     }
   }
   &__content {
-    background-color: var(--color-bg-primary);
+    background-color: var(--bg-primary);
     border-radius: var(--border-radius-primary);
     padding: 2rem;
   }

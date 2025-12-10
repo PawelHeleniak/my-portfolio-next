@@ -19,6 +19,32 @@
           </form>
         </div>
       </div>
+      <div class="information">
+        <a class="information__link --email --box" href="mailto:pawel.heleniak@outlook.com">
+          <i class="fa-regular fa-envelope"></i>
+          <div class="information__content">
+            <h4>Wyślij e-mail</h4>
+            <span>pawel.heleniak@outlook.com</span>
+          </div>
+        </a>
+        <a class="information__link --phone --box" href="tel:48661011470">
+          <i class="fa-solid fa-phone"></i>
+          <div class="information__content">
+            <h4>Zadzwoń</h4>
+            <span>+48 661 011 470</span>
+          </div>
+        </a>
+        <a
+          class="information__link --linkedin --box"
+          href="https://www.linkedin.com/in/paweł-heleniak-1882b2231"
+        >
+          <i class="fa-brands fa-linkedin-in"></i>
+          <div class="information__content">
+            <h4>Napisz na linkedin</h4>
+            <span>paweł-heleniak</span>
+          </div>
+        </a>
+      </div>
     </div>
     <div class="dot-blur dot-blur--contact"></div>
   </section>
@@ -33,13 +59,16 @@
   &__list {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
     z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 .contact {
   width: 100%;
+  grid-column: span 2;
   &__wrapper {
     max-width: 80rem;
     margin: auto;
@@ -52,7 +81,7 @@
   &__subheader {
     margin-bottom: 3rem;
     text-align: center;
-    color: var(--color-text-secondary);
+    color: var(--text-secondary);
   }
   &__form {
     display: flex;
@@ -70,9 +99,37 @@
     overflow: hidden;
     textarea,
     input {
-      background-color: var(--color-bg-primary);
+      background-color: var(--bg-primary);
       width: 100%;
       padding: 1.5rem;
+    }
+  }
+}
+.information {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  &__link {
+    display: flex;
+    gap: 1.6rem;
+    i {
+      border-radius: var(--border-radius-primary);
+      background-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent) 25%, var(--primary) 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 6.4rem;
+      height: 6.4rem;
+      font-size: 2.4rem;
+      color: var(--bg-primary);
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    span {
+      font-size: var(--font-size-m);
     }
   }
 }
