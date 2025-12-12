@@ -8,6 +8,9 @@ gsap.registerPlugin(ScrollTrigger)
 const navigation = ref(null)
 
 onMounted(() => {
+  const screenWidth = window.innerWidth
+  if (screenWidth < 1024) return
+
   const tl = gsap.to(navigation.value, {
     marginRight: 'auto',
     boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
@@ -30,7 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav class="navigation --box" ref="navigation">
+  <nav class="navigation" ref="navigation">
     <div class="navigation__box">
       <button class="navigation__item navigation__item--active">O mnie</button>
       <button class="navigation__item">Projekty</button>
@@ -41,14 +44,14 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@use '../style.scss' as style;
+
 // Nawigacja
 .navigation {
-  display: flex;
+  display: none;
   gap: 1rem;
   padding: 1rem;
-  width: calc(50% - 2rem);
-  margin-left: auto;
-  margin-bottom: 2rem;
+  width: 100%;
   opacity: 0;
   transform: translateY(1rem);
   animation: slideIn 1s ease forwards;
@@ -58,9 +61,14 @@ onMounted(() => {
   z-index: 99;
   background: var(--bg-secondary-opacity);
   border-radius: 16px;
-  // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  @include style.laptop {
+    display: flex;
+    width: calc(50% - 2rem);
+    margin-bottom: 2rem;
+    margin-left: auto;
+  }
   &__item {
     padding: 8px 16px;
     cursor: pointer;
@@ -74,7 +82,7 @@ onMounted(() => {
       text-shadow: 0 0 1px var(--text-primary);
     }
   }
-  &__switch {
-  }
+  // &__switch {
+  // }
 }
 </style>

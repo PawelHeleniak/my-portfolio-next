@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <section class="section">
+  <section class="section" id="contact">
     <div class="section__list">
       <div class="contact --box">
         <div class="contact__wrapper">
@@ -51,6 +51,8 @@
 </template>
 
 <style lang="scss" scoped>
+@use '../style.scss' as style;
+
 .section {
   display: flex;
   flex-direction: column;
@@ -60,10 +62,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 2rem;
     z-index: 2;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    @include style.tablet {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include style.laptop {
+      gap: 2rem;
+    }
   }
 }
 .contact {
@@ -89,8 +96,12 @@
     gap: 2rem;
     &--row {
       display: flex;
-      flex-direction: row;
-      gap: 2rem;
+      flex-direction: column;
+      gap: 1.2rem;
+      @include style.laptop {
+        gap: 2rem;
+        flex-direction: row;
+      }
     }
   }
   .input-field {
@@ -108,7 +119,11 @@
 .information {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.2rem;
+  width: 100%;
+  @include style.laptop {
+    gap: 2rem;
+  }
   &__link {
     display: flex;
     gap: 1.6rem;
@@ -123,13 +138,19 @@
       height: 6.4rem;
       font-size: 2.4rem;
       color: var(--bg-primary);
+      min-width: 6.4rem;
     }
   }
   &__content {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     span {
       font-size: var(--font-size-m);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
     }
   }
 }

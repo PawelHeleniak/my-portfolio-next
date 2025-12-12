@@ -9,7 +9,7 @@
           >Tworzę nowoczesne strony i wizytówki. Chętnie podejmę projekty w Angularze lub Vue, które
           w pełni spełnią Twoje oczekiwania.</span
         >
-        <button class="button">Kontakt</button>
+        <a class="button" href="#contact">Kontakt</a>
       </div>
       <div class="header__info --box">
         <div class="header__box --info">
@@ -36,6 +36,7 @@
 </template>
 
 <style lang="scss" scoped>
+@use '../style.scss' as style;
 .header {
   display: flex;
   flex-direction: column;
@@ -43,15 +44,22 @@
   position: relative;
   // Treść
   &__wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 4rem;
+    @include style.laptop {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   &__description {
     display: flex;
     flex-direction: column;
-    padding: 0 4rem 4rem 0;
+    padding: 0;
     gap: 3rem;
+    @include style.laptop {
+      padding: 0 4rem 4rem 0;
+    }
     h1,
     span,
     button {
@@ -66,10 +74,14 @@
     }
     button {
       animation: slideIn 1s 0.4s ease forwards;
+      width: 100%;
+      @include style.tablet {
+        width: max-content;
+      }
     }
   }
   &__info {
-    padding: 2rem;
+    // padding: 2rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
@@ -85,14 +97,15 @@
       grid-column: span 3;
     }
     &:nth-child(2) {
-      grid-column: span 2;
+      grid-column: span 3;
     }
     &:nth-child(3) {
-      grid-column: span 1;
+      grid-column: span 3;
     }
     &.--framework {
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
       gap: 1.6rem;
       align-items: center;
       justify-content: center;
@@ -100,7 +113,40 @@
         max-width: 100%;
         height: auto;
         display: block;
-        height: 100px;
+        max-height: 10rem;
+      }
+    }
+    @include style.tablet {
+      &:nth-child(1) {
+        grid-column: span 3;
+      }
+      &:nth-child(2) {
+        grid-column: span 2;
+      }
+      &:nth-child(3) {
+        grid-column: span 1;
+      }
+    }
+    @include style.laptop {
+      &:nth-child(1) {
+        grid-column: span 3;
+      }
+      &:nth-child(2) {
+        grid-column: span 3;
+      }
+      &:nth-child(3) {
+        grid-column: span 3;
+      }
+    }
+    @include style.desktop {
+      &:nth-child(1) {
+        grid-column: span 3;
+      }
+      &:nth-child(2) {
+        grid-column: span 2;
+      }
+      &:nth-child(3) {
+        grid-column: span 1;
       }
     }
     &.--contacts {

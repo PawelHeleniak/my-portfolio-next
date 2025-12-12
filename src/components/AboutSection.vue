@@ -25,16 +25,21 @@
 </template>
 
 <style lang="scss" scoped>
+@use '../style.scss' as style;
 .section {
   opacity: 0;
   transform: translateY(1rem);
   animation: slideIn 1s 0.6s ease forwards;
 }
 .about {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   position: relative;
+  @include style.tablet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
   &__header {
     margin-bottom: 2rem;
   }

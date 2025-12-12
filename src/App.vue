@@ -19,9 +19,13 @@ import AboutSection from './components/AboutSection.vue'
 </template>
 
 <style lang="scss" scoped>
+@use './style.scss' as style;
 main {
-  padding: 4rem;
+  padding: 1.6rem;
   max-width: 1440px;
   margin: 0 auto;
+  @include style.laptop {
+    padding: 4rem;
+  }
 }
 </style>

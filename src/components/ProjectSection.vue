@@ -83,7 +83,8 @@ onMounted(() => {
   }
 }
 .project {
-  width: 80rem;
+  width: 100%;
+  max-width: 80rem;
   height: 63rem;
   z-index: 3;
   position: relative;
