@@ -19,7 +19,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <section class="section --projects">
+  <section class="section --projects" id="projects">
     <h2 class="section__header">Moje projekty</h2>
     <div class="section__wrapper">
       <a

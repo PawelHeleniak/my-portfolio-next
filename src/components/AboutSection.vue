@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <section class="section">
+  <section class="section" id="about">
     <h2 class="section__header">Czym się zajmuję</h2>
     <div class="about">
       <div class="about__box --box">

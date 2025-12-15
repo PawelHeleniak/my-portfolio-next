@@ -57,8 +57,10 @@
     flex-direction: column;
     padding: 0;
     gap: 3rem;
+    margin-top: 1.2rem;
     @include style.laptop {
       padding: 0 4rem 4rem 0;
+      margin-top: 0;
     }
     h1,
     span,
@@ -75,6 +77,14 @@
     button {
       animation: slideIn 1s 0.4s ease forwards;
       width: 100%;
+      @include style.tablet {
+        width: max-content;
+      }
+    }
+    a {
+      width: 100%;
+      justify-content: center;
+      display: flex;
       @include style.tablet {
         width: max-content;
       }

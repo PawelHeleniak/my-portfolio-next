@@ -21,9 +21,12 @@ import AboutSection from './components/AboutSection.vue'
 <style lang="scss" scoped>
 @use './style.scss' as style;
 main {
-  padding: 1.6rem;
+  padding: 1.2rem;
   max-width: 1440px;
   margin: 0 auto;
+  @include style.tablet {
+    padding: 2.4rem;
+  }
   @include style.laptop {
     padding: 4rem;
   }
