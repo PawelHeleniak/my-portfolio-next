@@ -13,6 +13,7 @@
   --warning: hsl(0, 100%, 25%);
   --warning-hover: hsl(0, 100%, 35%);
   --success: hsl(125, 100%, 35%);
+  --border-color: hsl(243, 94.68%, 87.97%);
 
   --border-radius-primary: 1.6rem;
   --border-radius-secondary: 5rem;
@@ -33,18 +34,19 @@
   --font-family-base: 'Lato', sans-serif;
 }
 :root[data-theme='dark'] {
-  --primary: hsl(271, 80%, 38%);
-  --secondary: hsl(268, 88%, 25%);
-  --accent: hsl(293, 100%, 35%);
-  --bg-primary: hsl(243deg 75.8% 94.1%);
-  --bg-primary-opacity: hsla(243deg, 75.8%, 94.1%, 0.8);
-  --bg-secondary: hsl(248, 57%, 97%);
-  --bg-secondary-opacity: hsla(248, 57%, 97%, 0.8);
-  --text-primary: hsl(250, 18%, 7%);
-  --text-secondary: hsl(242.73 8.11% 28.54%);
+  --primary: hsl(271, 80%, 62%);
+  --secondary: hsl(268, 88%, 75%);
+  --accent: hsl(293, 100%, 65%);
+  --bg-primary: hsl(264, 100%, 1%);
+  --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
+  --bg-secondary: hsl(268deg, 34.88%, 8.43%);
+  --bg-secondary-opacity: hsla(268deg, 34.88%, 8.43%, 0.8);
+  --text-primary: hsl(269, 84%, 95%);
+  --text-secondary: hsl(270, 19%, 77%);
   --warning: hsl(0, 100%, 25%);
   --warning-hover: hsl(0, 100%, 35%);
   --success: hsl(125, 100%, 35%);
+  --border-color: hsl(265.28, 15.48%, 28.77%);
 }
 // miksiny
 $mobile: 480px;

@@ -27,7 +27,7 @@
             <span>pawel.heleniak@outlook.com</span>
           </div>
         </a>
-        <a class="information__link --phone --box" href="tel:48661011470">
+        <a class="information__link --phone --box" href="tel:+48661011470">
           <i class="fa-solid fa-phone"></i>
           <div class="information__content">
             <h4>Zadzwoń</h4>
@@ -127,6 +127,13 @@
   &__link {
     display: flex;
     gap: 1.6rem;
+    transition: 0.2s ease-in transform;
+    &:hover {
+      transform: translateY(-5px);
+      span {
+        color: var(--primary);
+      }
+    }
     i {
       border-radius: var(--border-radius-primary);
       background-color: var(--accent);
@@ -151,6 +158,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       width: 100%;
+      transition: 0.2s ease-in color;
     }
   }
 }

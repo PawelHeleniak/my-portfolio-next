@@ -71,6 +71,41 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   if (observer) observer.disconnect()
 })
+
+// KOLORY
+const theme = ref('light')
+const themeKey = 'theme'
+
+const applyTheme = (value) => {
+  document.documentElement.setAttribute('data-theme', value)
+}
+
+onMounted(() => {
+  const savedTheme = localStorage.getItem(themeKey)
+
+  if (savedTheme) {
+    theme.value = savedTheme
+    applyTheme(savedTheme)
+    return
+  }
+
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)')
+  theme.value = prefersDark.matches ? 'dark' : 'light'
+  applyTheme(theme.value)
+
+  prefersDark.addEventListener('change', (e) => {
+    if (!localStorage.getItem(themeKey)) {
+      theme.value = e.matches ? 'dark' : 'light'
+      applyTheme(theme.value)
+    }
+  })
+})
+
+const toggleTheme = () => {
+  theme.value = theme.value === 'dark' ? 'light' : 'dark'
+  localStorage.setItem(themeKey, theme.value)
+  applyTheme(theme.value)
+}
 </script>
 
 <template>
@@ -90,7 +125,10 @@ onBeforeUnmount(() => {
         <i :class="section.icon"></i><span>{{ section.name }}</span>
       </a>
     </div>
-    <button class="navigation__switch"><i class="fa-regular fa-sun"></i></button>
+    <button class="navigation__switch" @click="toggleTheme">
+      <i v-if="theme === 'light'" class="fa-regular fa-sun"></i>
+      <i v-else class="fa-regular fa-moon"></i>
+    </button>
   </nav>
 </template>
 
@@ -155,12 +193,13 @@ onBeforeUnmount(() => {
       0.2s ease-in text-shadow,
       0.2s ease-in background;
     border-radius: var(--border-radius-primary);
-    &--active {
-      background-color: hsla(279, 100%, 91.76%, 0.8);
-      text-shadow: 0 0 1px var(--text-primary);
-    }
     &:hover {
-      text-shadow: 0 0 1px var(--text-primary);
+      background-color: var(--bg-primary);
+    }
+    &--active {
+      background-color: var(--primary) !important;
+      color: hsl(269, 84%, 95%);
+      text-shadow: 0 0 1px hsl(269, 84%, 95%);
     }
     @include style.tablet {
       width: max-content;
@@ -173,6 +212,12 @@ onBeforeUnmount(() => {
   &__bars {
     @include style.tablet {
       display: none !important;
+    }
+  }
+  &__switch {
+    transition: 0.2s ease-in color;
+    &:hover {
+      color: var(--primary);
     }
   }
   a,

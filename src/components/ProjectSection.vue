@@ -88,7 +88,7 @@ onMounted(() => {
   height: 63rem;
   z-index: 3;
   position: relative;
-  border: 1px solid hsl(243deg 94.68% 87.97%);
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: 2.4rem;

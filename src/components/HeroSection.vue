@@ -24,10 +24,18 @@
           <img src="/public/assets/nodejs_logo.svg" alt="nodejs logo" />
         </div>
         <div class="header__box --contacts">
-          <i class="fa-solid fa-phone"></i>
-          <i class="fa-solid fa-envelope"></i>
-          <i class="fa-brands fa-linkedin"></i>
-          <i class="fa-brands fa-github"></i>
+          <a href="tel:+48661011470">
+            <i class="fa-solid fa-phone"></i>
+          </a>
+          <a href="mailto:pawel.heleniak@outlook.com">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/paweł-heleniak-1882b2231">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/PawelHeleniak">
+            <i class="fa-brands fa-github"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -85,6 +93,8 @@
       width: 100%;
       justify-content: center;
       display: flex;
+      opacity: 0;
+      animation: slideIn 1s 0.3s ease forwards;
       @include style.tablet {
         width: max-content;
       }
@@ -97,7 +107,10 @@
     gap: 1.2rem;
     opacity: 0;
     transform: translateY(1rem);
-    animation: slideIn 1s ease forwards;
+    animation: slideIn 1s 0.4s ease forwards;
+    @include style.tablet {
+      animation: slideIn 1s ease forwards;
+    }
   }
   &__box {
     padding: 1.2rem;
@@ -165,9 +178,19 @@
       justify-content: center;
       align-items: center;
       gap: 2rem;
+      a {
+        border-radius: var(--border-radius-secondary);
+        transition:
+          0.2s ease-in box-shadow,
+          0.2s ease-in color;
+        overflow: hidden;
+        &:hover {
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          color: var(--secondary);
+        }
+      }
       i {
         font-size: var(--font-size-xl);
-        border-radius: var(--border-radius-secondary);
         background-color: var(--bg-secondary);
         padding: 1.2rem;
         width: 5.6rem;
