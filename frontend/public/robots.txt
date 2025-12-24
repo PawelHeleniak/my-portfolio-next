@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /src/
+Allow: /
+
+Sitemap: https://pawelheleniak.pl/sitemap.xml

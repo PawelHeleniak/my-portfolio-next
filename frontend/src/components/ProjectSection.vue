@@ -143,6 +143,9 @@ onMounted(() => {
       }
     }
   }
+  &__desc {
+    color: var(--text-secondary);
+  }
   &__content {
     background-color: var(--bg-primary);
     border-radius: var(--border-radius-primary);

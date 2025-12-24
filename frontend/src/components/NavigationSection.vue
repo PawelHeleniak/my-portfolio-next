@@ -189,9 +189,7 @@ const toggleTheme = () => {
   }
   &__item {
     cursor: pointer;
-    transition:
-      0.2s ease-in text-shadow,
-      0.2s ease-in background;
+    transition: 0.2s ease-in background;
     border-radius: var(--border-radius-primary);
     &:hover {
       background-color: var(--bg-primary);
@@ -199,7 +197,6 @@ const toggleTheme = () => {
     &--active {
       background-color: var(--primary) !important;
       color: hsl(269, 84%, 95%);
-      text-shadow: 0 0 1px hsl(269, 84%, 95%);
     }
     @include style.tablet {
       width: max-content;

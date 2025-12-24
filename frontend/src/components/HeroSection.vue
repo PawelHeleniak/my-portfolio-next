@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+const scrollToSection = (id) => {
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+</script>
 
 <template>
   <header class="header">
@@ -6,10 +13,11 @@
       <div class="header__description">
         <h1>Cześć! <br />Jestem Front-End Developerem</h1>
         <span
-          >Tworzę nowoczesne strony i wizytówki. Chętnie podejmę projekty w Angularze lub Vue, które
-          w pełni spełnią Twoje oczekiwania.</span
+          >Tworzę nowoczesne strony i wizytówki. Chętnie podejmę projekty w
+          <strong>Angularze</strong> lub <strong>Vue</strong>, które w pełni spełnią Twoje
+          oczekiwania. Oferuję także wsparcie w zakresie platformy <strong>IdoSell</strong>.</span
         >
-        <a class="button" href="#contact">Kontakt</a>
+        <button class="button" @click="scrollToSection('contact')">Kontakt</button>
       </div>
       <div class="header__info --box">
         <div class="header__box --info">
@@ -81,10 +89,12 @@
     }
     span {
       animation: slideIn 1s 0.2s ease forwards;
+      color: var(--text-secondary);
     }
     button {
       animation: slideIn 1s 0.4s ease forwards;
       width: 100%;
+      color: #fff;
       @include style.tablet {
         width: max-content;
       }
@@ -125,6 +135,9 @@
     &:nth-child(3) {
       grid-column: span 3;
     }
+    &.--info {
+      color: var(--text-secondary);
+    }
     &.--framework {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -136,7 +149,7 @@
         max-width: 100%;
         height: auto;
         display: block;
-        max-height: 10rem;
+        max-height: 9.2rem;
       }
     }
     @include style.tablet {

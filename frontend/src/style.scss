@@ -1,15 +1,15 @@
 @use './reset.scss' as *;
 // Variables
 :root {
-  --primary: hsl(271, 80%, 38%);
-  --secondary: hsl(268, 88%, 25%);
+  --primary: hsl(271, 80%, 48%);
+  --secondary: hsl(268, 88%, 35%);
   --accent: hsl(293, 100%, 35%);
   --bg-primary: hsl(230.84deg 73% 97%);
   --bg-primary-opacity: hsla(230.84deg, 73%, 97%, 0.8);
   --bg-secondary: hsl(266, 100%, 99%);
   --bg-secondary-opacity: hsla(266, 100%, 99%, 0.8);
   --text-primary: hsl(250, 18%, 7%);
-  --text-secondary: hsl(242.73 8.11% 28.54%);
+  --text-secondary: hsl(240, 6%, 21%);
   --warning: hsl(0, 100%, 25%);
   --warning-hover: hsl(0, 100%, 35%);
   --success: hsl(125, 100%, 35%);
