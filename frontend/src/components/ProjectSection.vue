@@ -26,7 +26,11 @@ onMounted(() => {
         class="project --box"
         href="https://github.com/PawelHeleniak/gym-sync/tree/develop/gym-sync-frontend"
       >
-        <img class="project__img" src="/public/assets/projects/project_1.png" alt="" />
+        <img
+          class="project__img"
+          src="/public/assets/projects/project_1.webp"
+          alt="GymSync - Aplikacja webowa"
+        />
         <div class="project__content">
           <div class="project__name">
             <h3>
