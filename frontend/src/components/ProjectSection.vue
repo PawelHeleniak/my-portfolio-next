@@ -47,19 +47,28 @@ onMounted(() => {
           </span>
         </div>
       </a>
-      <a
-        class="project --box project_2"
-        href="https://github.com/PawelHeleniak/gym-sync/tree/develop/gym-sync-frontend"
-        ref="project_2"
-      >
-        <img class="project__img" src="/public/assets/projects/project_2.png" alt="" />
+      <a class="project --box project_2 --disabled" ref="project_2">
+        <!-- <img
+          class="project__img"
+          src="/public/assets/projects/project_2.png"
+          alt="Projekt w trakcie"
+        /> -->
+        <div class="project__img in-progress">
+          <div class="in-progress__box">
+            <h4>Flow Stats</h4>
+            <span>Projekt w trakcie budowy</span>
+            <span class="in-progress__secondary"
+              >Pierwszy publiczny widok: <strong>wkrótce</strong></span
+            >
+          </div>
+        </div>
         <div class="project__content">
           <div class="project__name">
             <h3>
               <div>Flow Stats</div>
               <div>Sprawdź</div>
             </h3>
-            <i class="fa-solid fa-arrow-right"></i>
+            <!-- <i class="fa-solid fa-arrow-right"></i> -->
           </div>
 
           <span class="project__desc">
@@ -98,15 +107,17 @@ onMounted(() => {
   gap: 2.4rem;
   padding: 2rem;
   transition: 0.2s ease-in box-shadow;
-  &:hover {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    .project__name {
-      i {
-        transform: translateX(0.5rem);
-      }
-      h3 {
-        div {
-          transform: translateY(-100%);
+  &:not(.--disabled) {
+    &:hover {
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      .project__name {
+        i {
+          transform: translateX(0.5rem);
+        }
+        h3 {
+          div {
+            transform: translateY(-100%);
+          }
         }
       }
     }
@@ -123,6 +134,35 @@ onMounted(() => {
     max-height: 362rem;
     height: 100%;
     overflow: hidden;
+  }
+  .in-progress {
+    font-size: 2.4rem;
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius-primary);
+    padding: 2rem;
+    width: 100%;
+    &__box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      h4 {
+        font-size: 4.2rem;
+        margin-bottom: 1.2rem;
+        background: -webkit-linear-gradient(270deg, var(--accent) 0%, var(--primary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      span {
+        font-size: var(--font-size-l);
+        &.in-progress__secondary {
+          margin-top: 0.8rem;
+          color: var(--text-secondary);
+          font-size: var(--font-size-m);
+        }
+      }
+    }
   }
   &__name {
     display: flex;
