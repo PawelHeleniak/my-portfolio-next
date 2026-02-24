@@ -111,6 +111,9 @@ h1 {
   font-size: var(--font-size-3xl);
   line-height: 1.2;
 }
+textarea {
+  resize: none;
+}
 .--box {
   background-color: var(--bg-secondary);
   border-radius: var(--border-radius-primary);

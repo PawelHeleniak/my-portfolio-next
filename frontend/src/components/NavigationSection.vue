@@ -56,7 +56,6 @@ onMounted(async () => {
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        console.log(entry.target.id)
         if (entry.isIntersecting) {
           activeSection.value = entry.target.id
         }

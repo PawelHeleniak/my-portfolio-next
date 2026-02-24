@@ -1,4 +1,47 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+
+const name = ref('')
+const email = ref('')
+const message = ref('')
+const touched = ref(false)
+const success = ref('')
+const error = ref('')
+
+const isEmpty = (v) => !v || !v.trim()
+
+const sendForm = async () => {
+  touched.value = true
+  success.value = ''
+  error.value = ''
+
+  if (isEmpty(name.value) || isEmpty(email.value) || isEmpty(message.value)) {
+    error.value = 'Wypełnij wszystkie pola przed wysłaniem wiadomości.'
+    return
+  }
+
+  try {
+    const res = await fetch('https://pawelheleniak.pl/send-mail', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subject: `Wiadomość od: ${name.value} (${email.value})`,
+        text: message.value,
+      }),
+    })
+
+    if (!res.ok) throw new Error()
+
+    success.value = 'Wiadomość została wysłana. Dziękuję za kontakt!'
+    name.value = ''
+    email.value = ''
+    message.value = ''
+    touched.value = false
+  } catch {
+    error.value = 'Nie udało się wysłać wiadomości. Spróbuj jeszcze raz.'
+  }
+}
+</script>
 
 <template>
   <section class="section" id="contact">
@@ -10,13 +53,25 @@
             Szukasz front-end developera do projektu? Chętnie pomogę, odezwij się i porozmawiajmy o
             szczegółach.
           </h4>
-          <form action="" class="contact__form">
+          <form @submit.prevent="sendForm" class="contact__form">
             <div class="contact__form--row">
-              <div class="input-field"><input type="text" placeholder="Imię i nazwisko" /></div>
-              <div class="input-field"><input type="text" placeholder="Email" /></div>
+              <div class="input-field" :class="{ '--warning': touched && isEmpty(name) }">
+                <input type="text" placeholder="Imię i nazwisko" v-model="name" />
+              </div>
+              <div class="input-field" :class="{ '--warning': touched && isEmpty(email) }">
+                <input type="text" placeholder="Email" v-model="email" />
+              </div>
             </div>
-            <div class="input-field"><textarea placeholder="Wiadomość..." rows="6" /></div>
+            <div
+              class="input-field input-field--textarea"
+              :class="{ '--warning': touched && isEmpty(message) }"
+            >
+              <textarea placeholder="Wiadomość..." rows="6" v-model="message" />
+            </div>
+            <button type="submit" class="button">Wyślij wiadomość</button>
           </form>
+          <small v-if="error" class="contact__info --warning">{{ error }}</small>
+          <small v-if="success" class="contact__info --success">{{ success }}</small>
         </div>
       </div>
       <div class="information">
@@ -103,6 +158,9 @@
         flex-direction: row;
       }
     }
+    .button {
+      margin: 0 auto;
+    }
   }
   .input-field {
     width: 100%;
@@ -113,6 +171,22 @@
       background-color: var(--bg-primary);
       width: 100%;
       padding: 1.5rem;
+    }
+    &--textarea {
+      height: 16rem;
+    }
+    &.--warning {
+      outline: 1px solid var(--warning);
+    }
+  }
+  &__info {
+    display: flex;
+    margin-top: 1rem;
+    &.--warning {
+      color: var(--warning);
+    }
+    &.--success {
+      color: var(--success);
     }
   }
 }
