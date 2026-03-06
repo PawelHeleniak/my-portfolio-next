@@ -132,7 +132,6 @@ const sendForm = async () => {
   width: 100%;
   grid-column: span 2;
   &__wrapper {
-    max-width: 80rem;
     margin: auto;
   }
 
