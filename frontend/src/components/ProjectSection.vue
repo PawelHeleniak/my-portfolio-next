@@ -41,7 +41,8 @@ onMounted(() => {
             </div>
             <span class="project__desc">
               Aplikacja webowa do planowania i zapisywania treningów. Umożliwia tworzenie planów
-              treningowych, zapisywanie sesji oraz analizowanie postępów w czasie.
+              treningowych, zapisywanie sesji oraz analizowanie postępów w czasie. Projekt jest
+              aktywnie rozwijany.
             </span>
           </div>
           <div class="project__badges">
@@ -77,20 +78,33 @@ onMounted(() => {
           </div>
         </div>
         <div class="project__content">
-          <div class="project__name">
-            <h3>
-              <div>Flow Stats</div>
-              <div>Sprawdź</div>
-            </h3>
-            <!-- <i class="fa-solid fa-arrow-right"></i> -->
+          <div class="project__top">
+            <div class="project__name">
+              <h3>RepEvo</h3>
+              <div class="project__arrow">
+                <span>Sprawdź</span><i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+            <span class="project__desc">
+              Aplikacja webowa do planowania i zapisywania treningów. Umożliwia tworzenie planów
+              treningowych, zapisywanie sesji oraz analizowanie postępów w czasie. Projekt jest
+              aktywnie rozwijany.
+            </span>
           </div>
-
-          <span class="project__desc">
-            Flow Stats to interaktywny dashboard zbudowany w Vue, stworzony do przejrzystej
-            prezentacji danych biznesowych. Korzysta z ApexCharts i GSAP, dzięki czemu łączy
-            czytelne wykresy z płynnymi animacjami. Projekt pokazuje pracę z dynamicznymi
-            komponentami, stanem aplikacji i interfejsem zbliżonym do systemów analitycznych.
-          </span>
+          <div class="project__badges">
+            <h4 class="project__title">Technologie</h4>
+            <div class="project__badge project__badge--vue">Vue</div>
+            <div class="project__badge project__badge--apex">ApexCharts</div>
+            <div class="project__badge project__badge--gsap">GSAP</div>
+          </div>
+          <div class="project__bottom">
+            <h4 class="project__functionality">Funkcjonalności</h4>
+            <ul class="project__ul">
+              <li class="project__li">wizualizacja danych w formie wykresów</li>
+              <li class="project__li">interaktywny dashboard analityczny</li>
+              <li class="project__li">dynamiczne komponenty i animacje interfejsu</li>
+            </ul>
+          </div>
         </div>
       </a>
       <div class="dot-blur dot-blur--project"></div>
@@ -282,6 +296,23 @@ onMounted(() => {
       color: #47a248;
       border-color: #47a248;
       background: rgba(71, 162, 72, 0.1);
+    }
+    &--vue {
+      color: #42b883;
+      border-color: #42b883;
+      background: rgba(66, 184, 131, 0.1);
+    }
+
+    &--apex {
+      color: #775dd0;
+      border-color: #775dd0;
+      background: rgba(119, 93, 208, 0.1);
+    }
+
+    &--gsap {
+      color: #88ce02;
+      border-color: #88ce02;
+      background: rgba(136, 206, 2, 0.1);
     }
   }
 
