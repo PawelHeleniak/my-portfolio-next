@@ -17,6 +17,10 @@ onMounted(() => {
     },
   })
 })
+
+const linkGithub = () => {
+  window.open('https://github.com/PawelHeleniak/gym-sync/', '_blank')
+}
 </script>
 <template>
   <section class="section --projects" id="projects">
@@ -24,7 +28,7 @@ onMounted(() => {
     <div class="section__wrapper">
       <a class="project project--box --box" href="https://repevo.pl/" target="_blank">
         <picture class="project__img">
-          <source media="(min-width:768px)" srcset="/public/assets/projects/project_1.webp" />
+          <source media="(min-width:1024px)" srcset="/public/assets/projects/project_1.webp" />
           <img
             class="project__img"
             src="/public/assets/projects/project_1-mobile.webp"
@@ -60,6 +64,9 @@ onMounted(() => {
               <li class="project__li">statystyki miesięczne</li>
             </ul>
           </div>
+          <div @click="linkGithub()" class="project__github">
+            <span>GitHub</span> <i class="fa-brands fa-github"></i>
+          </div>
         </div>
       </a>
       <a class="project --box project_2 --disabled" ref="project_2">
@@ -82,13 +89,12 @@ onMounted(() => {
             <div class="project__name">
               <h3>RepEvo</h3>
               <div class="project__arrow">
-                <span>Sprawdź</span><i class="fa-solid fa-arrow-right"></i>
+                <!-- <span>Sprawdź</span><i class="fa-solid fa-arrow-right"></i> -->
               </div>
             </div>
             <span class="project__desc">
-              Aplikacja webowa do planowania i zapisywania treningów. Umożliwia tworzenie planów
-              treningowych, zapisywanie sesji oraz analizowanie postępów w czasie. Projekt jest
-              aktywnie rozwijany.
+              Interaktywny dashboard do wizualizacji danych biznesowych. Prezentuje statystyki w
+              formie czytelnych wykresów i paneli analitycznych z płynnymi animacjami interfejsu.
             </span>
           </div>
           <div class="project__badges">
@@ -127,19 +133,24 @@ onMounted(() => {
 }
 .project {
   width: 100%;
-  height: 60rem;
   z-index: 3;
   position: relative;
   border: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: ROW;
   gap: 1.5rem;
-  padding: 1.5rem;
+  padding: 1rem 1rem 1.5rem 1rem;
   transition: 0.2s ease-in box-shadow;
-  @include style.tablet {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  max-width: 70rem;
+  @include style.mobile {
+    padding: 1.5rem;
+  }
+  @include style.laptop {
     padding: 2rem;
     gap: 2.4rem;
-    height: 67rem;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+    aspect-ratio: 18 / 9;
   }
   &:not(.--disabled) {
     &:hover {
@@ -179,9 +190,12 @@ onMounted(() => {
   &.project_2 {
     position: sticky;
     z-index: 2;
-    margin-top: 2.4rem;
+    margin-top: 0;
     bottom: 16vh;
     scale: 0.95;
+    @include style.tablet {
+      margin-top: 3.2rem;
+    }
   }
   &__img,
   &__content {
@@ -193,6 +207,10 @@ onMounted(() => {
     overflow: hidden;
     object-fit: cover;
     width: 100%;
+    aspect-ratio: 4 / 3;
+    @include style.laptop {
+      aspect-ratio: initial;
+    }
   }
   .in-progress {
     font-size: 2.4rem;
@@ -208,10 +226,13 @@ onMounted(() => {
       height: 100%;
       h4 {
         font-size: 4.2rem;
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.6rem;
         background: -webkit-linear-gradient(270deg, var(--accent) 0%, var(--primary) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        @include style.tablet {
+          margin-bottom: 1.2rem;
+        }
       }
       span {
         font-size: var(--font-size-l);
@@ -227,7 +248,10 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.6rem;
+    @include style.tablet {
+      margin-bottom: 1.2rem;
+    }
     i {
       transition: 0.2s ease-in transform;
     }
@@ -249,31 +273,75 @@ onMounted(() => {
   &__content {
     // background-color: var(--bg-primary);
     border-radius: var(--border-radius-primary);
-    padding: 1.5rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    @include style.mobile {
+    gap: 1rem;
+    @include style.tablet {
+      padding: 1rem;
+      gap: 2rem;
+    }
+    @include style.desktop {
       padding: 2rem;
+      gap: 3rem;
     }
   }
+  &__github {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    font-size: var(--font-size-l);
+    opacity: 0.7;
+    transition: 0.2s ease-in opacity;
+    @include style.laptop {
+      font-size: var(--font-size-base);
+    }
+    &:hover {
+      opacity: 1;
+    }
 
+    span {
+      display: none;
+      @include style.laptop {
+        display: block;
+      }
+    }
+  }
   // ====Badges====
   &__badges {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.5rem;
+    order: -1;
+    @include style.laptop {
+      order: 0;
+      gap: 1rem;
+    }
   }
   &__title {
     width: 100%;
+    display: none;
+    @include style.laptop {
+      display: block;
+    }
   }
   &__badge {
-    padding: 4px 10px;
-    font-size: 14px;
+    padding: 0.3rem 0.6rem;
+    font-size: var(--font-size-xs);
     border-radius: 20px;
     border: 2px solid;
     font-weight: 600;
     letter-spacing: 0.8px;
+    @include style.laptop {
+      font-size: var(--font-size-s);
+      order: 0;
+      padding: 0.4rem 1rem;
+    }
     &--angular {
       color: #dd0031;
       border-color: #dd0031;
@@ -318,7 +386,10 @@ onMounted(() => {
 
   // ====List====
   &__functionality {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    @include style.tablet {
+      margin-bottom: 1rem;
+    }
   }
   &__li {
     position: relative;

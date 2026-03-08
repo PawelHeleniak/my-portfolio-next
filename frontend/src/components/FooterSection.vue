@@ -1,8 +1,11 @@
-<script setup></script>
+<script setup>
+const date = new Date()
+const year = date.getFullYear()
+</script>
 
 <template>
   <footer class="footer">
-    <div class="footer__copyright">&#169; 2025 Paweł Heleniak</div>
+    <div class="footer__copyright">&#169; {{ year }} Paweł Heleniak</div>
     <div class="footer__links">
       <a href="tel:+48661011470">
         <i class="fa-solid fa-phone"></i>

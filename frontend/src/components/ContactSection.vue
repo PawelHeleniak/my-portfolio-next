@@ -48,7 +48,7 @@ const sendForm = async () => {
     <div class="section__list">
       <div class="contact --box">
         <div class="contact__wrapper">
-          <h2 class="contact__header">Skontaktujmy się</h2>
+          <h2 class="contact__header">Napisz do mnie</h2>
           <h4 class="contact__subheader">
             Szukasz front-end developera do projektu? Chętnie pomogę, odezwij się i porozmawiajmy o
             szczegółach.
