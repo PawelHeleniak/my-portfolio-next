@@ -87,7 +87,7 @@ const linkGithub = () => {
         <div class="project__content">
           <div class="project__top">
             <div class="project__name">
-              <h3>RepEvo</h3>
+              <h3>Flow Stats</h3>
               <div class="project__arrow">
                 <!-- <span>Sprawdź</span><i class="fa-solid fa-arrow-right"></i> -->
               </div>
