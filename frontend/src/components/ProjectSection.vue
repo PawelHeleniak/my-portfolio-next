@@ -135,7 +135,7 @@ const linkGithub = () => {
   width: 100%;
   z-index: 3;
   position: relative;
-  border: 1px solid var(--border-color);
+  // border: 1px solid var(--border-color);
   gap: 1.5rem;
   padding: 1rem 1rem 1.5rem 1rem;
   transition: 0.2s ease-in box-shadow;

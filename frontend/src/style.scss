@@ -34,9 +34,13 @@
   --font-family-base: 'Lato', sans-serif;
 }
 :root[data-theme='dark'] {
-  --primary: hsl(271, 80%, 62%);
-  --secondary: hsl(268, 88%, 75%);
-  --accent: hsl(293, 100%, 65%);
+  // --primary: hsl(271, 80%, 62%);
+  // --secondary: hsl(268, 88%, 75%);
+  // --accent: hsl(293, 100%, 65%);
+  --primary: hsl(262, 72%, 60%);
+  // --secondary: hsl(250, 8%, 72%);
+  --secondary: hsl(273, 64%, 58%);
+  --accent: hsl(185, 75%, 50%);
   --bg-primary: hsl(264, 100%, 1%);
   --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
   --bg-secondary: hsl(268deg, 34.88%, 8.43%);
@@ -47,6 +51,16 @@
   --warning-hover: hsl(0, 100%, 35%);
   --success: hsl(125, 100%, 35%);
   --border-color: hsl(265.28, 15.48%, 28.77%);
+
+  // =======
+
+  --bg-primary: hsl(250, 15%, 7%);
+  --bg-secondary: hsl(250, 15%, 10%);
+
+  --text-primary: hsl(0, 0%, 96%);
+  --text-secondary: hsl(250, 8%, 72%);
+
+  --border-color: hsl(250, 10%, 18%);
 }
 // miksiny
 $mobile: 480px;
@@ -149,6 +163,7 @@ textarea {
   }
 }
 .dot-blur {
+  display: none !important;
   background-color: var(--accent);
   z-index: 1;
   filter: blur(8rem);

@@ -68,7 +68,7 @@ const sendForm = async () => {
             >
               <textarea placeholder="Wiadomość..." rows="6" v-model="message" />
             </div>
-            <button type="submit" class="button">Wyślij wiadomość</button>
+            <button type="submit" class="button contact__form--button">Wyślij wiadomość</button>
           </form>
           <small v-if="error" class="contact__info --warning">{{ error }}</small>
           <small v-if="success" class="contact__info --success">{{ success }}</small>
@@ -160,6 +160,15 @@ const sendForm = async () => {
     .button {
       margin: 0 auto;
     }
+    &--button {
+      margin: 0 auto;
+      color: hsl(269, 84%, 95%);
+      background-color: var(--primary);
+      border-radius: var(--border-radius-primary);
+      &:hover {
+        background-color: var(--secondary);
+      }
+    }
   }
   .input-field {
     width: 100%;
@@ -204,7 +213,7 @@ const sendForm = async () => {
     &:hover {
       transform: translateY(-5px);
       span {
-        color: var(--primary);
+        color: var(--secondary);
       }
     }
     i {

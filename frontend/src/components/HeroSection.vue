@@ -11,38 +11,60 @@ const scrollToSection = (id) => {
   <header class="header">
     <div class="header__wrapper">
       <div class="header__description">
-        <h1>Cześć! <br />Jestem Front-End Developerem</h1>
-        <span
-          >Tworzę nowoczesne strony i wizytówki. Chętnie podejmę projekty w
-          <strong>Angularze</strong> lub <strong>Vue</strong>, które w pełni spełnią Twoje
-          oczekiwania. Oferuję także wsparcie w zakresie platformy <strong>IdoSell</strong>.</span
+        <h1>Tworzę i rozwijam strony oraz sklepy internetowe</h1>
+        <span>
+          Specjalizuję się w stronach WordPress, sklepach IdoSell oraz dedykowanych rozwiązaniach
+          webowych.</span
         >
-        <button class="button" @click="scrollToSection('contact')">Kontakt</button>
+        <button class="button" @click="scrollToSection('contact')">Zapytaj o projekt</button>
       </div>
-      <div class="header__info --box">
-        <div class="header__box --info">
-          Zajmuję się tworzeniem przejrzystych, szybkich i dopracowanych aplikacji webowych. Dbam o
-          szczegóły i trzymam się sprawdzonych praktyk, bo dobrze napisany kod to nie tylko
-          estetyka, ale też łatwiejszy rozwój projektu w przyszłości. Stawiam na czytelne
-          rozwiązania, które da się skalować bez chaosu i zbędnych komplikacji.
+      <div class="header__info">
+        <div class="header__card header__card--description --box">
+          Tworzę rozwiązania, które są łatwe w obsłudze, szybkie i gotowe na dalszy rozwój. Pomagam
+          zarówno przy nowych projektach, jak i przy rozbudowie istniejących stron oraz sklepów
+          internetowych.
         </div>
-        <div class="header__box --framework">
-          <img src="/public/assets/angular_logo.webp" alt="angular logo" />
-          <img src="/public/assets/vue_logo.webp" alt="vue logo" />
-          <img src="/public/assets/nodejs_logo.svg" alt="nodejs logo" />
+        <div class="header__card header__card--services --box">
+          <div class="header__service">
+            <div class="header__service-icon">
+              <i class="fa-brands fa-wordpress"></i>
+            </div>
+
+            <span class="header__service-name">Strony WordPress</span>
+          </div>
+
+          <div class="header__service">
+            <div class="header__service-icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+
+            <span class="header__service-name">Sklepy IdoSell</span>
+          </div>
+
+          <div class="header__service">
+            <div class="header__service-icon">
+              <i class="fa-solid fa-gear"></i>
+            </div>
+
+            <span class="header__service-name">Rozwiązania dedykowane</span>
+          </div>
         </div>
-        <div class="header__box --contacts">
+        <div class="header__card header__card--contact --box">
           <a href="tel:+48661011470">
             <i class="fa-solid fa-phone"></i>
+            <span>Kontakt</span>
           </a>
           <a href="mailto:pawel.heleniak@outlook.com">
             <i class="fa-solid fa-envelope"></i>
+            <span>Email</span>
           </a>
           <a href="https://www.linkedin.com/in/paweł-heleniak-1882b2231">
             <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
           </a>
           <a href="https://github.com/PawelHeleniak">
             <i class="fa-brands fa-github"></i>
+            <span>GitHub</span>
           </a>
         </div>
       </div>
@@ -90,6 +112,7 @@ const scrollToSection = (id) => {
     span {
       animation: slideIn 1s 0.2s ease forwards;
       color: var(--text-secondary);
+      font-size: 2rem;
     }
     button {
       animation: slideIn 1s 0.4s ease forwards;
@@ -122,10 +145,12 @@ const scrollToSection = (id) => {
       animation: slideIn 1s ease forwards;
     }
   }
-  &__box {
-    padding: 1.2rem;
-    background: var(--bg-primary);
-    border-radius: var(--border-radius-primary);
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    // background: var(--bg-primary);
+    // border-radius: var(--border-radius-primary);
     &:nth-child(1) {
       grid-column: span 3;
     }
@@ -135,21 +160,18 @@ const scrollToSection = (id) => {
     &:nth-child(3) {
       grid-column: span 3;
     }
-    &.--info {
+    &--description {
       color: var(--text-secondary);
     }
-    &.--framework {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      justify-items: center;
-      gap: 1.6rem;
-      align-items: center;
-      justify-content: center;
+    &--services {
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
       img {
-        max-width: 100%;
+        width: 100%;
         height: auto;
         display: block;
-        max-height: 9.2rem;
+        max-width: 6.4rem;
       }
     }
     @include style.tablet {
@@ -185,33 +207,59 @@ const scrollToSection = (id) => {
         grid-column: span 1;
       }
     }
-    &.--contacts {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    &--contact {
+      // display: flex;
+      // flex-wrap: wrap;
+      // justify-content: center;
+      // align-items: center;
+      // gap: 2rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       align-items: center;
-      gap: 2rem;
+      justify-items: center;
       a {
-        border-radius: var(--border-radius-secondary);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
         transition:
           0.2s ease-in box-shadow,
           0.2s ease-in color;
         overflow: hidden;
         &:hover {
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-          color: var(--secondary);
+          color: var(--primary);
         }
       }
       i {
+        border-radius: var(--border-radius-secondary);
         font-size: var(--font-size-xl);
-        background-color: var(--bg-secondary);
+        background-color: var(--bg-primary);
         padding: 1.2rem;
         width: 5.6rem;
         height: 5.6rem;
         display: flex;
         justify-content: center;
         align-items: center;
+        color: var(--primary);
       }
+    }
+  }
+  &__service {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.4rem;
+    text-align: center;
+    &-icon {
+      font-size: 3.2rem;
+      color: var(--primary);
+      background-color: var(--bg-primary);
+      border-radius: 1.2rem;
+      width: 5.6rem;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
