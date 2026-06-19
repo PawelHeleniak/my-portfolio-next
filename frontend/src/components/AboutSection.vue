@@ -1,24 +1,42 @@
-<script setup></script>
+<script setup>
+const services = [
+  {
+    title: 'Strony WordPress',
+    description:
+      "Tworzę strony firmowe, wizytówki i landing page'e oparte na WordPressie. Dbam o szybkość działania, wygodną edycję treści i nowoczesny wygląd.",
+  },
+  {
+    title: 'Sklepy IdoSell',
+    description:
+      'Tworzę i modyfikuję szablony sklepów IdoSell, wdrażam nowe sekcje oraz rozwijam istniejące sklepy internetowe.',
+  },
+  {
+    title: 'Strony dedykowane',
+    description:
+      'Realizuję strony internetowe dopasowane do indywidualnych potrzeb. Korzystam z nowoczesnych technologii oraz systemów CMS umożliwiających łatwe zarządzanie treścią.',
+  },
+  {
+    title: 'Wsparcie projektów Front-End',
+    description:
+      'Pomagam w rozwoju aplikacji i stron internetowych tworzonych w Angularze oraz Vue. Mogę dołączyć do istniejącego projektu lub wesprzeć zespół przy nowych funkcjonalnościach.',
+  },
+]
+</script>
 
 <template>
   <section class="section" id="about">
-    <h2 class="section__header">Czym się zajmuję</h2>
+    <h2 class="section__header">Jak mogę pomóc?</h2>
     <div class="about">
-      <div class="about__box --box">
-        <h3 class="about__header">Tworzę nowoczesne strony internetowe</h3>
+      <div v-for="service in services" :key="service.title" class="about__box --box">
+        <h3 class="about__header">
+          {{ service.title }}
+        </h3>
+
         <div class="about__description">
-          Pomagam firmom i osobom prywatnym stworzyć strony dopasowane do ich potrzeb. Projektuję od
-          podstaw lub ulepszam istniejące witryny, dbając o przejrzystość, szybkość i nowoczesny
-          wygląd.
+          {{ service.description }}
         </div>
       </div>
-      <div class="about__box --box">
-        <h3 class="about__header">Chętnie pomogę przy projekcie w Angularze</h3>
-        <div class="about__description">
-          Specjalizuję się w Angularze. Jeśli pracujesz nad aplikacją front-endową lub potrzebujesz
-          wsparcia przy rozwoju projektu, chętnie pomogę.
-        </div>
-      </div>
+
       <div class="dot-blur dot-blur--about"></div>
     </div>
   </section>
@@ -46,6 +64,9 @@
   &__box {
     position: relative;
     z-index: 2;
+  }
+  &__description {
+    color: var(--text-secondary);
   }
 }
 </style>
