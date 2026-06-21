@@ -24,7 +24,7 @@ const services = [
 </script>
 
 <template>
-  <section class="section" id="about">
+  <section class="section" id="offer">
     <h2 class="section__header">Jak mogę pomóc?</h2>
     <div class="about">
       <div v-for="service in services" :key="service.title" class="about__box --box">

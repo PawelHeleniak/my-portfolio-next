@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -10,8 +10,9 @@ const isOpen = ref(false)
 const activeSection = ref(null)
 
 const sections = [
-  { id: 'about', name: 'O mnie', icon: 'fa-regular fa-user' },
-  { id: 'projects', name: 'Projekty', icon: 'fa-solid fa-diagram-project' },
+  { id: 'offer', name: 'Oferta', icon: 'fa-regular fa-user' },
+  { id: 'trust', name: 'Korzyści', icon: 'fa-solid fa-diagram-project' },
+  { id: 'projects', name: 'Realizacje', icon: 'fa-solid fa-mobile-screen' },
   { id: 'contact', name: 'Kontakt', icon: 'fa-solid fa-mobile-screen' },
 ]
 
@@ -25,8 +26,6 @@ const scrollToSection = (id) => {
     el.scrollIntoView({ behavior: 'smooth' })
   }
 }
-
-let observer = null
 
 onMounted(async () => {
   const screenWidth = window.innerWidth
@@ -42,33 +41,51 @@ onMounted(async () => {
       trigger: navigation.value,
       start: '5%',
       onUpdate: (self) => {
-        if (self.progress > 0) {
-          tl.play()
-        } else {
-          tl.reverse()
-        }
+        if (self.progress > 0) tl.play()
+        else tl.reverse()
       },
     })
+
+    if (window.scrollY > 50) tl.progress(1).pause()
+    else tl.progress(0).pause()
   }
-
-  await nextTick()
-  const sectionElements = document.querySelectorAll('section')
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          activeSection.value = entry.target.id
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  sectionElements.forEach((section) => observer.observe(section))
+  window.addEventListener('scroll', handleScroll)
+  handleScroll()
 })
 
+window.addEventListener('load', () => {
+  ScrollTrigger.refresh()
+})
+
+const handleScroll = () => {
+  const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10
+
+  if (isBottom) {
+    activeSection.value = 'contact'
+    return
+  }
+
+  if (window.scrollY < 100) {
+    activeSection.value = null
+    return
+  }
+
+  const sectionsToCheck = sections
+    .map((section) => document.getElementById(section.id))
+    .filter(Boolean)
+
+  for (const section of sectionsToCheck) {
+    const top = section.offsetTop - 200
+    const bottom = top + section.offsetHeight
+
+    if (window.scrollY >= top && window.scrollY < bottom) {
+      activeSection.value = section.id
+      break
+    }
+  }
+}
 onBeforeUnmount(() => {
-  if (observer) observer.disconnect()
+  window.removeEventListener('scroll', handleScroll)
 })
 
 // KOLORY
