@@ -12,8 +12,8 @@ const activeSection = ref(null)
 const sections = [
   { id: 'offer', name: 'Oferta', icon: 'fa-regular fa-user' },
   { id: 'trust', name: 'Korzyści', icon: 'fa-solid fa-diagram-project' },
-  { id: 'projects', name: 'Realizacje', icon: 'fa-solid fa-mobile-screen' },
-  { id: 'contact', name: 'Kontakt', icon: 'fa-solid fa-mobile-screen' },
+  { id: 'projects', name: 'Realizacje', icon: 'fa-solid fa-layer-group' },
+  { id: 'contact', name: 'Kontakt', icon: 'fa-solid fa-envelope' },
 ]
 
 const toggleNav = () => {
@@ -165,7 +165,6 @@ const toggleTheme = () => {
   top: 1.2rem;
   transition: 0.2s ease-in width;
   overflow: hidden;
-  // Glassmorphism
   position: sticky;
   z-index: 99;
   background: var(--bg-secondary-opacity);
@@ -174,11 +173,14 @@ const toggleTheme = () => {
   -webkit-backdrop-filter: blur(5px);
   @include style.tablet {
     display: flex;
-    width: calc(50% - 2rem);
+    width: 100%;
     margin-bottom: 2rem;
     margin-left: auto;
     top: 2rem;
     padding: 1rem;
+  }
+  @include style.laptop {
+    width: calc(50% - 2rem);
   }
   &--open {
     width: 100%;
@@ -193,6 +195,7 @@ const toggleTheme = () => {
   }
   &__list {
     display: flex;
+    gap: 0.5rem;
     @include style.tablet {
       gap: 1rem;
     }

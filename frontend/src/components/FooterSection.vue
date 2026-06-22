@@ -1,11 +1,16 @@
 <script setup>
+import { RouterLink } from 'vue-router'
+
 const date = new Date()
 const year = date.getFullYear()
 </script>
 
 <template>
   <footer class="footer">
-    <div class="footer__copyright">&#169; {{ year }} Paweł Heleniak</div>
+    <div class="footer__copyright">
+      &#169; {{ year }} Paweł Heleniak
+      <RouterLink to="/polityka-prywatnosci"> Polityka prywatności </RouterLink>
+    </div>
     <div class="footer__links">
       <a href="tel:+48661011470">
         <i class="fa-solid fa-phone"></i>
