@@ -1,8 +1,18 @@
-<script setup></script>
+<script setup>
+import { RouterLink } from 'vue-router'
+
+const date = new Date()
+const year = date.getFullYear()
+</script>
 
 <template>
   <footer class="footer">
-    <div class="footer__copyright">&#169; 2025 Paweł Heleniak</div>
+    <div class="footer__copyright">
+      &#169; {{ year }} Paweł Heleniak
+      <RouterLink to="/polityka-prywatnosci" class="footer__link footer__link--policy">
+        Polityka prywatności
+      </RouterLink>
+    </div>
     <div class="footer__links">
       <a href="tel:+48661011470">
         <i class="fa-solid fa-phone"></i>
@@ -59,6 +69,41 @@
         height: 2.8rem;
         font-size: var(--font-size-base);
       }
+    }
+  }
+  &__link {
+    &--policy {
+      color: var(--text-primary);
+      transition: 0.2s ease-in color;
+      position: relative;
+      @include style.tablet {
+        margin-left: 1.6rem;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -0.7rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: calc(100% - 4px);
+          background-color: var(--text-primary);
+          border-radius: 50%;
+        }
+      }
+      &:hover {
+        color: var(--secondary);
+      }
+    }
+  }
+  &__copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    @include style.tablet {
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
     }
   }
 }

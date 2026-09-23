@@ -10,13 +10,15 @@
   --bg-secondary-opacity: hsla(266, 100%, 99%, 0.8);
   --text-primary: hsl(250, 18%, 7%);
   --text-secondary: hsl(240, 6%, 21%);
-  --warning: hsl(0, 100%, 25%);
-  --warning-hover: hsl(0, 100%, 35%);
+  --warning: hsl(0deg 78% 36%);
+  --warning-hover: hsl(0deg 78% 50%);
   --success: hsl(125, 100%, 35%);
   --border-color: hsl(243, 94.68%, 87.97%);
+  --white: hsl(230.84deg 73% 97%);
 
-  --border-radius-primary: 1.6rem;
-  --border-radius-secondary: 5rem;
+  --border-radius-primary: 16px;
+  --border-radius-secondary: 12px;
+  --border-radius-round: 999px;
 
   // Font size
   --font-scale: 1.25;
@@ -34,19 +36,34 @@
   --font-family-base: 'Lato', sans-serif;
 }
 :root[data-theme='dark'] {
-  --primary: hsl(271, 80%, 62%);
-  --secondary: hsl(268, 88%, 75%);
-  --accent: hsl(293, 100%, 65%);
+  // --primary: hsl(271, 80%, 62%);
+  // --secondary: hsl(268, 88%, 75%);
+  // --accent: hsl(293, 100%, 65%);
+  --primary: hsl(262, 72%, 60%);
+  // --secondary: hsl(250, 8%, 72%);
+  --secondary: hsl(273, 64%, 58%);
+  --accent: hsl(185, 75%, 50%);
   --bg-primary: hsl(264, 100%, 1%);
   --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
   --bg-secondary: hsl(268deg, 34.88%, 8.43%);
   --bg-secondary-opacity: hsla(268deg, 34.88%, 8.43%, 0.8);
   --text-primary: hsl(269, 84%, 95%);
   --text-secondary: hsl(270, 19%, 77%);
-  --warning: hsl(0, 100%, 25%);
-  --warning-hover: hsl(0, 100%, 35%);
+  --warning: hsl(0deg 93% 58.5%);
+  --warning-hover: hsl(0deg 93% 70%);
   --success: hsl(125, 100%, 35%);
   --border-color: hsl(265.28, 15.48%, 28.77%);
+
+  // =======
+
+  --bg-primary: hsl(250, 15%, 7%);
+  --bg-secondary: hsl(250, 15%, 11%);
+  --bg-secondary-opacity: hsla(250, 15%, 10%, 0.8);
+
+  --text-primary: hsl(0, 0%, 96%);
+  --text-secondary: hsl(250, 8%, 76%);
+
+  --border-color: hsl(250, 10%, 18%);
 }
 // miksiny
 $mobile: 480px;
@@ -107,6 +124,9 @@ button {
   border: none;
   background-color: transparent;
 }
+a:visited {
+  color: inherit;
+}
 h1 {
   font-size: var(--font-size-3xl);
   line-height: 1.2;
@@ -114,7 +134,7 @@ h1 {
 textarea {
   resize: none;
 }
-.--box {
+.ui-card {
   background-color: var(--bg-secondary);
   border-radius: var(--border-radius-primary);
   padding: 1.2rem;
@@ -124,16 +144,24 @@ textarea {
     padding: 2.4rem;
   }
 }
-.button {
+.ui-button {
   background-color: var(--primary);
   width: max-content;
-  padding: 1rem 2.4rem;
-  border-radius: var(--border-radius-secondary);
-  color: var(--bg-primary);
+  padding: 1.2rem 2.4rem;
+  border-radius: var(--border-radius-primary);
+  color: var(--white);
   font-weight: 600;
   transition: 0.2s ease-in background-color;
   &:hover {
     background-color: var(--secondary);
+  }
+}
+.ui-link {
+  color: var(--primary);
+  font-weight: 600;
+  transition: 0.2s ease-in color;
+  &:hover {
+    color: var(--secondary);
   }
 }
 .section {
@@ -149,6 +177,7 @@ textarea {
   }
 }
 .dot-blur {
+  display: none !important;
   background-color: var(--accent);
   z-index: 1;
   filter: blur(8rem);

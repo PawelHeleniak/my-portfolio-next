@@ -1,12 +1,19 @@
 <script setup>
 import { ref } from 'vue'
 
+// Email
 const name = ref('')
 const email = ref('')
 const message = ref('')
 const touched = ref(false)
 const success = ref('')
 const error = ref('')
+
+const privacyAccepted = ref(false)
+
+const isValidEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
 
 const isEmpty = (v) => !v || !v.trim()
 
@@ -17,6 +24,16 @@ const sendForm = async () => {
 
   if (isEmpty(name.value) || isEmpty(email.value) || isEmpty(message.value)) {
     error.value = 'Wypełnij wszystkie pola przed wysłaniem wiadomości.'
+    return
+  }
+
+  if (!isValidEmail(email.value)) {
+    error.value = 'Podaj poprawny adres e-mail.'
+    return
+  }
+
+  if (!privacyAccepted.value) {
+    error.value = 'Zaakceptuj politykę prywatności.'
     return
   }
 
@@ -36,19 +53,42 @@ const sendForm = async () => {
     name.value = ''
     email.value = ''
     message.value = ''
+    privacyAccepted.value = false
     touched.value = false
   } catch {
     error.value = 'Nie udało się wysłać wiadomości. Spróbuj jeszcze raz.'
   }
 }
+
+// Contact box
+const contacts = [
+  {
+    href: 'mailto:kontakt@pawelheleniak.pl',
+    icon: 'fa-solid fa-envelope',
+    name: 'Wyślij e-mail',
+    to: 'kontakt@pawelheleniak.pl',
+  },
+  {
+    href: 'tel:+48661011470',
+    icon: 'fa-solid fa-phone',
+    name: 'Zadzwoń',
+    to: '+48 661 011 470',
+  },
+  {
+    href: 'https://www.linkedin.com/in/paweł-heleniak-1882b2231',
+    icon: 'fa-brands fa-linkedin-in',
+    name: 'Napisz na linkedin',
+    to: 'paweł-heleniak',
+  },
+]
 </script>
 
 <template>
   <section class="section" id="contact">
     <div class="section__list">
-      <div class="contact --box">
+      <div class="contact ui-card">
         <div class="contact__wrapper">
-          <h2 class="contact__header">Skontaktujmy się</h2>
+          <h2 class="contact__header">Napisz do mnie</h2>
           <h4 class="contact__subheader">
             Szukasz front-end developera do projektu? Chętnie pomogę, odezwij się i porozmawiajmy o
             szczegółach.
@@ -68,35 +108,36 @@ const sendForm = async () => {
             >
               <textarea placeholder="Wiadomość..." rows="6" v-model="message" />
             </div>
-            <button type="submit" class="button">Wyślij wiadomość</button>
+            <label class="contact__checkbox">
+              <input type="checkbox" v-model="privacyAccepted" class="contact__checkbox--input" />
+              <span class="contact__checkbox--custom"></span>
+
+              <span
+                >Zapoznałem się z
+                <RouterLink to="/polityka-prywatnosci" class="contact__checkbox--policy"
+                  >polityką prywatności</RouterLink
+                >
+                i wyrażam zgodę na przetwarzanie danych osobowych w celu udzielenia odpowiedzi na
+                moje zapytanie.</span
+              >
+            </label>
+            <button type="submit" class="ui-button contact__form--button">Wyślij wiadomość</button>
           </form>
           <small v-if="error" class="contact__info --warning">{{ error }}</small>
           <small v-if="success" class="contact__info --success">{{ success }}</small>
         </div>
       </div>
       <div class="information">
-        <a class="information__link --email --box" href="mailto:pawel.heleniak@outlook.com">
-          <i class="fa-regular fa-envelope"></i>
-          <div class="information__content">
-            <h4>Wyślij e-mail</h4>
-            <span>pawel.heleniak@outlook.com</span>
-          </div>
-        </a>
-        <a class="information__link --phone --box" href="tel:+48661011470">
-          <i class="fa-solid fa-phone"></i>
-          <div class="information__content">
-            <h4>Zadzwoń</h4>
-            <span>+48 661 011 470</span>
-          </div>
-        </a>
         <a
-          class="information__link --linkedin --box"
-          href="https://www.linkedin.com/in/paweł-heleniak-1882b2231"
+          v-for="contact in contacts"
+          :key="contact.name"
+          class="information__link ui-card"
+          :href="contact.href"
         >
-          <i class="fa-brands fa-linkedin-in"></i>
+          <i :class="contact.icon"></i>
           <div class="information__content">
-            <h4>Napisz na linkedin</h4>
-            <span>paweł-heleniak</span>
+            <h4>{{ contact.name }}</h4>
+            <span>{{ contact.to }}</span>
           </div>
         </a>
       </div>
@@ -132,7 +173,6 @@ const sendForm = async () => {
   width: 100%;
   grid-column: span 2;
   &__wrapper {
-    max-width: 80rem;
     margin: auto;
   }
 
@@ -159,6 +199,9 @@ const sendForm = async () => {
       }
     }
     .button {
+      margin: 0 auto;
+    }
+    &--button {
       margin: 0 auto;
     }
   }
@@ -189,6 +232,55 @@ const sendForm = async () => {
       color: var(--success);
     }
   }
+  &__checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    cursor: pointer;
+
+    &--input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      margin-right: 1rem;
+    }
+
+    &--custom {
+      width: 2rem;
+      min-width: 2rem;
+      height: 2rem;
+      border: 2px solid var(--primary);
+      border-radius: 6px;
+      margin-top: 0.2rem;
+      position: relative;
+      transition: 0.2s ease;
+    }
+
+    &--input:checked + &--custom {
+      background: var(--primary);
+    }
+
+    &--input:checked + &--custom::after {
+      content: '';
+      position: absolute;
+      left: 0.55rem;
+      top: 0.15rem;
+      width: 0.5rem;
+      height: 1rem;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+
+    &--policy {
+      color: var(--text-primary);
+      transition: 0.2s ease-in color;
+      text-decoration: underline;
+      &:hover {
+        color: var(--secondary);
+      }
+    }
+  }
 }
 .information {
   display: flex;
@@ -204,14 +296,14 @@ const sendForm = async () => {
     transition: 0.2s ease-in transform;
     &:hover {
       transform: translateY(-5px);
-      span {
-        color: var(--primary);
-      }
+      // span {
+      //   color: var(--secondary);
+      // }
     }
     i {
       border-radius: var(--border-radius-primary);
-      background-color: var(--accent);
-      background: linear-gradient(135deg, var(--accent) 25%, var(--primary) 100%);
+      background-color: var(--secondary);
+      background: linear-gradient(135deg, var(--secondary) 25%, var(--primary) 100%);
       display: flex;
       justify-content: center;
       align-items: center;
