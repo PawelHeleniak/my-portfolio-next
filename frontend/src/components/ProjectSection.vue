@@ -24,9 +24,9 @@ const linkGithub = () => {
 </script>
 <template>
   <section class="section --projects" id="projects">
-    <h2 class="section__header">Moje projekty</h2>
+    <h2 class="section__header">Autorskie projekty</h2>
     <div class="section__wrapper">
-      <a class="project project--box --box" href="https://repevo.pl/" target="_blank">
+      <a class="project projectui-card ui-card" href="https://repevo.pl/" target="_blank">
         <picture class="project__img">
           <source media="(min-width:1024px)" srcset="/public/assets/projects/project_1.webp" />
           <img
@@ -69,12 +69,7 @@ const linkGithub = () => {
           </div>
         </div>
       </a>
-      <a class="project --box project_2 --disabled" ref="project_2">
-        <!-- <img
-          class="project__img"
-          src="/public/assets/projects/project_2.png"
-          alt="Projekt w trakcie"
-        /> -->
+      <!-- <a class="project ui-card project_2 --disabled" ref="project_2">
         <div class="project__img in-progress">
           <div class="in-progress__box">
             <h4>Flow Stats</h4>
@@ -88,9 +83,7 @@ const linkGithub = () => {
           <div class="project__top">
             <div class="project__name">
               <h3>Flow Stats</h3>
-              <div class="project__arrow">
-                <!-- <span>Sprawdź</span><i class="fa-solid fa-arrow-right"></i> -->
-              </div>
+              <div class="project__arrow"></div>
             </div>
             <span class="project__desc">
               Interaktywny dashboard do wizualizacji danych biznesowych. Prezentuje statystyki w
@@ -109,6 +102,56 @@ const linkGithub = () => {
               <li class="project__li">wizualizacja danych w formie wykresów</li>
               <li class="project__li">interaktywny dashboard analityczny</li>
               <li class="project__li">dynamiczne komponenty i animacje interfejsu</li>
+            </ul>
+          </div>
+        </div>
+      </a> -->
+      <a
+        class="project ui-card project_2"
+        ref="project_2"
+        href="https://wpmoto.pawelheleniak.pl/"
+        target="_blank"
+      >
+        <img
+          class="project__img"
+          src="/public/assets/projects/project_3.webp"
+          alt="WPMoto - projekt strony dla warsztatu samochodowego"
+        />
+
+        <div class="project__content">
+          <div class="project__top">
+            <div class="project__name">
+              <h3>WPMoto</h3>
+
+              <div class="project__arrow">
+                <span>Sprawdź</span><i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+
+            <span class="project__desc">
+              Demonstracyjna strona internetowa dla warsztatu samochodowego. Projekt prezentuje
+              nowoczesny układ strony usługowej z ofertą, sekcją o firmie, kontaktem oraz
+              responsywnym interfejsem.
+            </span>
+          </div>
+
+          <div class="project__badges">
+            <h4 class="project__title">Technologie</h4>
+
+            <div class="project__badge project__badge--wordpress">WordPress</div>
+            <div class="project__badge project__badge--elementor">Elementor</div>
+            <div class="project__badge project__badge--php">PHP</div>
+            <div class="project__badge project__badge--css">CSS</div>
+          </div>
+
+          <div class="project__bottom">
+            <h4 class="project__functionality">Funkcjonalności</h4>
+
+            <ul class="project__ul">
+              <li class="project__li">responsywny landing page dla warsztatu</li>
+              <li class="project__li">sekcje usług, o firmie i kontaktu</li>
+              <li class="project__li">nawigacja typu one-page</li>
+              <li class="project__li">łatwa edycja treści w WordPressie</li>
             </ul>
           </div>
         </div>
@@ -381,6 +424,30 @@ const linkGithub = () => {
       color: #88ce02;
       border-color: #88ce02;
       background: rgba(136, 206, 2, 0.1);
+    }
+
+    &--wordpress {
+      color: #2f8fbd;
+      border-color: #2f8fbd;
+      background: rgba(47, 143, 189, 0.1);
+    }
+
+    &--elementor {
+      color: #b52a63;
+      border-color: #b52a63;
+      background: rgba(181, 42, 99, 0.1);
+    }
+
+    &--php {
+      color: #8d91c7;
+      border-color: #8d91c7;
+      background: rgba(141, 145, 199, 0.1);
+    }
+
+    &--css {
+      color: #3f6df0;
+      border-color: #3f6df0;
+      background: rgba(63, 109, 240, 0.1);
     }
   }
 

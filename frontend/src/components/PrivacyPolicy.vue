@@ -3,7 +3,7 @@
 <template>
   <section class="section" id="privacy">
     <h1 class="section__header">Polityka prywatności</h1>
-    <div class="privacy --box">
+    <div class="privacy ui-card">
       <div class="privacy__content">
         <h2 class="section__header">Administrator danych</h2>
         <p>

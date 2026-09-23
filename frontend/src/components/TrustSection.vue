@@ -30,7 +30,7 @@ const trusts = [
   <section class="section" id="trust">
     <h2 class="section__header">Dlaczego warto?</h2>
     <div class="trust">
-      <div v-for="trust in trusts" :key="trust.title" class="trust__box --box">
+      <div v-for="trust in trusts" :key="trust.title" class="trust__box ui-card">
         <div class="trust__icon">
           <i :class="trust.icon"></i>
         </div>
@@ -56,16 +56,32 @@ const trusts = [
 }
 .trust {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
   position: relative;
-  @include style.tablet {
+  @include style.mobile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  @include style.laptop {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
   &__header {
-    // margin-bottom: 2rem;
+    position: relative;
+    margin-bottom: 1.2rem;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3.2rem;
+      height: 0.2rem;
+      background-color: var(--primary);
+    }
   }
   &__box {
     display: flex;

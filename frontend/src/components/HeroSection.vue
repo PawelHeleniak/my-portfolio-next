@@ -16,15 +16,15 @@ const scrollToSection = (id) => {
           Specjalizuję się w stronach WordPress, sklepach IdoSell oraz dedykowanych rozwiązaniach
           webowych.</span
         >
-        <button class="button" @click="scrollToSection('contact')">Zapytaj o projekt</button>
+        <button class="ui-button" @click="scrollToSection('contact')">Zapytaj o projekt</button>
       </div>
       <div class="header__info">
-        <div class="header__card header__card--description --box">
+        <div class="header__card header__card--description ui-card">
           Tworzę rozwiązania, które są łatwe w obsłudze, szybkie i gotowe na dalszy rozwój. Pomagam
           zarówno przy nowych projektach, jak i przy rozbudowie istniejących stron oraz sklepów
           internetowych.
         </div>
-        <div class="header__card header__card--services --box">
+        <div class="header__card header__card--services ui-card">
           <div class="header__service">
             <div class="header__service-icon">
               <i class="fa-brands fa-wordpress"></i>
@@ -49,7 +49,7 @@ const scrollToSection = (id) => {
             <span class="header__service-name">Rozwiązania dedykowane</span>
           </div>
         </div>
-        <div class="header__card header__card--contact --box">
+        <div class="header__card header__card--contact ui-card">
           <a href="tel:+48661011470">
             <i class="fa-solid fa-phone"></i>
             <span>Kontakt</span>
@@ -117,7 +117,7 @@ const scrollToSection = (id) => {
     button {
       animation: slideIn 1s 0.4s ease forwards;
       width: 100%;
-      color: #fff;
+      // color: #fff;
       @include style.tablet {
         width: max-content;
       }

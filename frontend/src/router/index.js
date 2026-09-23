@@ -20,6 +20,25 @@ const router = createRouter({
       redirect: '/',
     },
   ],
+
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      }
+    }
+
+    return { top: 0 }
+  },
+})
+
+router.afterEach((to) => {
+  document.documentElement.className = ''
+
+  if (to.name) {
+    document.documentElement.classList.add(`page-${to.name}`)
+  }
 })
 
 export default router

@@ -2,6 +2,10 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -20,8 +24,14 @@ const toggleNav = () => {
   isOpen.value = !isOpen.value
 }
 
-const scrollToSection = (id) => {
+const scrollToSection = async (id) => {
+  if (route.path !== '/') {
+    await router.push(`/#${id}`)
+    return
+  }
+
   const el = document.getElementById(id)
+
   if (el) {
     el.scrollIntoView({ behavior: 'smooth' })
   }
@@ -246,6 +256,19 @@ const toggleTheme = () => {
     align-items: center;
     @include style.tablet {
       width: max-content;
+    }
+  }
+}
+.page-privacy-policy {
+  .navigation {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 30px;
+    margin-right: auto;
+    &__item--active {
+      background-color: inherit !important;
+      color: inherit;
+      &:hover {
+        background-color: var(--bg-primary) !important;
+      }
     }
   }
 }
