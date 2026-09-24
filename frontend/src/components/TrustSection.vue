@@ -1,46 +1,49 @@
 <script setup>
 const trusts = [
   {
-    icon: 'fa-solid fa-rocket',
-    title: 'Szybka realizacja zleceń',
+    title: 'Rozmowa',
     description:
-      'Nie działam przez pośredników. Rozmawiasz bezpośrednio z osobą, która realizuje projekt.',
+      'Na początku poznaję Twój pomysł, potrzeby i cel projektu. Dopytuję o najważniejsze rzeczy i proponuję rozwiązanie, które ma sens w danym przypadku.',
   },
   {
-    icon: 'fa-solid fa-chart-line',
-    title: 'Rozwój istniejących projektów',
+    title: 'Zakres',
     description:
-      'Pomagam nie tylko tworzyć nowe strony, ale również rozwijać już działające sklepy i witryny.',
+      'Ustalamy, co dokładnie ma zostać zrobione, jakie funkcje są potrzebne i jaki termin jest realny. Na tej podstawie przygotowuję konkretny zakres prac i wycenę.',
   },
   {
-    icon: 'fa-solid fa-cogs',
-    title: 'Nowoczesne rozwiązania',
+    title: 'Realizacja',
     description:
-      'Dbam o szybkość działania, responsywność oraz wygodę korzystania na każdym urządzeniu.',
+      'Przechodzę do pracy nad projektem, wdrażam kolejne elementy i na bieżąco informuję o postępach. Jeśli pojawiają się pytania lub zmiany, ustalamy je na bieżąco.',
   },
   {
-    icon: 'fa-regular fa-comment-dots',
-    title: 'Stały kontakt i wsparcie',
-    description: 'Na bieżąco informuję o postępach i wspólnie ustalamy kolejne etapy realizacji.',
+    title: 'Wdrożenie',
+    description:
+      'Na końcu testuję całość, poprawiam ewentualne błędy i wdrażam gotowe rozwiązanie. Po zakończeniu możemy ustalić dalsze wsparcie lub rozwój projektu.',
   },
 ]
 </script>
 
 <template>
-  <section class="section" id="trust">
-    <h2 class="section__header">Dlaczego warto?</h2>
-    <div class="trust">
-      <div v-for="trust in trusts" :key="trust.title" class="trust__box ui-card">
-        <div class="trust__icon">
-          <i :class="trust.icon"></i>
-        </div>
+  <section class="section process" id="process">
+    <div class="section__header process__intro">
+      <span class="section__label">WSPÓŁPRACA</span>
+      <h2 class="section__title">Jak wygląda współpraca?</h2>
+      <p class="section__subtitle">
+        Współpracę dzielę na kilka prostych etapów, dzięki czemu od początku wiadomo, co robimy,
+        jaki jest zakres prac i na jakim etapie znajduje się projekt.
+      </p>
+    </div>
+    <div class="process__steps">
+      <div v-for="process in trusts" :key="process.title" class="process__box">
+        <span class="process__count"> 0{{ trusts.indexOf(process) + 1 }} </span>
+        <div class="process__content">
+          <h3 class="process__header">
+            {{ process.title }}
+          </h3>
 
-        <h3 class="trust__header">
-          {{ trust.title }}
-        </h3>
-
-        <div class="trust__description">
-          {{ trust.description }}
+          <div class="process__description">
+            {{ process.description }}
+          </div>
         </div>
       </div>
     </div>
@@ -49,58 +52,77 @@ const trusts = [
 
 <style lang="scss" scoped>
 @use '../style.scss' as style;
-.section {
+.process {
   opacity: 0;
   transform: translateY(1rem);
   animation: slideIn 1s 0.6s ease forwards;
-}
-.trust {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
-  position: relative;
-  @include style.mobile {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
+  grid-template-columns: 1fr;
+
   @include style.laptop {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    grid-template-columns: minmax(28rem, 0.75fr) minmax(0, 1.5fr);
+    gap: 6.4rem;
+    align-items: start;
   }
+
+  @include style.desktop {
+    gap: 8rem;
+  }
+  &__intro {
+    position: relative;
+    @include style.laptop {
+      position: sticky;
+      top: 9.6rem;
+    }
+  }
+  // === Prawa strona ===
+  &__steps {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    position: relative;
+  }
+
   &__header {
     position: relative;
-    margin-bottom: 1.2rem;
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: -1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 3.2rem;
-      height: 0.2rem;
-      background-color: var(--primary);
-    }
+    margin-bottom: 0.6rem;
   }
   &__box {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-    text-align: center;
-    gap: 1.2rem;
+    gap: 3.6rem;
+    padding: 3rem 2rem;
+    background-color: transparent;
+    border-bottom: 0.1rem solid var(--border-color);
+    border-radius: 0;
+    &:last-child {
+      border-bottom: none;
+    }
   }
-  &__icon {
-    border-radius: var(--border-radius-secondary);
-    font-size: 3.2rem;
-    background-color: var(--bg-primary);
-    padding: 1.2rem;
-    width: 6.4rem;
-    height: 6.4rem;
+  &__count {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
     color: var(--primary);
+    padding: 1.2rem;
+    position: relative;
+    width: 7rem;
+    min-width: 7rem;
+    height: 7rem;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary);
+      opacity: 0.1;
+      border-radius: var(--border-radius-round);
+    }
   }
   &__description {
     color: var(--text-secondary);

@@ -66,12 +66,22 @@ const services = [
     align-items: center;
     justify-content: center;
     font-size: var(--font-size-xl);
-    width: 5.2rem;
-    height: 5.2rem;
+    width: 5.6rem;
+    height: 5.6rem;
     color: var(--primary);
     padding: 1.2rem;
     margin-bottom: 0.8rem;
     position: relative;
+    @media (max-width: 1023px) {
+      width: 5.2rem;
+      height: 5.2rem;
+    }
+    &.fa-wordpress {
+      font-size: 3rem;
+      @media (max-width: 1023px) {
+        font-size: 2.8rem;
+      }
+    }
     &::after {
       content: '';
       position: absolute;
