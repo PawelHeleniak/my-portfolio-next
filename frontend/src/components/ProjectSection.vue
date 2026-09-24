@@ -234,10 +234,14 @@ const linkGithub = () => {
     position: sticky;
     z-index: 2;
     margin-top: 0;
-    bottom: 16vh;
+    bottom: 2vh;
     scale: 0.95;
     @include style.tablet {
       margin-top: 3.2rem;
+      bottom: 12vh;
+    }
+    @include style.laptop {
+      bottom: 16vh;
     }
   }
   &__img,

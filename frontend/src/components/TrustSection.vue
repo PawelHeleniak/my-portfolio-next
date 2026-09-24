@@ -91,13 +91,17 @@ const trusts = [
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 3.6rem;
-    padding: 3rem 2rem;
+    gap: 2.4rem;
+    padding: 3rem 0;
     background-color: transparent;
     border-bottom: 0.1rem solid var(--border-color);
     border-radius: 0;
     &:last-child {
       border-bottom: none;
+    }
+    @include style.tablet {
+      gap: 3.6rem;
+      padding: 3rem 2rem;
     }
   }
   &__count {

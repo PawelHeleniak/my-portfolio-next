@@ -119,11 +119,13 @@ const scrollToSection = (id) => {
     }
     button {
       animation: slideIn 1s 0.4s ease forwards;
-      width: 100%;
+      width: max-content;
+
+      // width: 100%;
       // color: #fff;
-      @include style.tablet {
-        width: max-content;
-      }
+      // @include style.tablet {
+      //   width: max-content;
+      // }
     }
     a {
       width: 100%;
