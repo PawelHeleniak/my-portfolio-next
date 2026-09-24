@@ -1,4 +1,5 @@
 <script setup>
+import { ArrowRight } from '@lucide/vue'
 const scrollToSection = (id) => {
   const el = document.getElementById(id)
   if (el) {
@@ -13,10 +14,12 @@ const scrollToSection = (id) => {
       <div class="header__description">
         <h1>Tworzę i rozwijam strony oraz sklepy internetowe</h1>
         <span>
-          Specjalizuję się w stronach WordPress, sklepach IdoSell oraz dedykowanych rozwiązaniach
-          webowych.</span
+          Pomagam firmom budować nowoczene strony, sklepy internetowe i aplikacje webowe.
+          Specjalizuje się w Wordpress, Idosell oraz nowoczesnych rozwiązaniach front-end.</span
         >
-        <button class="ui-button" @click="scrollToSection('contact')">Zapytaj o projekt</button>
+        <button class="ui-button ui-button--arrow" @click="scrollToSection('contact')">
+          Porozmawiajmy o projekcie <ArrowRight />
+        </button>
       </div>
       <div class="header__info">
         <div class="header__card header__card--description ui-card">

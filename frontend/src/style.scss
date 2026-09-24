@@ -116,6 +116,10 @@ $xlDesktop: 1536px;
 }
 
 // Custom
+body {
+  letter-spacing: 0.6px;
+}
+
 a,
 button {
   text-decoration: none;
@@ -145,6 +149,9 @@ textarea {
   }
 }
 .ui-button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   background-color: var(--primary);
   width: max-content;
   padding: 1.2rem 2.4rem;
@@ -154,6 +161,16 @@ textarea {
   transition: 0.2s ease-in background-color;
   &:hover {
     background-color: var(--secondary);
+  }
+  &--arrow {
+    svg {
+      transition: 0.2s ease-in transform;
+    }
+    &:hover {
+      svg {
+        transform: translateX(0.2rem);
+      }
+    }
   }
 }
 .ui-link {
@@ -173,7 +190,15 @@ textarea {
     margin-top: 11.2rem;
   }
   &__header {
-    margin-bottom: 3.2rem;
+    margin-bottom: 2.8rem;
+  }
+  &__label {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: var(--font-size-s);
+  }
+  &__title {
+    margin-top: 0.2rem;
   }
 }
 .dot-blur {

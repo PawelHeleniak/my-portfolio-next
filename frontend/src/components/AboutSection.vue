@@ -3,41 +3,44 @@ const services = [
   {
     title: 'Strony WordPress',
     description:
-      "Tworzę strony firmowe, wizytówki i landing page'e oparte na WordPressie. Dbam o szybkość działania, wygodną edycję treści i nowoczesny wygląd.",
+      'Tworzę strony firmowe i wizytówki oparte na WordPressie. Dbam o szybkość, responsywność i prostą edycję treści po wdrożeniu.',
+    icon: 'fa-brands fa-wordpress',
   },
   {
     title: 'Sklepy IdoSell',
     description:
-      'Tworzę i modyfikuję szablony sklepów IdoSell, wdrażam nowe sekcje oraz rozwijam istniejące sklepy internetowe.',
+      'Rozwijam i modyfikuję sklepy internetowe oparte na IdoSell. Tworzę indywidualne szablony, poprawiam wygląd sklepu i wdrażam nowe funkcjonalności.',
+    icon: 'fa-solid fa-cart-shopping',
   },
   {
-    title: 'Strony dedykowane',
+    title: 'Aplikacje webowe',
     description:
-      'Realizuję strony internetowe dopasowane do indywidualnych potrzeb. Korzystam z nowoczesnych technologii oraz systemów CMS umożliwiających łatwe zarządzanie treścią.',
-  },
-  {
-    title: 'Wsparcie projektów Front-End',
-    description:
-      'Pomagam w rozwoju aplikacji i stron internetowych tworzonych w Angularze oraz Vue. Mogę dołączyć do istniejącego projektu lub wesprzeć zespół przy nowych funkcjonalnościach.',
+      'Tworzę i rozwijam interfejsy w Angularze, Vue i TypeScript. Mogę dołączyć do istniejącego projektu albo przygotować nową aplikację od podstaw.',
+    icon: 'fa-solid fa-code',
   },
 ]
 </script>
 
 <template>
   <section class="section" id="offer">
-    <h2 class="section__header">Jak mogę pomóc?</h2>
-    <div class="about">
-      <div v-for="service in services" :key="service.title" class="about__box ui-card">
-        <h3 class="about__header">
+    <div class="section__header">
+      <p class="section__label">OFERTA</p>
+      <h2 class="section__title">W czym mogę pomóc?</h2>
+    </div>
+    <div class="services">
+      <div v-for="service in services" :key="service.title" class="services__box ui-card">
+        <i :class="service.icon"></i>
+
+        <h3 class="services__header">
           {{ service.title }}
         </h3>
 
-        <div class="about__description">
+        <div class="services__description">
           {{ service.description }}
         </div>
       </div>
 
-      <div class="dot-blur dot-blur--about"></div>
+      <div class="dot-blur dot-blur--services"></div>
     </div>
   </section>
 </template>
@@ -49,17 +52,40 @@ const services = [
   transform: translateY(1rem);
   animation: slideIn 1s 0.6s ease forwards;
 }
-.about {
+.services {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   position: relative;
   @include style.tablet {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+  i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xl);
+    width: 5.2rem;
+    height: 5.2rem;
+    color: var(--primary);
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary);
+      opacity: 0.1;
+      border-radius: var(--border-radius-secondary);
+    }
   }
   &__header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
   }
   &__box {
     position: relative;
