@@ -80,19 +80,46 @@ const contacts = [
     name: 'Napisz na linkedin',
     to: 'paweł-heleniak',
   },
+  {
+    href: 'https://github.com/PawelHeleniak',
+    icon: 'fa-brands fa-github',
+    name: 'Napisz na github',
+    to: 'github.com/PawelHeleniak',
+  },
 ]
 </script>
 
 <template>
-  <section class="section" id="contact">
-    <div class="section__list">
-      <div class="contact ui-card">
-        <div class="contact__wrapper">
-          <h2 class="contact__header">Napisz do mnie</h2>
-          <h4 class="contact__subheader">
+  <section class="section section--bg" id="contact">
+    <!-- <div class="section__list"> -->
+    <div class="information">
+      <div class="information__header">
+        <div class="section__header">
+          <p class="section__label">KONTAKT</p>
+          <h2 class="section__title">Porozmawiajmy o Twoim projekcie</h2>
+          <h3 class="section__subtitle">
             Szukasz front-end developera do projektu? Chętnie pomogę, odezwij się i porozmawiajmy o
             szczegółach.
-          </h4>
+          </h3>
+        </div>
+      </div>
+      <div class="information__links">
+        <a
+          v-for="contact in contacts"
+          :key="contact.name"
+          class="information__link ui-card"
+          :href="contact.href"
+        >
+          <i :class="contact.icon"></i>
+          <div class="information__content">
+            <h4>{{ contact.name }}</h4>
+            <span>{{ contact.to }}</span>
+          </div>
+        </a>
+      </div>
+      <!-- </div> -->
+      <div class="contact ui-card">
+        <div class="contact__wrapper">
           <form @submit.prevent="sendForm" class="contact__form">
             <div class="contact__form--row">
               <div class="input-field" :class="{ '--warning': touched && isEmpty(name) }">
@@ -112,13 +139,13 @@ const contacts = [
               <input type="checkbox" v-model="privacyAccepted" class="contact__checkbox--input" />
               <span class="contact__checkbox--custom"></span>
 
-              <span
+              <span class="contact__policy"
                 >Zapoznałem się z
                 <RouterLink to="/polityka-prywatnosci" class="contact__checkbox--policy"
                   >polityką prywatności</RouterLink
                 >
                 i wyrażam zgodę na przetwarzanie danych osobowych w celu udzielenia odpowiedzi na
-                moje zapytanie.</span
+                wiadomość.</span
               >
             </label>
             <button type="submit" class="ui-button contact__form--button">Wyślij wiadomość</button>
@@ -126,20 +153,6 @@ const contacts = [
           <small v-if="error" class="contact__info --warning">{{ error }}</small>
           <small v-if="success" class="contact__info --success">{{ success }}</small>
         </div>
-      </div>
-      <div class="information">
-        <a
-          v-for="contact in contacts"
-          :key="contact.name"
-          class="information__link ui-card"
-          :href="contact.href"
-        >
-          <i :class="contact.icon"></i>
-          <div class="information__content">
-            <h4>{{ contact.name }}</h4>
-            <span>{{ contact.to }}</span>
-          </div>
-        </a>
       </div>
     </div>
     <div class="dot-blur dot-blur--contact"></div>
@@ -152,7 +165,6 @@ const contacts = [
 .section {
   display: flex;
   flex-direction: column;
-  // align-items: center;
   position: relative;
   &__list {
     display: flex;
@@ -160,18 +172,15 @@ const contacts = [
     align-items: flex-start;
     z-index: 2;
     gap: 1.2rem;
-    @include style.tablet {
+    @include style.desktop {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @include style.laptop {
-      gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
     }
   }
 }
 .contact {
   width: 100%;
-  grid-column: span 2;
   &__wrapper {
     margin: auto;
   }
@@ -188,13 +197,13 @@ const contacts = [
   &__form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.6rem;
     &--row {
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
       @include style.laptop {
-        gap: 2rem;
+        gap: 1.6rem;
         flex-direction: row;
       }
     }
@@ -207,7 +216,7 @@ const contacts = [
   }
   .input-field {
     width: 100%;
-    border-radius: var(--border-radius-primary);
+    border-radius: var(--border-radius-secondary);
     overflow: hidden;
     textarea,
     input {
@@ -285,33 +294,66 @@ const contacts = [
 .information {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 2rem;
   width: 100%;
+
   @include style.laptop {
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 70rem) 1fr;
+    grid-column-gap: 3rem;
+  }
+  @include style.desktop {
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 4rem;
+  }
+  &__header {
+    margin-bottom: -2rem;
+    @include style.laptop {
+      margin-bottom: 0;
+    }
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    @include style.desktop {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: max-content max-content;
+    }
   }
   &__link {
     display: flex;
-    gap: 1.6rem;
+    gap: 1.2rem;
     transition: 0.2s ease-in transform;
+    padding: 1rem;
     &:hover {
       transform: translateY(-5px);
-      // span {
-      //   color: var(--secondary);
-      // }
+    }
+    @include style.laptop {
+      padding: 1.5rem;
     }
     i {
-      border-radius: var(--border-radius-primary);
-      background-color: var(--secondary);
-      background: linear-gradient(135deg, var(--secondary) 25%, var(--primary) 100%);
       display: flex;
-      justify-content: center;
       align-items: center;
-      width: 6.4rem;
-      height: 6.4rem;
+      justify-content: center;
       font-size: 2.4rem;
-      color: var(--bg-primary);
-      min-width: 6.4rem;
+      width: 6rem;
+      height: 6rem;
+      color: var(--primary);
+      padding: 1.2rem;
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--primary);
+        opacity: 0.1;
+        border-radius: var(--border-radius-secondary);
+      }
     }
   }
   &__content {
@@ -319,13 +361,36 @@ const contacts = [
     flex-direction: column;
     overflow: hidden;
     span {
-      font-size: var(--font-size-m);
+      font-size: var(--font-size-base);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       width: 100%;
       transition: 0.2s ease-in color;
     }
+  }
+}
+
+.information__header {
+  order: 1;
+  @include style.laptop {
+    grid-column: span 2;
+  }
+  @include style.desktop {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}
+.information__links {
+  order: 3;
+  @include style.desktop {
+    grid-area: 2 / 1 / 3 / 2;
+    margin-top: auto;
+  }
+}
+.contact {
+  order: 2;
+  @include style.desktop {
+    grid-area: 1 / 2 / 3 / 3;
   }
 }
 </style>

@@ -1,21 +1,16 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
 
-gsap.registerPlugin(ScrollTrigger)
-
-const navigation = ref(null)
 const isOpen = ref(false)
 const activeSection = ref(null)
 
 const sections = [
   { id: 'offer', name: 'Oferta', icon: 'fa-regular fa-user' },
-  { id: 'trust', name: 'Korzyści', icon: 'fa-solid fa-diagram-project' },
+  { id: 'process', name: 'Współpraca', icon: 'fa-solid fa-diagram-project' },
   { id: 'projects', name: 'Realizacje', icon: 'fa-solid fa-layer-group' },
   { id: 'contact', name: 'Kontakt', icon: 'fa-solid fa-envelope' },
 ]
@@ -38,33 +33,8 @@ const scrollToSection = async (id) => {
 }
 
 onMounted(async () => {
-  const screenWidth = window.innerWidth
-  if (screenWidth > 1023) {
-    const tl = gsap.to(navigation.value, {
-      marginRight: 'auto',
-      boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-      duration: 0.5,
-      paused: true,
-    })
-
-    ScrollTrigger.create({
-      trigger: navigation.value,
-      start: '5%',
-      onUpdate: (self) => {
-        if (self.progress > 0) tl.play()
-        else tl.reverse()
-      },
-    })
-
-    if (window.scrollY > 50) tl.progress(1).pause()
-    else tl.progress(0).pause()
-  }
   window.addEventListener('scroll', handleScroll)
   handleScroll()
-})
-
-window.addEventListener('load', () => {
-  ScrollTrigger.refresh()
 })
 
 const handleScroll = () => {
@@ -140,6 +110,10 @@ const toggleTheme = () => {
       <i v-if="!isOpen" class="fa-solid fa-bars"></i>
       <i v-else class="fa-solid fa-x"></i>
     </button>
+    <div class="navigation__brand-content">
+      <span class="navigation__name">Paweł Heleniak</span>
+      <span class="navigation__role">Web Developer</span>
+    </div>
     <div class="navigation__list">
       <a
         v-for="section in sections"
@@ -151,10 +125,13 @@ const toggleTheme = () => {
         <i :class="section.icon"></i><span>{{ section.name }}</span>
       </a>
     </div>
-    <button class="navigation__switch" @click="toggleTheme">
-      <i v-if="theme === 'light'" class="fa-regular fa-sun"></i>
-      <i v-else class="fa-regular fa-moon"></i>
-    </button>
+    <div class="navigation__actions">
+      <button class="navigation__switch" @click="toggleTheme">
+        <i v-if="theme === 'light'" class="fa-regular fa-sun"></i>
+        <i v-else class="fa-regular fa-moon"></i>
+      </button>
+      <a class="navigation__cta" @click="scrollToSection('contact')">Zapytaj o projekty</a>
+    </div>
   </nav>
 </template>
 
@@ -179,24 +156,18 @@ const toggleTheme = () => {
   z-index: 99;
   background: var(--bg-secondary-opacity);
   border-radius: 16px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   @include style.tablet {
     display: flex;
+    align-items: center;
     width: 100%;
     margin-bottom: 2rem;
-    margin-left: auto;
     top: 2rem;
-    padding: 1rem;
+    padding: 1rem 2rem;
   }
   @include style.laptop {
-    width: calc(50% - 2rem);
-  }
-  &--open {
     width: 100%;
-    @include style.tablet {
-      width: calc(50% - 2rem);
-    }
   }
   &__wrapper {
     display: flex;
@@ -217,22 +188,41 @@ const toggleTheme = () => {
     }
   }
   &__item {
-    cursor: pointer;
-    transition: 0.2s ease-in background;
-    border-radius: var(--border-radius-primary);
-    &:hover {
-      background-color: var(--bg-primary);
-    }
-    &--active {
-      background-color: var(--primary) !important;
-      color: hsl(269, 84%, 95%);
-    }
     @include style.tablet {
       width: max-content;
       padding: 0.6rem 1rem;
       i {
         display: none;
       }
+    }
+  }
+  &__item {
+    cursor: pointer;
+    position: relative;
+    border-radius: var(--border-radius-primary);
+    &::after {
+      content: '';
+      position: absolute;
+      left: 1.2rem;
+      right: 1.2rem;
+      bottom: 0.4rem;
+
+      height: 2px;
+      background-color: var(--primary);
+
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+    &--active {
+      color: var(--primary) !important;
     }
   }
   &__bars {
@@ -257,6 +247,28 @@ const toggleTheme = () => {
     @include style.tablet {
       width: max-content;
     }
+  }
+  // Lewa
+  &__brand-content {
+    display: none;
+    @include style.tablet {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      justify-content: center;
+    }
+  }
+  &__name {
+    font-size: var(--font-size-l);
+  }
+  &__role {
+    font-size: var(--font-size-s);
+    color: var(--text-secondary);
+  }
+  // Prawa
+  &__actions {
+    display: flex;
+    gap: 1rem;
   }
 }
 .page-privacy-policy {

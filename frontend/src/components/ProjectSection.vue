@@ -24,7 +24,10 @@ const linkGithub = () => {
 </script>
 <template>
   <section class="section --projects" id="projects">
-    <h2 class="section__header">Autorskie projekty</h2>
+    <div class="section__header">
+      <span class="section__label">REALIZACJE</span>
+      <h2 class="section__title">Autorskie projekty</h2>
+    </div>
     <div class="section__wrapper">
       <a class="project projectui-card ui-card" href="https://repevo.pl/" target="_blank">
         <picture class="project__img">
@@ -484,10 +487,10 @@ const linkGithub = () => {
     }
   }
 }
-.--projects {
-  h2 {
-    display: flex;
-    justify-content: center;
-  }
-}
+// .--projects {
+//   h2 {
+//     display: flex;
+//     justify-content: center;
+//   }
+// }
 </style>

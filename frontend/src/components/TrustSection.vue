@@ -24,14 +24,14 @@ const trusts = [
 </script>
 
 <template>
-  <section class="section process" id="process">
+  <section class="section section--bg process" id="process">
     <div class="section__header process__intro">
       <span class="section__label">WSPÓŁPRACA</span>
       <h2 class="section__title">Jak wygląda współpraca?</h2>
-      <p class="section__subtitle">
+      <h3 class="section__subtitle">
         Współpracę dzielę na kilka prostych etapów, dzięki czemu od początku wiadomo, co robimy,
         jaki jest zakres prac i na jakim etapie znajduje się projekt.
-      </p>
+      </h3>
     </div>
     <div class="process__steps">
       <div v-for="process in trusts" :key="process.title" class="process__box">
@@ -72,7 +72,7 @@ const trusts = [
     position: relative;
     @include style.laptop {
       position: sticky;
-      top: 9.6rem;
+      top: 11.2rem;
     }
   }
   // === Prawa strona ===

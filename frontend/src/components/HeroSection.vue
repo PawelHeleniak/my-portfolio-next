@@ -12,16 +12,23 @@ const scrollToSection = (id) => {
   <header class="header">
     <div class="header__wrapper">
       <div class="header__description">
+        <p>Wordpress | IdoSell | Aplikacje webowe</p>
         <h1>Tworzę i rozwijam strony oraz sklepy internetowe</h1>
         <span>
           Pomagam firmom budować nowoczene strony, sklepy internetowe i aplikacje webowe.
           Specjalizuje się w Wordpress, Idosell oraz nowoczesnych rozwiązaniach front-end.</span
         >
-        <button class="ui-button ui-button--arrow" @click="scrollToSection('contact')">
-          Porozmawiajmy o projekcie <ArrowRight />
-        </button>
+
+        <div class="ui-buttons">
+          <button class="ui-button ui-button--arrow" @click="scrollToSection('contact')">
+            Porozmawiajmy o projekcie <ArrowRight />
+          </button>
+          <button class="ui-button ui-button--link" @click="scrollToSection('contact')">
+            Zobacz realizację
+          </button>
+        </div>
       </div>
-      <div class="header__info">
+      <!-- <div class="header__info">
         <div class="header__card header__card--description ui-card">
           Tworzę rozwiązania, które są łatwe w obsłudze, szybkie i gotowe na dalszy rozwój. Pomagam
           zarówno przy nowych projektach, jak i przy rozbudowie istniejących stron oraz sklepów
@@ -70,7 +77,7 @@ const scrollToSection = (id) => {
             <span>GitHub</span>
           </a>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="dot-blur dot-blur--hero"></div>
   </header>
@@ -83,26 +90,31 @@ const scrollToSection = (id) => {
   flex-direction: column;
   gap: 2rem;
   position: relative;
+  padding: 4rem 0;
   // Treść
   &__wrapper {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: 4rem;
-    @include style.laptop {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
+    // @include style.laptop {
+    //   display: grid;
+    //   grid-template-columns: repeat(2, 1fr);
+    // }
   }
   &__description {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 0;
     gap: 3rem;
     margin-top: 1.2rem;
-    @include style.laptop {
-      padding: 0 4rem 4rem 0;
-      margin-top: 0;
-    }
+    max-width: 760px;
+    // @include style.laptop {
+    //   padding: 0 4rem 4rem 0;
+    //   margin-top: 0;
+    // }
     h1,
     span,
     button {

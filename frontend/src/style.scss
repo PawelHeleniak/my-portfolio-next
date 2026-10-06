@@ -1,13 +1,14 @@
 @use './reset.scss' as *;
 // Variables
 :root {
-  --primary: hsl(271, 80%, 48%);
-  --secondary: hsl(268, 88%, 35%);
+  --primary: hsl(262, 62%, 48%);
+  --secondary: hsl(264, 55%, 38%);
   --accent: hsl(293, 100%, 35%);
   --bg-primary: hsl(230.84deg 73% 97%);
   --bg-primary-opacity: hsla(230.84deg, 73%, 97%, 0.8);
   --bg-secondary: hsl(266, 100%, 99%);
   --bg-secondary-opacity: hsla(266, 100%, 99%, 0.8);
+  --bg-tertiary: hsl(266, 100%, 99%);
   --text-primary: hsl(250, 18%, 7%);
   --text-secondary: hsl(240, 6%, 21%);
   --warning: hsl(0deg 78% 36%);
@@ -30,7 +31,7 @@
   --font-size-l: 2.2rem; //h4
   --font-size-xl: 2.6rem; //h3
   --font-size-2xl: 3.6rem; //h2
-  --font-size-3xl: 5rem; //h1
+  --font-size-3xl: 5.2rem; //h1
 
   // Font style
   --font-family-base: 'Lato', sans-serif;
@@ -43,10 +44,11 @@
   // --secondary: hsl(250, 8%, 72%);
   --secondary: hsl(273, 64%, 58%);
   --accent: hsl(185, 75%, 50%);
-  --bg-primary: hsl(264, 100%, 1%);
+  --bg-primary: hsl(250, 15%, 7%);
   --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
-  --bg-secondary: hsl(268deg, 34.88%, 8.43%);
-  --bg-secondary-opacity: hsla(268deg, 34.88%, 8.43%, 0.8);
+  --bg-secondary: hsl(250, 15%, 11%);
+  --bg-secondary-opacity: hsla(250, 15%, 10%, 0.8);
+  --bg-tertiary: hsl(258, 18%, 9%);
   --text-primary: hsl(269, 84%, 95%);
   --text-secondary: hsl(270, 19%, 77%);
   --warning: hsl(0deg 93% 58.5%);
@@ -55,11 +57,6 @@
   --border-color: hsl(265.28, 15.48%, 28.77%);
 
   // =======
-
-  --bg-primary: hsl(250, 15%, 7%);
-  --bg-secondary: hsl(250, 15%, 11%);
-  --bg-secondary-opacity: hsla(250, 15%, 10%, 0.8);
-
   --text-primary: hsl(0, 0%, 96%);
   --text-secondary: hsl(250, 8%, 76%);
 
@@ -148,6 +145,10 @@ textarea {
     padding: 2.4rem;
   }
 }
+.ui-buttons {
+  display: flex;
+  gap: 1.2rem;
+}
 .ui-button {
   display: flex;
   align-items: center;
@@ -172,6 +173,24 @@ textarea {
       }
     }
   }
+  &--link {
+    background-color: transparent;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      width: calc(100% - 4.8rem);
+      transform: translateX(-50%);
+      height: 2px;
+      background-color: var(--primary);
+    }
+    &:hover {
+      background-color: transparent;
+      color: var(--text-secondary);
+    }
+  }
 }
 .ui-link {
   color: var(--primary);
@@ -189,6 +208,19 @@ textarea {
   @include desktop {
     margin-top: 11.2rem;
   }
+  // &--bg {
+  //   background-color: var(--bg-tertiary);
+  //   position: relative;
+  //   &::after {
+  //     content: '';
+  //     position: absolute;
+  //     inset: 0;
+  //     z-index: -1;
+  //     background-color: var(--bg-tertiary);
+  //     box-shadow: 0 0 0 100vmax var(--bg-tertiary);
+  //     clip-path: inset(0 -100vmax);
+  //   }
+  // }
   &__header {
     margin-bottom: 2.8rem;
   }
