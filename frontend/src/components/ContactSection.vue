@@ -1,10 +1,20 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 // Email
 const name = ref('')
 const email = ref('')
+const phone = ref('')
 const message = ref('')
+const service = ref('')
+const website = ref('')
+const services = [
+  'Strona internetowa',
+  'Sklep internetowy',
+  'Aplikacja webowa',
+  'Konsultacja',
+  'Inne',
+]
 const touched = ref(false)
 const success = ref('')
 const error = ref('')
@@ -12,23 +22,59 @@ const error = ref('')
 const privacyAccepted = ref(false)
 
 const isValidEmail = (email) => {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
 }
 
 const isEmpty = (v) => !v || !v.trim()
+
+const isValidPhone = (value) => {
+  const trimmed = value.trim()
+  if (!/^\+?[\d\s()-]+$/.test(trimmed)) return false
+  const number = trimmed.replace(/[\s()-]/g, '').replace(/^00/, '+')
+  if (number.startsWith('+48')) return /^\+48[1-9]\d{8}$/.test(number)
+  return /^(?:[1-9]\d{8}|\+[1-9]\d{7,14})$/.test(number)
+}
+
+const missingContact = computed(() => isEmpty(email.value) && isEmpty(phone.value))
+const emailInvalid = computed(
+  () =>
+    touched.value &&
+    (missingContact.value || (!isEmpty(email.value) && !isValidEmail(email.value))),
+)
+const phoneInvalid = computed(
+  () =>
+    touched.value &&
+    (missingContact.value || (!isEmpty(phone.value) && !isValidPhone(phone.value))),
+)
 
 const sendForm = async () => {
   touched.value = true
   success.value = ''
   error.value = ''
 
-  if (isEmpty(name.value) || isEmpty(email.value) || isEmpty(message.value)) {
-    error.value = 'Wypełnij wszystkie pola przed wysłaniem wiadomości.'
+  if (isEmpty(name.value) || isEmpty(message.value)) {
+    error.value = 'Wypełnij wszystkie wymagane pola przed wysłaniem wiadomości.'
     return
   }
 
-  if (!isValidEmail(email.value)) {
+  if (isEmpty(service.value)) {
+    error.value = 'Wybierz, w czym mogę pomóc.'
+    return
+  }
+
+  if (missingContact.value) {
+    error.value = 'Podaj adres e-mail lub numer telefonu.'
+    return
+  }
+
+  if (!isEmpty(email.value) && !isValidEmail(email.value)) {
     error.value = 'Podaj poprawny adres e-mail.'
+    return
+  }
+
+  if (!isEmpty(phone.value) && !isValidPhone(phone.value)) {
+    error.value =
+      'Podaj poprawny numer telefonu: 9 cyfr lub numer z prefiksem kraju, np. +48 661 011 470.'
     return
   }
 
@@ -42,8 +88,15 @@ const sendForm = async () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        subject: `Wiadomość od: ${name.value} (${email.value})`,
-        text: message.value,
+        subject: `Wiadomość od: ${name.value} (${email.value.trim() || phone.value.trim()})`,
+        text: [
+          ...(!isEmpty(email.value) ? [`E-mail: ${email.value.trim()}`] : []),
+          ...(!isEmpty(phone.value) ? [`Telefon: ${phone.value.trim()}`] : []),
+          `W czym mogę pomóc: ${service.value}`,
+          ...(website.value.trim() ? [`Adres strony: ${website.value}`] : []),
+          '',
+          message.value,
+        ].join('\n'),
       }),
     })
 
@@ -52,7 +105,10 @@ const sendForm = async () => {
     success.value = 'Wiadomość została wysłana. Dziękuję za kontakt!'
     name.value = ''
     email.value = ''
+    phone.value = ''
     message.value = ''
+    service.value = ''
+    website.value = ''
     privacyAccepted.value = false
     touched.value = false
   } catch {
@@ -120,15 +176,68 @@ const contacts = [
       <!-- </div> -->
       <div class="contact ui-card">
         <div class="contact__wrapper">
-          <form @submit.prevent="sendForm" class="contact__form">
+          <form @submit.prevent="sendForm" class="contact__form" novalidate>
+            <fieldset
+              class="contact__services"
+              :class="{ 'contact__services--invalid': touched && isEmpty(service) }"
+            >
+              <legend class="contact__services-label">W czym mogę pomóc?</legend>
+              <div class="contact__service-options">
+                <label v-for="item in services" :key="item" class="contact__service-option">
+                  <input
+                    v-model="service"
+                    class="contact__service-input"
+                    type="radio"
+                    name="service"
+                    :value="item"
+                    required
+                    :aria-invalid="touched && isEmpty(service)"
+                  />
+                  <span class="contact__service-button">{{ item }}</span>
+                </label>
+              </div>
+            </fieldset>
             <div class="contact__form--row">
               <div class="input-field" :class="{ '--warning': touched && isEmpty(name) }">
                 <input type="text" placeholder="Imię i nazwisko" v-model="name" />
               </div>
-              <div class="input-field" :class="{ '--warning': touched && isEmpty(email) }">
-                <input type="text" placeholder="Email" v-model="email" />
+
+              <div class="input-field">
+                <input
+                  v-model="website"
+                  type="text"
+                  placeholder="Adres strony (opcjonalne)"
+                  aria-label="Adres strony (opcjonalne)"
+                />
               </div>
             </div>
+            <div class="contact__form--row">
+              <div class="input-field" :class="{ '--warning': emailInvalid }">
+                <input
+                  v-model="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="Email"
+                  aria-label="Email"
+                  aria-describedby="contact-method-hint"
+                  :aria-invalid="emailInvalid"
+                />
+              </div>
+              <div class="input-field" :class="{ '--warning': phoneInvalid }">
+                <input
+                  v-model="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="Telefon"
+                  aria-label="Telefon"
+                  aria-describedby="contact-method-hint"
+                  :aria-invalid="phoneInvalid"
+                />
+              </div>
+            </div>
+            <p id="contact-method-hint" class="contact__hint">
+              Podaj e-mail lub telefon — wystarczy jedno z tych pól.
+            </p>
             <div
               class="input-field input-field--textarea"
               :class="{ '--warning': touched && isEmpty(message) }"
@@ -150,7 +259,7 @@ const contacts = [
             </label>
             <button type="submit" class="ui-button contact__form--button">Wyślij wiadomość</button>
           </form>
-          <small v-if="error" class="contact__info --warning">{{ error }}</small>
+          <small v-if="error" class="contact__info --warning" role="alert">{{ error }}</small>
           <small v-if="success" class="contact__info --success">{{ success }}</small>
         </div>
       </div>
@@ -181,6 +290,70 @@ const contacts = [
 }
 .contact {
   width: 100%;
+  &__services {
+    min-width: 0;
+    border: 0;
+    border-radius: var(--border-radius-secondary);
+
+    &--invalid {
+      span {
+        border-color: var(--warning);
+      }
+    }
+  }
+  &__services-label {
+    margin-bottom: 1rem;
+    font-size: var(--font-size-base);
+  }
+  &__service-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  &__service-option {
+    position: relative;
+    cursor: pointer;
+  }
+  &__service-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+
+    &:checked + .contact__service-button {
+      border-color: var(--primary);
+      color: var(--primary);
+      background-color: color-mix(in srgb, var(--primary) 10%, var(--bg-secondary));
+    }
+    &:focus-visible + .contact__service-button {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+  }
+  &__service-button {
+    display: inline-flex;
+    align-items: center;
+    // min-height: 4.4rem;
+    padding: 0.8rem 1.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-round);
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    font-size: var(--font-size-s);
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      border-color: var(--primary);
+    }
+  }
+  &__hint {
+    color: var(--text-secondary);
+    font-size: var(--font-size-s);
+    margin-top: -0.8rem;
+  }
   &__wrapper {
     margin: auto;
   }
@@ -255,12 +428,12 @@ const contacts = [
     }
 
     &--custom {
-      width: 2rem;
-      min-width: 2rem;
-      height: 2rem;
+      width: 1.8rem;
+      min-width: 1.8rem;
+      height: 1.8rem;
       border: 2px solid var(--primary);
       border-radius: 6px;
-      margin-top: 0.2rem;
+      margin-top: 0.4rem;
       position: relative;
       transition: 0.2s ease;
     }
@@ -272,7 +445,7 @@ const contacts = [
     &--input:checked + &--custom::after {
       content: '';
       position: absolute;
-      left: 0.55rem;
+      left: 0.5rem;
       top: 0.15rem;
       width: 0.5rem;
       height: 1rem;
@@ -290,6 +463,9 @@ const contacts = [
       }
     }
   }
+  &__policy {
+    font-size: var(--font-size-sm);
+  }
 }
 .information {
   display: flex;
@@ -303,8 +479,9 @@ const contacts = [
     grid-column-gap: 3rem;
   }
   @include style.desktop {
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 4rem;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column-gap: 5rem;
   }
   &__header {
     margin-bottom: -2rem;
@@ -317,9 +494,7 @@ const contacts = [
     flex-direction: column;
     gap: 1.2rem;
     @include style.desktop {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: max-content max-content;
+      max-width: 620px;
     }
   }
   &__link {
@@ -378,13 +553,18 @@ const contacts = [
   }
   @include style.desktop {
     grid-area: 1 / 1 / 2 / 2;
+    max-width: 620px;
+
+    .section__header {
+      margin-bottom: 0;
+    }
   }
 }
 .information__links {
   order: 3;
   @include style.desktop {
     grid-area: 2 / 1 / 3 / 2;
-    margin-top: auto;
+    align-self: start;
   }
 }
 .contact {
