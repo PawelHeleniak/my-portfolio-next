@@ -29,22 +29,18 @@
   --font-size-sm: 1.6rem;
   --font-size-base: 1.8rem; //base
   --font-size-m: 2rem; //subheading
-  --font-size-l: 2.2rem; //h4
-  --font-size-xl: 2.6rem; //h3
-  --font-size-2xl: 3.6rem; //h2
-  --font-size-3xl: 5.2rem; //h1
+  --font-size-l: 2.4rem; //h4
+  --font-size-xl: 3.2rem; //h3
+  --font-size-2xl: 4rem; //h2
+  --font-size-3xl: 5.6rem; //h1
 
   // Font style
   --font-family-base: 'Lato', sans-serif;
 }
 :root[data-theme='dark'] {
-  // --primary: hsl(271, 80%, 62%);
-  // --secondary: hsl(268, 88%, 75%);
-  // --accent: hsl(293, 100%, 65%);
   --primary: hsl(262, 72%, 60%);
-  // --secondary: hsl(250, 8%, 72%);
-  --secondary: hsl(273, 64%, 58%);
-  --accent: hsl(185, 75%, 50%);
+  --secondary: hsl(267, 25%, 45%);
+  --accent: hsl(175, 54%, 46%);
   --bg-primary: hsl(250, 15%, 7%);
   --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
   --bg-secondary: hsl(250, 15%, 11%);
@@ -105,10 +101,10 @@ $xlDesktop: 1536px;
     // --font-size-s: 1.2rem;
     // --font-size-base: 1.6rem;
     // --font-size-m: 1.8rem;
-    // --font-size-l: 2rem;
-    --font-size-xl: 2.4rem;
-    --font-size-2xl: 3rem;
-    --font-size-3xl: 4rem;
+    --font-size-l: 2.2rem;
+    --font-size-xl: 2.8rem;
+    --font-size-2xl: 3.4rem;
+    --font-size-3xl: 4.4rem;
   }
 }
 @media (max-width: 479px) {
@@ -145,6 +141,7 @@ textarea {
   padding: 1.2rem;
   // backdrop-filter: blur(5px);
   // -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--border-color);
   @include laptop {
     padding: 2.4rem;
   }

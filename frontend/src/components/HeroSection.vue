@@ -15,7 +15,7 @@ const technologies = ['WordPress', 'IdoSell', 'Aplikacje webowe']
       </h1>
       <p class="hero__description">
         Pomagam firmom budować nowoczene strony, sklepy internetowe i aplikacje webowe. Specjalizuje
-        się w Wordpress, Idosell oraz nowoczesnych rozwiązaniach front-end.
+        się w Wordpress, Idosell oraz tworzeniu aplikacji webowych jako full-stack developer.
       </p>
       <div class="hero__actions ui-buttons">
         <RouterLink class="ui-button" to="/#contact">
