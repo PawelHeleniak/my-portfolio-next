@@ -121,6 +121,16 @@ const technologies = ['WordPress', 'IdoSell', 'Aplikacje webowe']
     justify-content: center;
     gap: 1.2rem;
     margin-top: 3.2rem;
+    .ui-button {
+      width: 100%;
+      max-width: 32rem;
+      margin-inline: auto;
+      @include style.tablet {
+        width: initial;
+        max-width: initial;
+        margin-inline: initial;
+      }
+    }
   }
 
   &__note {

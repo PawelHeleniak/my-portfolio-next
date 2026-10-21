@@ -114,8 +114,8 @@ const services = [
     display: flex;
     flex-direction: column;
     min-width: 0;
-    padding: 3.2rem;
-    border-radius: var(--border-radius-primary, 1.6rem);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-primary);
     transition:
       border-color 0.3s ease,
       transform 0.3s ease;
@@ -124,16 +124,24 @@ const services = [
       --card-accent: var(--primary);
 
       background:
-        radial-gradient(ellipse at 100% 100%, hsl(262 72% 60% / 0.1), transparent 60%),
-        var(--background-secondary, #1b1a22);
+        radial-gradient(
+          ellipse at 100% 100%,
+          color-mix(in srgb, var(--card-accent) 10%, transparent),
+          transparent 60%
+        ),
+        var(--bg-secondary);
     }
 
     &--accent {
       --card-accent: var(--accent);
 
       background:
-        radial-gradient(ellipse at 100% 0%, hsl(175 54% 46% / 0.055), transparent 65%),
-        var(--background-secondary, #1b1a22);
+        radial-gradient(
+          ellipse at 100% 0%,
+          color-mix(in srgb, var(--card-accent) 5.5%, transparent),
+          transparent 65%
+        ),
+        var(--bg-secondary);
     }
 
     @media (hover: hover) {
@@ -169,8 +177,8 @@ const services = [
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 5.6rem;
-    height: 5.6rem;
+    width: 5.2rem;
+    height: 5.2rem;
     margin-bottom: 2rem;
 
     color: var(--card-accent);
@@ -178,13 +186,13 @@ const services = [
     border-radius: var(--border-radius-secondary);
 
     i {
-      font-size: 3rem;
+      font-size: 2.6rem;
       line-height: 1;
     }
 
     svg {
-      width: 3rem;
-      height: 3rem;
+      width: 2.6rem;
+      height: 2.6rem;
       stroke-width: 1.7;
     }
   }
@@ -216,13 +224,13 @@ const services = [
 
   &__watermark {
     position: absolute;
-    right: -2rem;
-    bottom: -3rem;
+    right: -1rem;
+    bottom: -2rem;
     z-index: 0;
-    width: clamp(12rem, 15vw, 22rem);
-    height: clamp(12rem, 15vw, 22rem);
+    width: 14rem;
+    height: 14rem;
+    font-size: 14rem;
     color: var(--card-accent);
-    font-size: clamp(12rem, 15vw, 22rem);
     line-height: 1;
     opacity: 0.05;
     pointer-events: none;
@@ -232,48 +240,51 @@ const services = [
       transform 0.4s ease;
 
     &:is(svg) {
-      opacity: 0.09;
+      opacity: 0.08;
       stroke-width: 1;
     }
   }
 
   &__box--accent {
     .services__watermark {
-      right: -2rem;
-      bottom: -3rem;
+      right: -1rem;
+      bottom: -2rem;
     }
   }
-
-  @media (max-width: 1023px) {
-    &__box {
-      padding: 2.4rem;
-    }
-
+  @include style.tablet {
     &__icon {
-      width: 4.4rem;
-      height: 4.4rem;
+      width: 5.6rem;
+      height: 5.6rem;
 
       i {
-        font-size: 2rem;
+        font-size: 3rem;
       }
 
       svg {
-        width: 2.2rem;
-        height: 2.2rem;
+        width: 3rem;
+        height: 3rem;
       }
     }
-
+    &__box {
+      padding: 2.4rem;
+    }
     &__watermark {
-      width: 12rem;
-      height: 12rem;
-      font-size: 12rem;
+      width: clamp(18rem, 16vw, 22rem);
+      height: clamp(18rem, 16vw, 22rem);
+      font-size: clamp(18rem, 16vw, 22rem);
+      right: -2rem;
+      bottom: -3rem;
+    }
+    &__box--accent {
+      .services__watermark {
+        right: -2rem;
+        bottom: -3rem;
+      }
     }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    &__box,
-    &__watermark {
-      transition: none;
+  @include style.laptop {
+    &__box {
+      padding: 3.2rem;
     }
   }
 }

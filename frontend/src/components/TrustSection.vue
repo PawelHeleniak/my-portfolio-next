@@ -108,7 +108,7 @@ const trusts = [
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xl);
     font-weight: 600;
     color: var(--primary);
     padding: 1.2rem;

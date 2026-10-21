@@ -1,7 +1,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-import { ArrowUpRight, Menu, Moon, Sun, X } from '@lucide/vue'
+// import { ArrowUpRight, Menu, Moon, Sun, X } from '@lucide/vue'
+import { ArrowUpRight, Menu, X } from '@lucide/vue'
 
 const route = useRoute()
 const isOpen = ref(false)
@@ -125,7 +126,7 @@ onBeforeUnmount(() => {
       </li>
     </ul>
     <div class="navigation__actions">
-      <button
+      <!-- <button
         class="navigation__switch"
         type="button"
         :aria-label="theme === 'light' ? 'Włącz ciemny motyw' : 'Włącz jasny motyw'"
@@ -133,7 +134,7 @@ onBeforeUnmount(() => {
       >
         <Moon v-if="theme === 'light'" :size="20" aria-hidden="true" />
         <Sun v-else :size="20" aria-hidden="true" />
-      </button>
+      </button> -->
       <RouterLink class="navigation__cta" to="/#contact" @click="closeMenu">
         Porozmawiajmy <ArrowUpRight :size="18" aria-hidden="true" />
       </RouterLink>

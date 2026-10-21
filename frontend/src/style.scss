@@ -1,43 +1,65 @@
 @use './reset.scss' as *;
 // Variables
+// :root {
+//   --primary: hsl(262, 62%, 48%);
+//   --secondary: hsl(264, 45%, 38%);
+//   --accent: hsl(175, 65%, 30%);
+//   --bg-primary: hsl(230.84deg 73% 97%);
+//   --bg-primary-opacity: hsla(230.84deg, 73%, 97%, 0.8);
+//   --bg-secondary: hsl(266, 100%, 99%);
+//   --bg-secondary-opacity: hsla(266, 100%, 99%, 0.8);
+//   --bg-tertiary: hsl(266, 100%, 99%);
+//   --text-primary: hsl(250, 18%, 7%);
+//   --text-secondary: hsl(240, 6%, 21%);
+//   --warning: hsl(0deg 78% 36%);
+//   --warning-hover: hsl(0deg 78% 50%);
+//   --success: hsl(125, 100%, 35%);
+//   --border-color: hsl(243, 94.68%, 87.97%);
+//   --white: hsl(230.84deg 73% 97%);
+
+//   --border-radius-primary: 16px;
+//   --border-radius-secondary: 12px;
+//   --border-radius-round: 999px;
+
+//   // Font size
+//   --font-scale: 1.25;
+
+//   --font-size-xs: 1.2rem;
+//   --font-size-s: 1.4rem;
+//   --font-size-sm: 1.6rem;
+//   --font-size-base: 1.8rem; //base
+//   --font-size-m: 2rem; //subheading
+//   --font-size-l: 2.4rem; //h4
+//   --font-size-xl: 3.2rem; //h3
+//   --font-size-2xl: 4rem; //h2
+//   --font-size-3xl: 5.6rem; //h1
+
+//   // Font style
+//   --font-family-base: 'Lato', sans-serif;
+// }
+// :root[data-theme='dark'] {
+//   --primary: hsl(262, 72%, 60%);
+//   --secondary: hsl(267, 25%, 45%);
+//   --accent: hsl(175, 54%, 46%);
+//   --bg-primary: hsl(250, 15%, 7%);
+//   --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
+//   --bg-secondary: hsl(250, 15%, 11%);
+//   --bg-secondary-opacity: hsla(250, 15%, 10%, 0.8);
+//   --bg-tertiary: hsl(258, 18%, 9%);
+//   --text-primary: hsl(269, 84%, 95%);
+//   --text-secondary: hsl(270, 19%, 77%);
+//   --warning: hsl(0deg 93% 58.5%);
+//   --warning-hover: hsl(0deg 93% 70%);
+//   --success: hsl(125, 100%, 35%);
+//   --border-color: hsl(265.28, 15.48%, 28.77%);
+
+//   // =======
+//   --text-primary: hsl(0, 0%, 96%);
+//   --text-secondary: hsl(250, 8%, 76%);
+
+//   --border-color: hsl(250, 10%, 18%);
+// }
 :root {
-  --primary: hsl(262, 62%, 48%);
-  --secondary: hsl(264, 55%, 38%);
-  --accent: hsl(293, 100%, 35%);
-  --bg-primary: hsl(230.84deg 73% 97%);
-  --bg-primary-opacity: hsla(230.84deg, 73%, 97%, 0.8);
-  --bg-secondary: hsl(266, 100%, 99%);
-  --bg-secondary-opacity: hsla(266, 100%, 99%, 0.8);
-  --bg-tertiary: hsl(266, 100%, 99%);
-  --text-primary: hsl(250, 18%, 7%);
-  --text-secondary: hsl(240, 6%, 21%);
-  --warning: hsl(0deg 78% 36%);
-  --warning-hover: hsl(0deg 78% 50%);
-  --success: hsl(125, 100%, 35%);
-  --border-color: hsl(243, 94.68%, 87.97%);
-  --white: hsl(230.84deg 73% 97%);
-
-  --border-radius-primary: 16px;
-  --border-radius-secondary: 12px;
-  --border-radius-round: 999px;
-
-  // Font size
-  --font-scale: 1.25;
-
-  --font-size-xs: 1.2rem;
-  --font-size-s: 1.4rem;
-  --font-size-sm: 1.6rem;
-  --font-size-base: 1.8rem; //base
-  --font-size-m: 2rem; //subheading
-  --font-size-l: 2.4rem; //h4
-  --font-size-xl: 3.2rem; //h3
-  --font-size-2xl: 4rem; //h2
-  --font-size-3xl: 5.6rem; //h1
-
-  // Font style
-  --font-family-base: 'Lato', sans-serif;
-}
-:root[data-theme='dark'] {
   --primary: hsl(262, 72%, 60%);
   --secondary: hsl(267, 25%, 45%);
   --accent: hsl(175, 54%, 46%);
@@ -58,6 +80,26 @@
   --text-secondary: hsl(250, 8%, 76%);
 
   --border-color: hsl(250, 10%, 18%);
+
+  --border-radius-primary: 16px;
+  --border-radius-secondary: 12px;
+  --border-radius-round: 999px;
+
+  // Font size
+  --font-scale: 1.25;
+
+  --font-size-xs: 1.2rem;
+  --font-size-s: 1.4rem;
+  --font-size-sm: 1.6rem;
+  --font-size-base: 1.8rem; //base
+  --font-size-m: 2rem; //subheading
+  --font-size-l: 2.4rem; //h4
+  --font-size-xl: 3.2rem; //h3
+  --font-size-2xl: 4rem; //h2
+  --font-size-3xl: 5.6rem; //h1
+
+  // Font style
+  --font-family-base: 'Lato', sans-serif;
 }
 // miksiny
 $mobile: 480px;
