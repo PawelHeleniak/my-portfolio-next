@@ -59,12 +59,15 @@ select {
 
 h1 {
   font-size: var(--font-size-3xl);
+  line-height: 1;
 }
 h2 {
   font-size: var(--font-size-2xl);
+  line-height: 1.1;
 }
 h3 {
   font-size: var(--font-size-xl);
+  line-height: 1.1;
 }
 h4 {
   font-size: var(--font-size-l);
@@ -83,4 +86,9 @@ button {
   cursor: pointer;
   background: none;
   border: none;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--bg-primary);
 }

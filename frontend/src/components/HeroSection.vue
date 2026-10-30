@@ -7,27 +7,30 @@ const technologies = ['WordPress', 'IdoSell', 'Aplikacje webowe']
 
 <template>
   <header class="hero" aria-labelledby="hero-title">
-    <div class="hero__content">
-      <p class="hero__eyebrow section__label">{{ technologies.join(' · ') }}</p>
-      <h1 id="hero-title" class="hero__title">
-        Tworzę i rozwijam strony, sklepy i aplikacje.
-        <span class="hero__title-accent">Od poprawek po kompletne wdrożenia.</span>
-      </h1>
-      <p class="hero__description">
-        Pomagam firmom budować nowoczene strony, sklepy internetowe i aplikacje webowe. Specjalizuje
-        się w Wordpress, Idosell oraz tworzeniu aplikacji webowych jako full-stack developer.
-      </p>
-      <div class="hero__actions ui-buttons">
-        <RouterLink class="ui-button" to="/#contact">
-          Porozmawiajmy o projekcie <ArrowUpRight :size="20" aria-hidden="true" />
-        </RouterLink>
-        <RouterLink class="ui-button ui-button--secondary" to="/#projects">
-          Zobacz realizacje <ArrowDown :size="18" aria-hidden="true" />
-        </RouterLink>
+    <div class="section__wrapper">
+      <div class="hero__content">
+        <p class="hero__eyebrow section__label">{{ technologies.join(' · ') }}</p>
+        <h1 id="hero-title" class="hero__title">
+          Tworzę i rozwijam strony, sklepy i aplikacje.
+          <span class="hero__title-accent">Od poprawek po kompletne wdrożenia.</span>
+        </h1>
+        <p class="hero__description">
+          Pomagam firmom budować nowoczene strony, sklepy internetowe i aplikacje webowe.
+          Specjalizuje się w Wordpress, Idosell oraz tworzeniu aplikacji webowych jako full-stack
+          developer.
+        </p>
+        <div class="hero__actions ui-buttons">
+          <RouterLink class="ui-button" to="/#contact">
+            Porozmawiajmy o projekcie <ArrowUpRight :size="20" aria-hidden="true" />
+          </RouterLink>
+          <RouterLink class="ui-button ui-button--secondary" to="/#projects">
+            Zobacz realizacje <ArrowDown :size="18" aria-hidden="true" />
+          </RouterLink>
+        </div>
+        <p class="hero__note">
+          Od pierwszej rozmowy po wdrożenie | Współpracujesz bezpośrednio ze mną
+        </p>
       </div>
-      <p class="hero__note">
-        Od pierwszej rozmowy po wdrożenie | Współpracujesz bezpośrednio ze mną
-      </p>
     </div>
   </header>
 </template>
@@ -98,8 +101,13 @@ const technologies = ['WordPress', 'IdoSell', 'Aplikacje webowe']
     line-height: 1.1;
     letter-spacing: -0.045em;
     text-wrap: balance;
+    max-width: 65rem;
+    margin: 0 auto;
     @include style.mobile {
-      font-size: calc(var(--font-size-3xl) * 1.25);
+      // font-size: calc(var(--font-size-3xl) * 1.25);
+    }
+    @include style.laptop {
+      max-width: 100%;
     }
   }
   &__title-accent {
@@ -141,7 +149,7 @@ const technologies = ['WordPress', 'IdoSell', 'Aplikacje webowe']
   }
 
   @include style.mobile {
-    padding: 6.4rem 0 4rem;
+    padding: 6.4rem 0 6.4rem;
 
     &__actions {
       flex-direction: row;
@@ -150,7 +158,7 @@ const technologies = ['WordPress', 'IdoSell', 'Aplikacje webowe']
   }
 
   @include style.tablet {
-    padding: 8rem 2.4rem 5.6rem;
+    padding: 9.6rem 2.4rem 9.6rem;
 
     &__description {
       margin-top: 3.2rem;
@@ -159,7 +167,7 @@ const technologies = ['WordPress', 'IdoSell', 'Aplikacje webowe']
   }
 
   @include style.laptop {
-    padding-top: 9.6rem;
+    padding: 11.2rem 2.4rem 11.2rem;
   }
 }
 </style>

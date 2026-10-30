@@ -147,120 +147,123 @@ const contacts = [
 
 <template>
   <section class="section section--bg" id="contact">
-    <!-- <div class="section__list"> -->
-    <div class="information">
-      <div class="information__header">
-        <div class="section__header">
-          <p class="section__label">KONTAKT</p>
-          <h2 class="section__title">Porozmawiajmy o Twoim projekcie</h2>
-          <h3 class="section__subtitle">
-            Szukasz front-end developera do projektu? Chętnie pomogę, odezwij się i porozmawiajmy o
-            szczegółach.
-          </h3>
-        </div>
-      </div>
-      <div class="information__links">
-        <a
-          v-for="contact in contacts"
-          :key="contact.name"
-          class="information__link ui-card"
-          :href="contact.href"
-        >
-          <i :class="contact.icon"></i>
-          <div class="information__content">
-            <h4>{{ contact.name }}</h4>
-            <span>{{ contact.to }}</span>
+    <div class="section__wrapper">
+      <div class="information">
+        <div class="information__header">
+          <div class="section__header">
+            <!-- <p class="section__label">KONTAKT</p> -->
+            <h2 class="section__title">Masz temat? <span>Porozmawiajmy.</span></h2>
+            <h3 class="section__subtitle">
+              Napisz, co chcesz zbudować lub poprawić. Sprawdzimy, jakie rozwiązanie ma sens i od
+              czego najlepiej zacząć.
+            </h3>
           </div>
-        </a>
-      </div>
-      <!-- </div> -->
-      <div class="contact ui-card">
-        <div class="contact__wrapper">
-          <form @submit.prevent="sendForm" class="contact__form" novalidate>
-            <fieldset
-              class="contact__services"
-              :class="{ 'contact__services--invalid': touched && isEmpty(service) }"
-            >
-              <legend class="contact__services-label">W czym mogę pomóc?</legend>
-              <div class="contact__service-options">
-                <label v-for="item in services" :key="item" class="contact__service-option">
-                  <input
-                    v-model="service"
-                    class="contact__service-input"
-                    type="radio"
-                    name="service"
-                    :value="item"
-                    required
-                    :aria-invalid="touched && isEmpty(service)"
-                  />
-                  <span class="contact__service-button">{{ item }}</span>
-                </label>
-              </div>
-            </fieldset>
-            <div class="contact__form--row">
-              <div class="input-field" :class="{ '--warning': touched && isEmpty(name) }">
-                <input type="text" placeholder="Imię i nazwisko" v-model="name" />
-              </div>
-
-              <div class="input-field">
-                <input
-                  v-model="website"
-                  type="text"
-                  placeholder="Adres strony (opcjonalne)"
-                  aria-label="Adres strony (opcjonalne)"
-                />
-              </div>
+        </div>
+        <div class="information__links">
+          <a
+            v-for="contact in contacts"
+            :key="contact.name"
+            class="information__link ui-card"
+            :href="contact.href"
+          >
+            <i :class="contact.icon"></i>
+            <div class="information__content">
+              <h4>{{ contact.name }}</h4>
+              <span>{{ contact.to }}</span>
             </div>
-            <div class="contact__form--row">
-              <div class="input-field" :class="{ '--warning': emailInvalid }">
-                <input
-                  v-model="email"
-                  type="email"
-                  autocomplete="email"
-                  placeholder="Email"
-                  aria-label="Email"
-                  aria-describedby="contact-method-hint"
-                  :aria-invalid="emailInvalid"
-                />
-              </div>
-              <div class="input-field" :class="{ '--warning': phoneInvalid }">
-                <input
-                  v-model="phone"
-                  type="tel"
-                  autocomplete="tel"
-                  placeholder="Telefon"
-                  aria-label="Telefon"
-                  aria-describedby="contact-method-hint"
-                  :aria-invalid="phoneInvalid"
-                />
-              </div>
-            </div>
-            <p id="contact-method-hint" class="contact__hint">
-              Podaj e-mail lub telefon — wystarczy jedno z tych pól.
-            </p>
-            <div
-              class="input-field input-field--textarea"
-              :class="{ '--warning': touched && isEmpty(message) }"
-            >
-              <textarea placeholder="Wiadomość..." rows="6" v-model="message" />
-            </div>
-            <label class="contact__checkbox">
-              <input type="checkbox" v-model="privacyAccepted" class="contact__checkbox--input" />
-              <span class="contact__checkbox--custom"></span>
-
-              <span class="contact__policy"
-                >Zapoznałem się z
-                <RouterLink to="/polityka-prywatnosci" class="contact__checkbox--policy"
-                  >polityką prywatności</RouterLink
-                >
-                i informacją dotyczącą przetwarzania moich danych osobowych w celu obsługi
-                zapytania.</span
+          </a>
+        </div>
+        <!-- </div> -->
+        <div class="contact ui-card">
+          <div class="contact__wrapper">
+            <form @submit.prevent="sendForm" class="contact__form" novalidate>
+              <fieldset
+                class="contact__services"
+                :class="{ 'contact__services--invalid': touched && isEmpty(service) }"
               >
-            </label>
-            <button type="submit" class="ui-button contact__form--button">Wyślij wiadomość</button>
-          </form>
-          <small v-if="error" class="contact__info --warning" role="alert">{{ error }}</small>
-          <small v-if="success" class="contact__info --success">{{ success }}</small>
+                <legend class="contact__services-label">Opisz krótko swój projekt</legend>
+                <div class="contact__service-options">
+                  <label v-for="item in services" :key="item" class="contact__service-option">
+                    <input
+                      v-model="service"
+                      class="contact__service-input"
+                      type="radio"
+                      name="service"
+                      :value="item"
+                      required
+                      :aria-invalid="touched && isEmpty(service)"
+                    />
+                    <span class="contact__service-button">{{ item }}</span>
+                  </label>
+                </div>
+              </fieldset>
+              <div class="contact__form--row">
+                <div class="input-field" :class="{ '--warning': touched && isEmpty(name) }">
+                  <input type="text" placeholder="Imię i nazwisko" v-model="name" />
+                </div>
+
+                <div class="input-field">
+                  <input
+                    v-model="website"
+                    type="text"
+                    placeholder="Adres strony (opcjonalne)"
+                    aria-label="Adres strony (opcjonalne)"
+                  />
+                </div>
+              </div>
+              <div class="contact__form--row">
+                <div class="input-field" :class="{ '--warning': emailInvalid }">
+                  <input
+                    v-model="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="Email"
+                    aria-label="Email"
+                    aria-describedby="contact-method-hint"
+                    :aria-invalid="emailInvalid"
+                  />
+                </div>
+                <div class="input-field" :class="{ '--warning': phoneInvalid }">
+                  <input
+                    v-model="phone"
+                    type="tel"
+                    autocomplete="tel"
+                    placeholder="Telefon"
+                    aria-label="Telefon"
+                    aria-describedby="contact-method-hint"
+                    :aria-invalid="phoneInvalid"
+                  />
+                </div>
+              </div>
+              <p id="contact-method-hint" class="contact__hint">
+                Podaj e-mail lub telefon — wystarczy jedno z tych pól.
+              </p>
+              <div
+                class="input-field input-field--textarea"
+                :class="{ '--warning': touched && isEmpty(message) }"
+              >
+                <textarea placeholder="Wiadomość..." rows="6" v-model="message" />
+              </div>
+              <label class="contact__checkbox">
+                <input type="checkbox" v-model="privacyAccepted" class="contact__checkbox--input" />
+                <span class="contact__checkbox--custom"></span>
+
+                <span class="contact__policy"
+                  >Zapoznałem się z
+                  <RouterLink to="/polityka-prywatnosci" class="contact__checkbox--policy"
+                    >polityką prywatności</RouterLink
+                  >
+                  i informacją dotyczącą przetwarzania moich danych osobowych w celu obsługi
+                  zapytania.</span
+                >
+              </label>
+              <button type="submit" class="ui-button contact__form--button">
+                Wyślij wiadomość
+              </button>
+            </form>
+            <small v-if="error" class="contact__info --warning" role="alert">{{ error }}</small>
+            <small v-if="success" class="contact__info --success">{{ success }}</small>
+          </div>
         </div>
       </div>
     </div>
@@ -287,6 +290,10 @@ const contacts = [
       gap: 3rem;
     }
   }
+  &__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .contact {
   width: 100%;
@@ -302,8 +309,11 @@ const contacts = [
     }
   }
   &__services-label {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-size: var(--font-size-base);
+    @include style.desktop {
+      font-size: var(--font-size-m);
+    }
   }
   &__service-options {
     display: flex;
@@ -495,6 +505,7 @@ const contacts = [
     gap: 1.2rem;
     @include style.desktop {
       max-width: 620px;
+      margin-top: 1.6rem;
     }
   }
   &__link {

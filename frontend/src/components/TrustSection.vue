@@ -1,22 +1,22 @@
 <script setup>
 const trusts = [
   {
-    title: 'Rozmowa',
+    title: 'Opowiadasz o potrzebie',
     description:
       'Na początku poznaję Twój pomysł, potrzeby i cel projektu. Dopytuję o najważniejsze rzeczy i proponuję rozwiązanie, które ma sens w danym przypadku.',
   },
   {
-    title: 'Zakres',
+    title: 'Ustalamy zakres',
     description:
       'Ustalamy, co dokładnie ma zostać zrobione, jakie funkcje są potrzebne i jaki termin jest realny. Na tej podstawie przygotowuję konkretny zakres prac i wycenę.',
   },
   {
-    title: 'Realizacja',
+    title: 'Tworzę i pokazuję postępy',
     description:
       'Przechodzę do pracy nad projektem, wdrażam kolejne elementy i na bieżąco informuję o postępach. Jeśli pojawiają się pytania lub zmiany, ustalamy je na bieżąco.',
   },
   {
-    title: 'Wdrożenie',
+    title: 'Testujemy i wdrażamy',
     description:
       'Na końcu testuję całość, poprawiam ewentualne błędy i wdrażam gotowe rozwiązanie. Po zakończeniu możemy ustalić dalsze wsparcie lub rozwój projektu.',
   },
@@ -24,25 +24,27 @@ const trusts = [
 </script>
 
 <template>
-  <section class="section section--bg process" id="process">
-    <div class="section__header process__intro">
-      <span class="section__label">WSPÓŁPRACA</span>
-      <h2 class="section__title">Jak wygląda współpraca?</h2>
-      <h3 class="section__subtitle">
-        Współpracę dzielę na kilka prostych etapów, dzięki czemu od początku wiadomo, co robimy,
-        jaki jest zakres prac i na jakim etapie znajduje się projekt.
-      </h3>
-    </div>
-    <div class="process__steps">
-      <div v-for="process in trusts" :key="process.title" class="process__box">
-        <span class="process__count"> 0{{ trusts.indexOf(process) + 1 }} </span>
-        <div class="process__content">
-          <h3 class="process__header">
-            {{ process.title }}
-          </h3>
+  <section class="section section--bg" id="process">
+    <div class="section__wrapper process">
+      <div class="section__header process__intro">
+        <!-- <span class="section__label">WSPÓŁPRACA</span> -->
+        <h2 class="section__title">Jak wygląda współpraca?</h2>
+        <h3 class="section__subtitle">
+          Prosto i bez skomplikowanego procesu. Wiesz, co robimy, dlaczego to robimy i na jakim
+          jesteśmy etapie.
+        </h3>
+      </div>
+      <div class="process__steps">
+        <div v-for="process in trusts" :key="process.title" class="process__box">
+          <span class="process__count"> 0{{ trusts.indexOf(process) + 1 }} </span>
+          <div class="process__content">
+            <h3 class="process__header">
+              {{ process.title }}
+            </h3>
 
-          <div class="process__description">
-            {{ process.description }}
+            <div class="process__description">
+              {{ process.description }}
+            </div>
           </div>
         </div>
       </div>
@@ -70,6 +72,9 @@ const trusts = [
   }
   &__intro {
     position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 38rem;
     @include style.laptop {
       position: sticky;
       top: 11.2rem;
@@ -84,7 +89,7 @@ const trusts = [
 
   &__header {
     position: relative;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.2rem;
   }
   &__box {
     display: flex;

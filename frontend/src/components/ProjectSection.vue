@@ -2,7 +2,7 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowRight } from '@lucide/vue'
+import { ArrowRight, ArrowUpRight } from '@lucide/vue'
 import repevoImage from '../assets/projects/project_1.webp'
 import repevoMobileImage from '../assets/projects/project_1-mobile.webp'
 import wpmotoImage from '../assets/projects/project_3.webp'
@@ -17,7 +17,7 @@ const projects = [
     description:
       'Strona dla warsztatu samochodowego z jasną ofertą, czytelną nawigacją i wygodnym kontaktem. Przykład kompletnej realizacji od układu po wdrożenie.',
     url: 'https://wpmoto.pawelheleniak.pl/',
-    githubUrl: 'https://github.com/PawelHeleniak/gym-sync',
+    githubUrl: null,
     image: wpmotoImage,
     mobileImage: null,
     imageAlt: 'WPMoto - projekt strony dla warsztatu samochodowego',
@@ -28,10 +28,9 @@ const projects = [
       { name: 'CSS', modifier: 'css' },
     ],
     features: [
-      'responsywny landing page dla warsztatu',
-      'sekcje usług, o firmie i kontaktu',
-      'nawigacja typu one-page',
-      'łatwa edycja treści w WordPressie',
+      'Przejrzysta prezentacja usług',
+      'Układ dostosowany do telefonów',
+      'Łatwa edycja treści przez właściciela',
     ],
   },
   {
@@ -39,9 +38,9 @@ const projects = [
     title: 'RepEvo',
     eyebrow: 'Aplikacja webowa / projekt autorski',
     description:
-      'Aplikacja webowa do planowania i zapisywania treningów. Umożliwia tworzenie planów treningowych, zapisywanie sesji oraz analizowanie postępów w czasie. Projekt jest aktywnie rozwijany.',
+      'Aplikacja do planowania i zapisywania treningów. W jednym miejscu łączy plany, historię aktywności oraz statystyki.',
     url: 'https://repevo.pl/',
-    githubUrl: null,
+    githubUrl: 'https://github.com/PawelHeleniak/gym-sync',
     image: repevoImage,
     mobileImage: repevoMobileImage,
     imageAlt: 'RepEvo - Aplikacja webowa',
@@ -51,7 +50,11 @@ const projects = [
       { name: 'Express', modifier: 'express' },
       { name: 'MongoDB', modifier: 'mongodb' },
     ],
-    features: ['tworzenie planów treningowych', 'historia treningów', 'statystyki miesięczne'],
+    features: [
+      'Budowanie i edycja planów treningowych',
+      'Historia sesji i statystyki',
+      'Frontend połączony z backendem',
+    ],
   },
 ]
 
@@ -99,64 +102,77 @@ onBeforeUnmount(() => {
 </script>
 <template>
   <section ref="projectsSection" class="section --projects" id="projects">
-    <div class="section__header">
-      <span class="section__label">REALIZACJE</span>
-      <h2 class="section__title">Autorskie projekty</h2>
-    </div>
     <div class="section__wrapper">
-      <article v-for="project in projects" :key="project.id" class="project ui-card">
-        <div class="project__content">
-          <div class="project__info">
-            <div class="project__top">
-              <span class="project__eyebrow">{{ project.eyebrow }}</span>
-              <div class="project__name">
-                <h3>{{ project.title }}</h3>
+      <div class="section__header">
+        <!-- <span class="section__label">REALIZACJE</span> -->
+        <h2 class="section__title">Zobacz, jak to wygląda w praktyce.</h2>
+        <p class="section__subtitle">Dwa autorskie projekty, dwa różne rozwiązania.</p>
+      </div>
+      <div class="section__works">
+        <article
+          v-for="(project, index) in projects"
+          :key="project.id"
+          class="project"
+          :class="{ 'project--reversed': index % 2 === 1 }"
+        >
+          <picture v-if="project.mobileImage" class="project__img">
+            <source media="(min-width:1024px)" :srcset="project.image" />
+            <img class="project__img" :src="project.mobileImage" :alt="project.imageAlt" />
+          </picture>
+          <img v-else class="project__img" :src="project.image" :alt="project.imageAlt" />
+          <div class="project__content">
+            <div class="project__info">
+              <div class="project__top">
+                <span class="project__eyebrow">{{ project.eyebrow }}</span>
+                <div class="project__name">
+                  <h3>{{ project.title }}</h3>
+                </div>
+                <span class="project__desc">
+                  {{ project.description }}
+                </span>
               </div>
-              <span class="project__desc">
-                {{ project.description }}
-              </span>
-            </div>
-            <div class="project__badges">
-              <div
-                v-for="technology in project.technologies"
-                :key="technology.modifier"
-                class="project__badge"
-                :class="`project__badge--${technology.modifier}`"
-              >
-                {{ technology.name }}
+              <div class="project__badges">
+                <div
+                  v-for="technology in project.technologies"
+                  :key="technology.modifier"
+                  class="project__badge"
+                  :class="`project__badge--${technology.modifier}`"
+                >
+                  {{ technology.name }}
+                </div>
               </div>
-            </div>
-            <div class="project__bottom">
-              <!-- <h4 class="project__functionality">Funkcjonalności</h4> -->
-              <ul class="project__ul">
-                <li v-for="feature in project.features" :key="feature" class="project__li">
-                  {{ feature }}
-                </li>
-              </ul>
-            </div>
-            <div class="project__btns ui-buttons">
-              <a class="ui-button" :href="project.url" target="_blank" rel="noopener noreferrer">
-                Zobacz projekt <ArrowRight :size="18" aria-hidden="true" />
-              </a>
-              <a
-                v-if="project.githubUrl"
-                class="ui-button ui-button--secondary"
-                :href="project.githubUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
+              <div class="project__bottom">
+                <!-- <h4 class="project__functionality">Funkcjonalności</h4> -->
+                <ul class="project__ul">
+                  <li v-for="feature in project.features" :key="feature" class="project__li">
+                    {{ feature }}
+                  </li>
+                </ul>
+              </div>
+              <div class="project__btns ui-buttons">
+                <a
+                  class="project__link ui-button ui-button--arrow"
+                  :href="project.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Zobacz projekt <ArrowRight :size="18" aria-hidden="true" />
+                </a>
+                <a
+                  v-if="project.githubUrl"
+                  class="ui-button ui-button--secondary"
+                  :href="project.githubUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub <ArrowUpRight :size="18" aria-hidden="true" />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <picture v-if="project.mobileImage" class="project__img">
-          <source media="(min-width:1024px)" :srcset="project.image" />
-          <img class="project__img" :src="project.mobileImage" :alt="project.imageAlt" />
-        </picture>
-        <img v-else class="project__img" :src="project.image" :alt="project.imageAlt" />
-      </article>
-      <div class="dot-blur dot-blur--project"></div>
+        </article>
+        <div class="dot-blur dot-blur--project"></div>
+      </div>
     </div>
   </section>
 </template>
@@ -167,15 +183,35 @@ onBeforeUnmount(() => {
 .section {
   display: flex;
   flex-direction: column;
-  &__wrapper {
+  &__title {
+    max-width: 65rem;
+  }
+  &__works {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     gap: 4.8rem;
+    @include style.tablet {
+      gap: 11.2rem;
+    }
   }
 }
 .project {
+  --project-accent: var(--accent);
+
+  &--reversed {
+    --project-accent: var(--primary);
+  }
+
+  &:not(.project--reversed) .project__link {
+    background-color: color-mix(in srgb, var(--accent) 95%, black);
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--accent) 75%, black);
+    }
+  }
+
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -183,40 +219,38 @@ onBeforeUnmount(() => {
   width: 100%;
   z-index: 3;
   position: relative;
-  gap: 1.5rem;
-  padding: 1rem 1rem 1.5rem 1rem;
+  gap: 2.4rem;
+  padding-block: 1rem;
 
   @include style.mobile {
-    padding: 1.5rem;
+    padding-block: 1.5rem;
   }
   @include style.laptop {
-    padding: 2rem;
-    gap: 2.4rem;
-    flex-direction: row-reverse;
+    padding-block: 2rem;
     max-width: 100%;
     // aspect-ratio: 18 / 9;
     display: grid;
-    // grid-template-columns: 1.12fr 0.88fr;
-    grid-template-columns: 0.88fr 1.12fr;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    grid-template-areas: 'image content';
     gap: 60px;
     align-items: center;
     min-height: 540px;
+
+    > .project__img {
+      grid-area: image;
+      min-width: 0;
+    }
+
+    > .project__content {
+      grid-area: content;
+      min-width: 0;
+    }
+
+    &--reversed {
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      grid-template-areas: 'content image';
+    }
   }
-  // &:not(.--disabled) {
-  //   &:hover {
-  //     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  //     .project__arrow {
-  //       i {
-  //         transform: translateX(0.5rem);
-  //       }
-  //       span {
-  //         &::before {
-  //           opacity: 1;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
   &__arrow {
     display: flex;
     align-items: center;
@@ -237,10 +271,6 @@ onBeforeUnmount(() => {
       }
     }
   }
-  // &__img,
-  // &__content {
-  //   flex: 1;
-  // }
   &__img {
     border-radius: var(--border-radius-primary);
     height: 100%;
@@ -248,6 +278,10 @@ onBeforeUnmount(() => {
     object-fit: cover;
     width: 100%;
     flex: 0 0 calc(55% - 2rem);
+    max-height: 35rem;
+    @include style.mobile {
+      max-height: 50rem;
+    }
     @include style.laptop {
       aspect-ratio: initial;
       max-height: 65rem;
@@ -287,17 +321,17 @@ onBeforeUnmount(() => {
   }
   &__eyebrow {
     display: block;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.2rem;
     font-size: var(--font-size-s);
-    color: var(--primary);
+    color: var(--project-accent);
   }
   &__name {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.6rem;
+    margin-bottom: 2rem;
     @include style.tablet {
-      margin-bottom: 1.2rem;
+      margin-bottom: 2.4rem;
     }
     i {
       transition: 0.2s ease-in transform;
@@ -305,7 +339,10 @@ onBeforeUnmount(() => {
     h3 {
       overflow: hidden;
       position: relative;
-      min-width: 10rem;
+      font-size: 4.2rem;
+      @include style.tablet {
+        font-size: 5.6rem;
+      }
       div {
         transition: 0.2s ease-out transform;
         &:last-child {
@@ -335,27 +372,12 @@ onBeforeUnmount(() => {
       gap: 3rem;
     }
   }
-  // &__number {
-  //   font-size: 0;
-  //   position: relative;
-  //   &::after {
-  //     content: attr(data-number);
-  //     font-size: var(--font-size-xxl);
-  //     color: var(--text-secondary);
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     @include style.laptop {
-  //       font-size: var(--font-size-xxxl);
-  //     }
-  //   }
-  // }
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2.4rem;
     @include style.tablet {
-      gap: 2rem;
+      gap: 3.2rem;
     }
   }
   &__github {
@@ -389,7 +411,6 @@ onBeforeUnmount(() => {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5rem;
-    order: -1;
     @include style.laptop {
       order: 0;
       gap: 1rem;
@@ -405,78 +426,81 @@ onBeforeUnmount(() => {
   &__badge {
     padding: 0.3rem 0.6rem;
     font-size: var(--font-size-xs);
-    border-radius: 20px;
-    border: 2px solid;
-    font-weight: 600;
-    letter-spacing: 0.8px;
+    color: var(--text-secondary);
+    border: 1px solid var(--text-secondary);
+    border-radius: 8px;
+    transition:
+      0.2s ease-in color,
+      0.2s ease-in border-color;
+    // letter-spacing: 0.8px;
     @include style.laptop {
       font-size: var(--font-size-s);
       order: 0;
       padding: 0.4rem 1rem;
     }
-    &--angular {
+    &--angular:hover {
       color: #dd0031;
       border-color: #dd0031;
-      background: rgba(221, 0, 49, 0.1);
+      // background: rgba(221, 0, 49, 0.1);
     }
 
-    &--ts {
+    &--ts:hover {
       color: #3178c6;
       border-color: #3178c6;
-      background: rgba(49, 120, 198, 0.1);
+      // background: rgba(49, 120, 198, 0.1);
     }
 
-    &--express {
+    &--express:hover {
       color: #555;
       border-color: #555;
-      background: rgba(68, 68, 68, 0.08);
+      // background: rgba(68, 68, 68, 0.08);
     }
 
-    &--mongodb {
+    &--mongodb:hover {
       color: #47a248;
       border-color: #47a248;
-      background: rgba(71, 162, 72, 0.1);
+      // background: rgba(71, 162, 72, 0.1);
     }
-    &--vue {
+    &--vue:hover {
       color: #42b883;
       border-color: #42b883;
-      background: rgba(66, 184, 131, 0.1);
+      // background: rgba(66, 184, 131, 0.1);
     }
 
-    &--apex {
+    &--apex:hover {
       color: #775dd0;
       border-color: #775dd0;
-      background: rgba(119, 93, 208, 0.1);
+      // background: rgba(119, 93, 208, 0.1);
     }
 
-    &--gsap {
+    &--gsap:hover {
       color: #88ce02;
       border-color: #88ce02;
-      background: rgba(136, 206, 2, 0.1);
+      // background: rgba(136, 206, 2, 0.1);
     }
 
-    &--wordpress {
+    &--wordpress:hover {
       color: #2f8fbd;
       border-color: #2f8fbd;
-      background: rgba(47, 143, 189, 0.1);
+      // background: rgba(47, 143, 189, 0.1);
     }
 
-    &--elementor {
+    &--elementor:hover {
       color: #b52a63;
       border-color: #b52a63;
-      background: rgba(181, 42, 99, 0.1);
+      // background: rgba(181, 42, 99, 0.1);
     }
 
-    &--php {
+    &--php:hover {
       color: #8d91c7;
       border-color: #8d91c7;
-      background: rgba(141, 145, 199, 0.1);
+      // background: rgba(141, 145, 199, 0.1);
     }
 
-    &--css {
+    &--css:hover {
       color: #3f6df0;
       border-color: #3f6df0;
-      background: rgba(63, 109, 240, 0.1);
+      // background: rgba(63, 109, 240, 0.1);
     }
   }
 
@@ -492,7 +516,8 @@ onBeforeUnmount(() => {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.4rem;
+    font-size: 1.6rem;
     color: var(--text-secondary);
 
     &:last-child {
@@ -503,16 +528,10 @@ onBeforeUnmount(() => {
       width: 0.6rem;
       height: 0.6rem;
       border-radius: 25rem;
-      background-color: var(--text-secondary);
+      background-color: var(--project-accent);
       position: relative;
       display: block;
     }
   }
 }
-// .--projects {
-//   h2 {
-//     display: flex;
-//     justify-content: center;
-//   }
-// }
 </style>

@@ -13,8 +13,8 @@ import TrustSection from '../components/TrustSection.vue'
     <NavigationSection />
     <HeroSection />
     <AboutSection />
-    <TrustSection />
     <ProjectSection />
+    <TrustSection />
     <ContactSection />
     <FooterSection />
   </main>
@@ -23,14 +23,14 @@ import TrustSection from '../components/TrustSection.vue'
 <style lang="scss" scoped>
 @use '../style.scss' as style;
 main {
-  padding: 1.2rem;
-  max-width: 1520px;
-  margin: 0 auto;
-  @include style.tablet {
-    padding: 2.4rem;
-  }
-  @include style.laptop {
-    padding: 4rem;
-  }
+  // padding: 1.2rem;
+  // // max-width: 1520px;
+  // margin: 0 auto;
+  // @include style.tablet {
+  //   padding: 2.4rem;
+  // }
+  // @include style.laptop {
+  //   padding: 4rem;
+  // }
 }
 </style>

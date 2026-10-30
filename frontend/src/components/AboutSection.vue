@@ -30,54 +30,59 @@ const services = [
 </script>
 
 <template>
-  <section class="section" id="offer">
-    <div class="section__header">
-      <p class="section__label">OFERTA</p>
-      <h2 class="section__title">W czym mogę pomóc?</h2>
-    </div>
+  <section class="section section--bg-tertiary" id="offer">
+    <div class="section__wrapper">
+      <div class="section__header">
+        <!-- <p class="section__label">OFERTA</p> -->
+        <h2 class="section__title">Jedna osoba. <br />Trzy obszary wsparcia.</h2>
+        <p class="section__subtitle">
+          Opowiedz, co chcesz osiągnąć. Pomogę dobrać rozwiązanie do rzeczywistego problemu.
+        </p>
+      </div>
 
-    <div class="services">
-      <article
-        v-for="service in services"
-        :key="service.title"
-        class="services__box ui-card"
-        :class="`services__box--${service.type}`"
-      >
-        <div class="services__content">
-          <div class="services__icon">
-            <component
-              :is="service.icon"
-              v-if="typeof service.icon !== 'string'"
-              :size="24"
-              :stroke-width="1.7"
-            />
+      <div class="services">
+        <article
+          v-for="service in services"
+          :key="service.title"
+          class="services__box ui-card"
+          :class="`services__box--${service.type}`"
+        >
+          <div class="services__content">
+            <div class="services__icon">
+              <component
+                :is="service.icon"
+                v-if="typeof service.icon !== 'string'"
+                :size="24"
+                :stroke-width="1.7"
+              />
 
-            <i v-else :class="service.icon" aria-hidden="true"></i>
+              <i v-else :class="service.icon" aria-hidden="true"></i>
+            </div>
+
+            <span class="services__eyebrow">
+              {{ service.eyebrow }}
+            </span>
+
+            <h3 class="services__header">
+              {{ service.title }}
+            </h3>
+
+            <p class="services__description">
+              {{ service.description }}
+            </p>
           </div>
 
-          <span class="services__eyebrow">
-            {{ service.eyebrow }}
-          </span>
-
-          <h3 class="services__header">
-            {{ service.title }}
-          </h3>
-
-          <p class="services__description">
-            {{ service.description }}
-          </p>
-        </div>
-
-        <component
-          :is="service.icon"
-          v-if="typeof service.icon !== 'string'"
-          class="services__watermark"
-          :stroke-width="1"
-          aria-hidden="true"
-          focusable="false"
-        />
-        <i v-else class="services__watermark" :class="service.icon" aria-hidden="true"></i>
-      </article>
+          <component
+            :is="service.icon"
+            v-if="typeof service.icon !== 'string'"
+            class="services__watermark"
+            :stroke-width="1"
+            aria-hidden="true"
+            focusable="false"
+          />
+          <i v-else class="services__watermark" :class="service.icon" aria-hidden="true"></i>
+        </article>
+      </div>
     </div>
   </section>
 </template>
@@ -85,7 +90,7 @@ const services = [
 <style lang="scss" scoped>
 @use '../style.scss' as style;
 
-.section {
+.section__wrapper {
   opacity: 0;
   transform: translateY(1rem);
   animation: slideIn 1s 0.6s ease forwards;
