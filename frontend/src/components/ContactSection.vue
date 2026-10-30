@@ -136,12 +136,12 @@ const contacts = [
     name: 'Napisz na linkedin',
     to: 'paweł-heleniak',
   },
-  {
-    href: 'https://github.com/PawelHeleniak',
-    icon: 'fa-brands fa-github',
-    name: 'Napisz na github',
-    to: 'github.com/PawelHeleniak',
-  },
+  // {
+  //   href: 'https://github.com/PawelHeleniak',
+  //   icon: 'fa-brands fa-github',
+  //   name: 'Napisz na github',
+  //   to: 'github.com/PawelHeleniak',
+  // },
 ]
 </script>
 
@@ -253,8 +253,8 @@ const contacts = [
                 <RouterLink to="/polityka-prywatnosci" class="contact__checkbox--policy"
                   >polityką prywatności</RouterLink
                 >
-                i wyrażam zgodę na przetwarzanie danych osobowych w celu udzielenia odpowiedzi na
-                wiadomość.</span
+                i informacją dotyczącą przetwarzania moich danych osobowych w celu obsługi
+                zapytania.</span
               >
             </label>
             <button type="submit" class="ui-button contact__form--button">Wyślij wiadomość</button>
