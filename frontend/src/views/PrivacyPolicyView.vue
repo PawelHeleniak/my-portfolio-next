@@ -16,7 +16,7 @@ import FooterSection from '../components/FooterSection.vue'
 @use '../style.scss' as style;
 main {
   padding: 1.2rem;
-  max-width: 1440px;
+  max-width: 1520px;
   margin: 0 auto;
   @include style.tablet {
     padding: 2.4rem;

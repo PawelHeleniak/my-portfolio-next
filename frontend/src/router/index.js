@@ -23,8 +23,10 @@ const router = createRouter({
 
   scrollBehavior(to) {
     if (to.hash) {
+      const target = document.getElementById(to.hash.slice(1))
       return {
         el: to.hash,
+        top: target ? parseFloat(getComputedStyle(target).scrollMarginTop) || 0 : 0,
         behavior: 'smooth',
       }
     }

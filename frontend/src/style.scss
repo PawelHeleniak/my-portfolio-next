@@ -1,20 +1,85 @@
 @use './reset.scss' as *;
 // Variables
+// :root {
+//   --primary: hsl(262, 62%, 48%);
+//   --secondary: hsl(264, 45%, 38%);
+//   --accent: hsl(175, 65%, 30%);
+//   --bg-primary: hsl(230.84deg 73% 97%);
+//   --bg-primary-opacity: hsla(230.84deg, 73%, 97%, 0.8);
+//   --bg-secondary: hsl(266, 100%, 99%);
+//   --bg-secondary-opacity: hsla(266, 100%, 99%, 0.8);
+//   --bg-tertiary: hsl(266, 100%, 99%);
+//   --text-primary: hsl(250, 18%, 7%);
+//   --text-secondary: hsl(240, 6%, 21%);
+//   --warning: hsl(0deg 78% 36%);
+//   --warning-hover: hsl(0deg 78% 50%);
+//   --success: hsl(125, 100%, 35%);
+//   --border-color: hsl(243, 94.68%, 87.97%);
+//   --white: hsl(230.84deg 73% 97%);
+
+//   --border-radius-primary: 16px;
+//   --border-radius-secondary: 12px;
+//   --border-radius-round: 999px;
+
+//   // Font size
+//   --font-scale: 1.25;
+
+//   --font-size-xs: 1.2rem;
+//   --font-size-s: 1.4rem;
+//   --font-size-sm: 1.6rem;
+//   --font-size-base: 1.8rem; //base
+//   --font-size-m: 2rem; //subheading
+//   --font-size-l: 2.4rem; //h4
+//   --font-size-xl: 3.2rem; //h3
+//   --font-size-2xl: 4rem; //h2
+//   --font-size-3xl: 5.6rem; //h1
+
+//   // Font style
+//   --font-family-base: 'Lato', sans-serif;
+// }
+// :root[data-theme='dark'] {
+//   --primary: hsl(262, 72%, 60%);
+//   --secondary: hsl(267, 25%, 45%);
+//   --accent: hsl(175, 54%, 46%);
+//   --bg-primary: hsl(250, 15%, 7%);
+//   --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
+//   --bg-secondary: hsl(250, 15%, 11%);
+//   --bg-secondary-opacity: hsla(250, 15%, 10%, 0.8);
+//   --bg-tertiary: hsl(258, 18%, 9%);
+//   --text-primary: hsl(269, 84%, 95%);
+//   --text-secondary: hsl(270, 19%, 77%);
+//   --warning: hsl(0deg 93% 58.5%);
+//   --warning-hover: hsl(0deg 93% 70%);
+//   --success: hsl(125, 100%, 35%);
+//   --border-color: hsl(265.28, 15.48%, 28.77%);
+
+//   // =======
+//   --text-primary: hsl(0, 0%, 96%);
+//   --text-secondary: hsl(250, 8%, 76%);
+
+//   --border-color: hsl(250, 10%, 18%);
+// }
 :root {
-  --primary: hsl(271, 80%, 48%);
-  --secondary: hsl(268, 88%, 35%);
-  --accent: hsl(293, 100%, 35%);
-  --bg-primary: hsl(230.84deg 73% 97%);
-  --bg-primary-opacity: hsla(230.84deg, 73%, 97%, 0.8);
-  --bg-secondary: hsl(266, 100%, 99%);
-  --bg-secondary-opacity: hsla(266, 100%, 99%, 0.8);
-  --text-primary: hsl(250, 18%, 7%);
-  --text-secondary: hsl(240, 6%, 21%);
-  --warning: hsl(0deg 78% 36%);
-  --warning-hover: hsl(0deg 78% 50%);
+  --primary: hsl(262, 72%, 60%);
+  --secondary: hsl(267, 25%, 45%);
+  --accent: hsl(175, 54%, 46%);
+  --bg-primary: hsl(250, 15%, 7%);
+  --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
+  --bg-secondary: hsl(250, 15%, 11%);
+  --bg-secondary-opacity: hsla(250, 15%, 10%, 0.8);
+  --bg-tertiary: hsl(258, 18%, 9%);
+  --text-primary: hsl(269, 84%, 95%);
+  --text-secondary: hsl(270, 19%, 77%);
+  --warning: hsl(0deg 93% 58.5%);
+  --warning-hover: hsl(0deg 93% 70%);
   --success: hsl(125, 100%, 35%);
-  --border-color: hsl(243, 94.68%, 87.97%);
-  --white: hsl(230.84deg 73% 97%);
+  --border-color: hsl(265.28, 15.48%, 28.77%);
+
+  // =======
+  --text-primary: hsl(0, 0%, 96%);
+  --text-secondary: hsl(250, 8%, 76%);
+
+  --border-color: hsl(250, 10%, 18%);
 
   --border-radius-primary: 16px;
   --border-radius-secondary: 12px;
@@ -25,45 +90,16 @@
 
   --font-size-xs: 1.2rem;
   --font-size-s: 1.4rem;
+  --font-size-sm: 1.6rem;
   --font-size-base: 1.8rem; //base
   --font-size-m: 2rem; //subheading
-  --font-size-l: 2.2rem; //h4
-  --font-size-xl: 2.6rem; //h3
-  --font-size-2xl: 3.6rem; //h2
-  --font-size-3xl: 5rem; //h1
+  --font-size-l: 2.4rem; //h4
+  --font-size-xl: 3.2rem; //h3
+  --font-size-2xl: 4rem; //h2
+  --font-size-3xl: 5.6rem; //h1
 
   // Font style
   --font-family-base: 'Lato', sans-serif;
-}
-:root[data-theme='dark'] {
-  // --primary: hsl(271, 80%, 62%);
-  // --secondary: hsl(268, 88%, 75%);
-  // --accent: hsl(293, 100%, 65%);
-  --primary: hsl(262, 72%, 60%);
-  // --secondary: hsl(250, 8%, 72%);
-  --secondary: hsl(273, 64%, 58%);
-  --accent: hsl(185, 75%, 50%);
-  --bg-primary: hsl(264, 100%, 1%);
-  --bg-primary-opacity: hsla(264, 100%, 1%, 0.8);
-  --bg-secondary: hsl(268deg, 34.88%, 8.43%);
-  --bg-secondary-opacity: hsla(268deg, 34.88%, 8.43%, 0.8);
-  --text-primary: hsl(269, 84%, 95%);
-  --text-secondary: hsl(270, 19%, 77%);
-  --warning: hsl(0deg 93% 58.5%);
-  --warning-hover: hsl(0deg 93% 70%);
-  --success: hsl(125, 100%, 35%);
-  --border-color: hsl(265.28, 15.48%, 28.77%);
-
-  // =======
-
-  --bg-primary: hsl(250, 15%, 7%);
-  --bg-secondary: hsl(250, 15%, 11%);
-  --bg-secondary-opacity: hsla(250, 15%, 10%, 0.8);
-
-  --text-primary: hsl(0, 0%, 96%);
-  --text-secondary: hsl(250, 8%, 76%);
-
-  --border-color: hsl(250, 10%, 18%);
 }
 // miksiny
 $mobile: 480px;
@@ -101,21 +137,28 @@ $xlDesktop: 1536px;
     @content;
   }
 }
-
 @media (max-width: 1023px) {
   :root {
     // --font-size-xs: 1rem;
     // --font-size-s: 1.2rem;
     // --font-size-base: 1.6rem;
     // --font-size-m: 1.8rem;
-    // --font-size-l: 2rem;
-    --font-size-xl: 2.4rem;
-    --font-size-2xl: 3rem;
-    --font-size-3xl: 4rem;
+    --font-size-l: 2.2rem;
+    --font-size-xl: 2.8rem;
+    --font-size-2xl: 3.4rem;
+    --font-size-3xl: 4.4rem;
   }
 }
-
+@media (max-width: 479px) {
+  :root {
+    --font-size-3xl: 3.6rem;
+  }
+}
 // Custom
+body {
+  letter-spacing: 0.6px;
+}
+
 a,
 button {
   text-decoration: none;
@@ -140,20 +183,69 @@ textarea {
   padding: 1.2rem;
   // backdrop-filter: blur(5px);
   // -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--border-color);
   @include laptop {
     padding: 2.4rem;
   }
 }
-.ui-button {
-  background-color: var(--primary);
-  width: max-content;
-  padding: 1.2rem 2.4rem;
-  border-radius: var(--border-radius-primary);
-  color: var(--white);
+.ui-buttons {
+  display: flex;
+  gap: 1.2rem;
+}
+.ui-button.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 5.6rem;
+  padding: 1.4rem 2.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-round);
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  transition: 0.2s ease-in background-color;
+  transition: background-color 0.2s ease;
+  color: var(--white);
+  background-color: var(--primary);
+
   &:hover {
     background-color: var(--secondary);
+  }
+  &--arrow {
+    svg {
+      transition: 0.2s ease-in transform;
+    }
+    &:hover {
+      svg {
+        transform: translateX(0.2rem);
+      }
+    }
+  }
+  &--secondary {
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+
+    &:hover {
+      background-color: var(--bg-primary);
+    }
+  }
+  &--link {
+    background-color: transparent;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      width: calc(100% - 4.8rem);
+      transform: translateX(-50%);
+      height: 2px;
+      background-color: var(--primary);
+    }
+    &:hover {
+      background-color: transparent;
+      color: var(--text-secondary);
+    }
   }
 }
 .ui-link {
@@ -165,6 +257,7 @@ textarea {
   }
 }
 .section {
+  scroll-margin-top: 12rem;
   margin-top: 4.8rem;
   @include tablet {
     margin-top: 9.6rem;
@@ -172,8 +265,35 @@ textarea {
   @include desktop {
     margin-top: 11.2rem;
   }
+  // &--bg {
+  //   background-color: var(--bg-tertiary);
+  //   position: relative;
+  //   &::after {
+  //     content: '';
+  //     position: absolute;
+  //     inset: 0;
+  //     z-index: -1;
+  //     background-color: var(--bg-tertiary);
+  //     box-shadow: 0 0 0 100vmax var(--bg-tertiary);
+  //     clip-path: inset(0 -100vmax);
+  //   }
+  // }
   &__header {
-    margin-bottom: 3.2rem;
+    margin-bottom: 2.8rem;
+  }
+  &__label {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: var(--font-size-s);
+  }
+  &__title {
+    margin-top: 0.2rem;
+  }
+  &__subtitle {
+    margin-top: 0.8rem;
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    font-weight: 500;
   }
 }
 .dot-blur {

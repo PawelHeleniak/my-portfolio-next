@@ -21,7 +21,9 @@
         <p>Za pośrednictwem formularza kontaktowego użytkownik może przekazać następujące dane:</p>
         <ul>
           <li>imię i nazwisko,</li>
-          <li>adres e-mail,</li>
+          <li>adres e-mail lub numer telefonu,</li>
+          <li>rodzaj projektu lub usługi, której dotyczy zapytanie,</li>
+          <li>adres strony internetowej lub sklepu, jeśli zostanie podany,</li>
           <li>treść wiadomości.</li>
         </ul>
         <p>
@@ -36,6 +38,7 @@
         <ul>
           <li>udzielenia odpowiedzi na przesłane zapytanie,</li>
           <li>kontaktu w sprawie współpracy lub realizacji usług,</li>
+          <li>przygotowania wstępnej informacji dotyczącej zakresu projektu,</li>
           <li>prowadzenia dalszej korespondencji związanej z zapytaniem użytkownika.</li>
         </ul>
       </div>
@@ -104,7 +107,7 @@
         </p>
       </div>
       <div class="privacy__content">
-        <p>Data ostatniej aktualizacji: 23.06.2026 r.</p>
+        <p>Data ostatniej aktualizacji: 29.10.2026 r.</p>
       </div>
     </div>
   </section>

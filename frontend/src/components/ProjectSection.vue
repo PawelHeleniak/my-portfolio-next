@@ -1,161 +1,161 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ArrowRight } from '@lucide/vue'
+import repevoImage from '../assets/projects/project_1.webp'
+import repevoMobileImage from '../assets/projects/project_1-mobile.webp'
+import wpmotoImage from '../assets/projects/project_3.webp'
 
 gsap.registerPlugin(ScrollTrigger)
-const project_2 = ref()
-// const project_3 = ref()
+
+const projects = [
+  {
+    id: 'wpmoto',
+    title: 'WPMoto',
+    eyebrow: 'Strona internetowa / projekt demonstracyjny',
+    description:
+      'Strona dla warsztatu samochodowego z jasną ofertą, czytelną nawigacją i wygodnym kontaktem. Przykład kompletnej realizacji od układu po wdrożenie.',
+    url: 'https://wpmoto.pawelheleniak.pl/',
+    githubUrl: 'https://github.com/PawelHeleniak/gym-sync',
+    image: wpmotoImage,
+    mobileImage: null,
+    imageAlt: 'WPMoto - projekt strony dla warsztatu samochodowego',
+    technologies: [
+      { name: 'WordPress', modifier: 'wordpress' },
+      { name: 'Elementor', modifier: 'elementor' },
+      { name: 'PHP', modifier: 'php' },
+      { name: 'CSS', modifier: 'css' },
+    ],
+    features: [
+      'responsywny landing page dla warsztatu',
+      'sekcje usług, o firmie i kontaktu',
+      'nawigacja typu one-page',
+      'łatwa edycja treści w WordPressie',
+    ],
+  },
+  {
+    id: 'repevo',
+    title: 'RepEvo',
+    eyebrow: 'Aplikacja webowa / projekt autorski',
+    description:
+      'Aplikacja webowa do planowania i zapisywania treningów. Umożliwia tworzenie planów treningowych, zapisywanie sesji oraz analizowanie postępów w czasie. Projekt jest aktywnie rozwijany.',
+    url: 'https://repevo.pl/',
+    githubUrl: null,
+    image: repevoImage,
+    mobileImage: repevoMobileImage,
+    imageAlt: 'RepEvo - Aplikacja webowa',
+    technologies: [
+      { name: 'Angular', modifier: 'angular' },
+      { name: 'TypeScript', modifier: 'ts' },
+      { name: 'Express', modifier: 'express' },
+      { name: 'MongoDB', modifier: 'mongodb' },
+    ],
+    features: ['tworzenie planów treningowych', 'historia treningów', 'statystyki miesięczne'],
+  },
+]
+
+const projectsSection = ref(null)
+let media
+let disposed = false
+
 onMounted(() => {
-  gsap.to(project_2.value, {
-    scale: '1',
-    scrollTrigger: {
-      trigger: project_2.value,
-      start: 'bottom center',
-      end: '+=100%',
-      scrub: true,
+  media = gsap.matchMedia()
+  media.add(
+    '(prefers-reduced-motion: no-preference)',
+    () => {
+      const projectCards = projectsSection.value.querySelectorAll('.project')
+      projectCards.forEach((project) => {
+        gsap.fromTo(
+          project,
+          { opacity: 0, y: '1rem' },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.inOut',
+            clearProps: 'opacity,transform',
+            scrollTrigger: {
+              trigger: project,
+              start: 'top 85%',
+              once: true,
+            },
+          },
+        )
+      })
     },
+    projectsSection.value,
+  )
+
+  document.fonts.ready.then(() => {
+    if (!disposed) ScrollTrigger.refresh()
   })
 })
 
-const linkGithub = () => {
-  window.open('https://github.com/PawelHeleniak/gym-sync/', '_blank')
-}
+onBeforeUnmount(() => {
+  disposed = true
+  media?.revert()
+})
 </script>
 <template>
-  <section class="section --projects" id="projects">
-    <h2 class="section__header">Autorskie projekty</h2>
+  <section ref="projectsSection" class="section --projects" id="projects">
+    <div class="section__header">
+      <span class="section__label">REALIZACJE</span>
+      <h2 class="section__title">Autorskie projekty</h2>
+    </div>
     <div class="section__wrapper">
-      <a class="project projectui-card ui-card" href="https://repevo.pl/" target="_blank">
-        <picture class="project__img">
-          <source media="(min-width:1024px)" srcset="/public/assets/projects/project_1.webp" />
-          <img
-            class="project__img"
-            src="/public/assets/projects/project_1-mobile.webp"
-            alt="RepEvo - Aplikacja webowa"
-          />
+      <article v-for="project in projects" :key="project.id" class="project ui-card">
+        <div class="project__content">
+          <div class="project__info">
+            <div class="project__top">
+              <span class="project__eyebrow">{{ project.eyebrow }}</span>
+              <div class="project__name">
+                <h3>{{ project.title }}</h3>
+              </div>
+              <span class="project__desc">
+                {{ project.description }}
+              </span>
+            </div>
+            <div class="project__badges">
+              <div
+                v-for="technology in project.technologies"
+                :key="technology.modifier"
+                class="project__badge"
+                :class="`project__badge--${technology.modifier}`"
+              >
+                {{ technology.name }}
+              </div>
+            </div>
+            <div class="project__bottom">
+              <!-- <h4 class="project__functionality">Funkcjonalności</h4> -->
+              <ul class="project__ul">
+                <li v-for="feature in project.features" :key="feature" class="project__li">
+                  {{ feature }}
+                </li>
+              </ul>
+            </div>
+            <div class="project__btns ui-buttons">
+              <a class="ui-button" :href="project.url" target="_blank" rel="noopener noreferrer">
+                Zobacz projekt <ArrowRight :size="18" aria-hidden="true" />
+              </a>
+              <a
+                v-if="project.githubUrl"
+                class="ui-button ui-button--secondary"
+                :href="project.githubUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        <picture v-if="project.mobileImage" class="project__img">
+          <source media="(min-width:1024px)" :srcset="project.image" />
+          <img class="project__img" :src="project.mobileImage" :alt="project.imageAlt" />
         </picture>
-        <div class="project__content">
-          <div class="project__top">
-            <div class="project__name">
-              <h3>RepEvo</h3>
-              <div class="project__arrow">
-                <span>Sprawdź</span><i class="fa-solid fa-arrow-right"></i>
-              </div>
-            </div>
-            <span class="project__desc">
-              Aplikacja webowa do planowania i zapisywania treningów. Umożliwia tworzenie planów
-              treningowych, zapisywanie sesji oraz analizowanie postępów w czasie. Projekt jest
-              aktywnie rozwijany.
-            </span>
-          </div>
-          <div class="project__badges">
-            <h4 class="project__title">Technologie</h4>
-            <div class="project__badge project__badge--angular">Angular</div>
-            <div class="project__badge project__badge--ts">TypeScript</div>
-            <div class="project__badge project__badge--express">Express</div>
-            <div class="project__badge project__badge--mongodb">MongoDB</div>
-          </div>
-          <div class="project__bottom">
-            <h4 class="project__functionality">Funkcjonalności</h4>
-            <ul class="project__ul">
-              <li class="project__li">tworzenie planów treningowych</li>
-              <li class="project__li">historia treningów</li>
-              <li class="project__li">statystyki miesięczne</li>
-            </ul>
-          </div>
-          <div @click="linkGithub()" class="project__github">
-            <span>GitHub</span> <i class="fa-brands fa-github"></i>
-          </div>
-        </div>
-      </a>
-      <!-- <a class="project ui-card project_2 --disabled" ref="project_2">
-        <div class="project__img in-progress">
-          <div class="in-progress__box">
-            <h4>Flow Stats</h4>
-            <span>Projekt w trakcie budowy</span>
-            <span class="in-progress__secondary"
-              >Pierwszy publiczny widok: <strong>wkrótce</strong></span
-            >
-          </div>
-        </div>
-        <div class="project__content">
-          <div class="project__top">
-            <div class="project__name">
-              <h3>Flow Stats</h3>
-              <div class="project__arrow"></div>
-            </div>
-            <span class="project__desc">
-              Interaktywny dashboard do wizualizacji danych biznesowych. Prezentuje statystyki w
-              formie czytelnych wykresów i paneli analitycznych z płynnymi animacjami interfejsu.
-            </span>
-          </div>
-          <div class="project__badges">
-            <h4 class="project__title">Technologie</h4>
-            <div class="project__badge project__badge--vue">Vue</div>
-            <div class="project__badge project__badge--apex">ApexCharts</div>
-            <div class="project__badge project__badge--gsap">GSAP</div>
-          </div>
-          <div class="project__bottom">
-            <h4 class="project__functionality">Funkcjonalności</h4>
-            <ul class="project__ul">
-              <li class="project__li">wizualizacja danych w formie wykresów</li>
-              <li class="project__li">interaktywny dashboard analityczny</li>
-              <li class="project__li">dynamiczne komponenty i animacje interfejsu</li>
-            </ul>
-          </div>
-        </div>
-      </a> -->
-      <a
-        class="project ui-card project_2"
-        ref="project_2"
-        href="https://wpmoto.pawelheleniak.pl/"
-        target="_blank"
-      >
-        <img
-          class="project__img"
-          src="/public/assets/projects/project_3.webp"
-          alt="WPMoto - projekt strony dla warsztatu samochodowego"
-        />
-
-        <div class="project__content">
-          <div class="project__top">
-            <div class="project__name">
-              <h3>WPMoto</h3>
-
-              <div class="project__arrow">
-                <span>Sprawdź</span><i class="fa-solid fa-arrow-right"></i>
-              </div>
-            </div>
-
-            <span class="project__desc">
-              Demonstracyjna strona internetowa dla warsztatu samochodowego. Projekt prezentuje
-              nowoczesny układ strony usługowej z ofertą, sekcją o firmie, kontaktem oraz
-              responsywnym interfejsem.
-            </span>
-          </div>
-
-          <div class="project__badges">
-            <h4 class="project__title">Technologie</h4>
-
-            <div class="project__badge project__badge--wordpress">WordPress</div>
-            <div class="project__badge project__badge--elementor">Elementor</div>
-            <div class="project__badge project__badge--php">PHP</div>
-            <div class="project__badge project__badge--css">CSS</div>
-          </div>
-
-          <div class="project__bottom">
-            <h4 class="project__functionality">Funkcjonalności</h4>
-
-            <ul class="project__ul">
-              <li class="project__li">responsywny landing page dla warsztatu</li>
-              <li class="project__li">sekcje usług, o firmie i kontaktu</li>
-              <li class="project__li">nawigacja typu one-page</li>
-              <li class="project__li">łatwa edycja treści w WordPressie</li>
-            </ul>
-          </div>
-        </div>
-      </a>
+        <img v-else class="project__img" :src="project.image" :alt="project.imageAlt" />
+      </article>
       <div class="dot-blur dot-blur--project"></div>
     </div>
   </section>
@@ -172,44 +172,51 @@ const linkGithub = () => {
     flex-direction: column;
     align-items: center;
     position: relative;
+    gap: 4.8rem;
   }
 }
 .project {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 4rem;
   width: 100%;
   z-index: 3;
   position: relative;
-  // border: 1px solid var(--border-color);
   gap: 1.5rem;
   padding: 1rem 1rem 1.5rem 1rem;
-  transition: 0.2s ease-in box-shadow;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  max-width: 70rem;
+
   @include style.mobile {
     padding: 1.5rem;
   }
   @include style.laptop {
     padding: 2rem;
     gap: 2.4rem;
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: row-reverse;
     max-width: 100%;
-    aspect-ratio: 18 / 9;
+    // aspect-ratio: 18 / 9;
+    display: grid;
+    // grid-template-columns: 1.12fr 0.88fr;
+    grid-template-columns: 0.88fr 1.12fr;
+    gap: 60px;
+    align-items: center;
+    min-height: 540px;
   }
-  &:not(.--disabled) {
-    &:hover {
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      .project__arrow {
-        i {
-          transform: translateX(0.5rem);
-        }
-        span {
-          &::before {
-            opacity: 1;
-          }
-        }
-      }
-    }
-  }
+  // &:not(.--disabled) {
+  //   &:hover {
+  //     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  //     .project__arrow {
+  //       i {
+  //         transform: translateX(0.5rem);
+  //       }
+  //       span {
+  //         &::before {
+  //           opacity: 1;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   &__arrow {
     display: flex;
     align-items: center;
@@ -230,29 +237,20 @@ const linkGithub = () => {
       }
     }
   }
-  &.project_2 {
-    position: sticky;
-    z-index: 2;
-    margin-top: 0;
-    bottom: 16vh;
-    scale: 0.95;
-    @include style.tablet {
-      margin-top: 3.2rem;
-    }
-  }
-  &__img,
-  &__content {
-    flex: 1;
-  }
+  // &__img,
+  // &__content {
+  //   flex: 1;
+  // }
   &__img {
     border-radius: var(--border-radius-primary);
     height: 100%;
     overflow: hidden;
     object-fit: cover;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    flex: 0 0 calc(55% - 2rem);
     @include style.laptop {
       aspect-ratio: initial;
+      max-height: 65rem;
     }
   }
   .in-progress {
@@ -287,6 +285,12 @@ const linkGithub = () => {
       }
     }
   }
+  &__eyebrow {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: var(--font-size-s);
+    color: var(--primary);
+  }
   &__name {
     display: flex;
     justify-content: space-between;
@@ -319,7 +323,9 @@ const linkGithub = () => {
     padding: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1rem;
+    height: 100%;
     @include style.tablet {
       padding: 1rem;
       gap: 2rem;
@@ -327,6 +333,29 @@ const linkGithub = () => {
     @include style.desktop {
       padding: 2rem;
       gap: 3rem;
+    }
+  }
+  // &__number {
+  //   font-size: 0;
+  //   position: relative;
+  //   &::after {
+  //     content: attr(data-number);
+  //     font-size: var(--font-size-xxl);
+  //     color: var(--text-secondary);
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     @include style.laptop {
+  //       font-size: var(--font-size-xxxl);
+  //     }
+  //   }
+  // }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include style.tablet {
+      gap: 2rem;
     }
   }
   &__github {
@@ -480,10 +509,10 @@ const linkGithub = () => {
     }
   }
 }
-.--projects {
-  h2 {
-    display: flex;
-    justify-content: center;
-  }
-}
+// .--projects {
+//   h2 {
+//     display: flex;
+//     justify-content: center;
+//   }
+// }
 </style>
