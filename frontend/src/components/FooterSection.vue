@@ -38,14 +38,22 @@ const year = date.getFullYear()
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 1.2rem 0 0 0;
+  border-top: 1px solid var(--border-color);
+  background-color: color-mix(in srgb, var(--bg-primary) 90%, black);
+  max-width: 1520px;
+  margin: 0 auto;
+  padding-inline: 1.2rem;
+  padding-block: 1.2rem;
   @include style.mobile {
     flex-direction: row;
     justify-content: space-between;
-    padding: 2.4rem 0 0 0;
   }
   @include style.tablet {
-    padding: 4rem 0 0 0;
+    padding-block: 2.4rem;
+    padding-inline: 2.4rem;
+  }
+  @include style.laptop {
+    padding-inline: 4rem;
   }
   &__links {
     display: flex;
@@ -56,7 +64,7 @@ const year = date.getFullYear()
       align-items: center;
       width: 3.2rem;
       height: 3.2rem;
-      font-size: var(--font-size-l);
+      font-size: var(--font-size-base);
       transition:
         0.2s ease-in transform,
         0.2s ease-in color;
@@ -67,7 +75,7 @@ const year = date.getFullYear()
       @include style.laptop {
         width: 2.8rem;
         height: 2.8rem;
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-m);
       }
     }
   }
@@ -100,10 +108,12 @@ const year = date.getFullYear()
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
+    font-size: var(--font-size-s);
     @include style.tablet {
       flex-direction: row;
       align-items: center;
       gap: 0;
+      font-size: 1.6rem;
     }
   }
 }

@@ -146,7 +146,7 @@ const contacts = [
 </script>
 
 <template>
-  <section class="section section--bg" id="contact">
+  <section class="section" id="contact">
     <div class="section__wrapper">
       <div class="information">
         <div class="information__header">

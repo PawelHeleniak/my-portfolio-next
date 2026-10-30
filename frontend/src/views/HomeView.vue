@@ -6,6 +6,7 @@ import ContactSection from '../components/ContactSection.vue'
 import FooterSection from '../components/FooterSection.vue'
 import AboutSection from '../components/AboutSection.vue'
 import TrustSection from '../components/TrustSection.vue'
+import FaqSection from '../components/FaqSection.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import TrustSection from '../components/TrustSection.vue'
     <AboutSection />
     <ProjectSection />
     <TrustSection />
+    <FaqSection />
     <ContactSection />
     <FooterSection />
   </main>

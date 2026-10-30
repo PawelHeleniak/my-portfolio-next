@@ -330,6 +330,7 @@ onBeforeUnmount(() => {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+
     @include style.tablet {
       margin-bottom: 2.4rem;
     }
@@ -341,6 +342,9 @@ onBeforeUnmount(() => {
       position: relative;
       font-size: 4.2rem;
       @include style.tablet {
+        font-size: 4.8rem;
+      }
+      @include style.laptop {
         font-size: 5.6rem;
       }
       div {

@@ -24,7 +24,7 @@ const trusts = [
 </script>
 
 <template>
-  <section class="section section--bg" id="process">
+  <section class="section" id="process">
     <div class="section__wrapper process">
       <div class="section__header process__intro">
         <!-- <span class="section__label">WSPÓŁPRACA</span> -->
