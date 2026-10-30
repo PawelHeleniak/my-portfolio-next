@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-// import { ArrowUpRight, Menu, Moon, Sun, X } from '@lucide/vue'
 import { ArrowUpRight, Menu, X } from '@lucide/vue'
 
 const route = useRoute()
@@ -14,9 +13,9 @@ let colorSchemeQuery
 let desktopQuery
 
 const sections = [
-  { id: 'offer', name: 'Oferta' },
-  { id: 'process', name: 'Współpraca' },
-  { id: 'projects', name: 'Realizacje' },
+  { id: 'offer', name: 'Co robię' },
+  { id: 'projects', name: 'Projekty' },
+  { id: 'process', name: 'Jak pracuję' },
   { id: 'contact', name: 'Kontakt' },
 ]
 
@@ -60,12 +59,6 @@ const handleColorSchemeChange = (event) => {
   if (!localStorage.getItem(themeKey)) applyTheme(event.matches ? 'dark' : 'light')
 }
 
-const toggleTheme = () => {
-  const value = theme.value === 'dark' ? 'light' : 'dark'
-  localStorage.setItem(themeKey, value)
-  applyTheme(value)
-}
-
 watch(
   () => route.fullPath,
   () => {
@@ -106,50 +99,43 @@ onBeforeUnmount(() => {
     @keydown="handleEscape"
     @focusout="handleFocusOut"
   >
-    <!-- <RouterLink class="navigation__brand" to="/" @click="closeMenu"> -->
-    <span class="navigation__brand-content">
-      <span class="navigation__name">Paweł Heleniak</span>
-      <span class="navigation__role">Web Developer</span>
-    </span>
-    <!-- </RouterLink> -->
-    <ul id="navigation-links" class="navigation__list">
-      <li v-for="section in sections" :key="section.id" class="navigation__entry">
-        <RouterLink
-          class="navigation__link"
-          :class="{ 'navigation__link--active': activeSection === section.id }"
-          :to="{ path: '/', hash: `#${section.id}` }"
-          :aria-current="activeSection === section.id ? 'location' : undefined"
-          @click="closeMenu"
-        >
-          {{ section.name }}
-        </RouterLink>
-      </li>
-    </ul>
-    <div class="navigation__actions">
-      <!-- <button
-        class="navigation__switch"
-        type="button"
-        :aria-label="theme === 'light' ? 'Włącz ciemny motyw' : 'Włącz jasny motyw'"
-        @click="toggleTheme"
-      >
-        <Moon v-if="theme === 'light'" :size="20" aria-hidden="true" />
-        <Sun v-else :size="20" aria-hidden="true" />
-      </button> -->
-      <RouterLink class="navigation__cta" to="/#contact" @click="closeMenu">
-        Porozmawiajmy <ArrowUpRight :size="18" aria-hidden="true" />
+    <div class="navigation__wrapper">
+      <RouterLink class="navigation__brand" to="/" @click="closeMenu">
+        <span class="navigation__brand-content">
+          <span class="navigation__name">Paweł Heleniak</span>
+          <span class="navigation__role">Web Developer / Katowice</span>
+        </span>
       </RouterLink>
-      <button
-        ref="menuButton"
-        class="navigation__toggle"
-        type="button"
-        :aria-expanded="isOpen"
-        aria-controls="navigation-links"
-        :aria-label="isOpen ? 'Zamknij menu' : 'Otwórz menu'"
-        @click="isOpen = !isOpen"
-      >
-        <X v-if="isOpen" :size="22" aria-hidden="true" />
-        <Menu v-else :size="22" aria-hidden="true" />
-      </button>
+      <ul id="navigation-links" class="navigation__list">
+        <li v-for="section in sections" :key="section.id" class="navigation__entry">
+          <RouterLink
+            class="navigation__link"
+            :class="{ 'navigation__link--active': activeSection === section.id }"
+            :to="{ path: '/', hash: `#${section.id}` }"
+            :aria-current="activeSection === section.id ? 'location' : undefined"
+            @click="closeMenu"
+          >
+            {{ section.name }}
+          </RouterLink>
+        </li>
+      </ul>
+      <div class="navigation__actions">
+        <RouterLink class="navigation__cta" to="/#contact" @click="closeMenu">
+          Porozmawiajmy <ArrowUpRight :size="18" aria-hidden="true" />
+        </RouterLink>
+        <button
+          ref="menuButton"
+          class="navigation__toggle"
+          type="button"
+          :aria-expanded="isOpen"
+          aria-controls="navigation-links"
+          :aria-label="isOpen ? 'Zamknij menu' : 'Otwórz menu'"
+          @click="isOpen = !isOpen"
+        >
+          <X v-if="isOpen" :size="22" aria-hidden="true" />
+          <Menu v-else :size="22" aria-hidden="true" />
+        </button>
+      </div>
     </div>
   </nav>
 </template>
@@ -159,7 +145,7 @@ onBeforeUnmount(() => {
 
 .navigation {
   position: sticky;
-  top: 1.2rem;
+  top: 0rem;
   z-index: 99;
   display: flex;
   align-items: center;
@@ -170,37 +156,23 @@ onBeforeUnmount(() => {
   max-width: 130rem;
   margin-inline: auto;
   padding: 1rem 1.2rem 1rem 2.4rem;
-  border: 1px solid color-mix(in srgb, var(--border-color) 55%, transparent);
-  border-radius: calc(var(--border-radius-primary) * 2);
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 55%, transparent);
+  border-radius: 0;
   background-color: var(--bg-secondary-opacity);
   backdrop-filter: blur(16px);
   opacity: 0;
   transform: translateY(1rem);
   animation: slideIn 1s 0.2s ease forwards;
 
+  &__wrapper {
+    display: contents;
+  }
+
   &__brand {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
     flex-shrink: 0;
-  }
-
-  &__monogram {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 4rem;
-    height: 4rem;
-    border-radius: var(--border-radius-secondary);
-    background-color: var(--primary);
-    color: var(--white);
-    font-size: var(--font-size-m);
-    font-weight: 700;
-    letter-spacing: -0.08em;
-
-    span {
-      opacity: 0.6;
-    }
   }
 
   &__brand-content {
@@ -228,8 +200,8 @@ onBeforeUnmount(() => {
     overflow-y: auto;
     padding: 1rem;
     gap: 0.4rem;
-    border: 1px solid var(--border-color);
-    border-radius: calc(var(--border-radius-primary) * 2);
+    border-block: 1px solid var(--border-color);
+    border-radius: 0;
     background-color: var(--bg-secondary);
   }
 
@@ -318,7 +290,6 @@ onBeforeUnmount(() => {
   }
 
   @include style.tablet {
-    top: 2rem;
     padding: 1rem 1rem 1rem 2rem;
 
     &__name {
@@ -333,8 +304,35 @@ onBeforeUnmount(() => {
   }
 
   @include style.laptop {
+    top: 0;
+    max-width: none;
     flex-wrap: nowrap;
-    border-radius: var(--border-radius-round);
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    opacity: 1;
+    transform: none;
+    animation: none;
+
+    &__wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 2.4rem;
+      width: 100%;
+      max-width: 1520px;
+      margin-inline: auto;
+      padding: 1.6rem 4rem;
+    }
+
+    &__brand {
+      justify-self: start;
+    }
+
+    &__actions {
+      justify-self: end;
+    }
 
     &__list,
     &--open &__list {
@@ -343,7 +341,7 @@ onBeforeUnmount(() => {
       flex-direction: row;
       max-height: none;
       overflow: visible;
-      gap: 0.4rem;
+      gap: 0.6rem;
       padding: 0;
       border: 0;
       background-color: transparent;

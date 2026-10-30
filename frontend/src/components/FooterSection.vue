@@ -34,16 +34,42 @@ const year = date.getFullYear()
 @use '../style.scss' as style;
 
 .footer {
+  --footer-bg: color-mix(in srgb, var(--bg-primary) 90%, black);
+
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  border-top: 1px solid var(--border-color);
-  background-color: color-mix(in srgb, var(--bg-primary) 90%, black);
+  background-color: var(--footer-bg);
   max-width: 1520px;
   margin: 0 auto;
   padding-inline: 1.2rem;
   padding-block: 1.2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--footer-bg);
+    box-shadow: 0 0 0 100vmax var(--footer-bg);
+    clip-path: inset(0 -100vmax);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background-color: var(--border-color);
+    box-shadow: 0 0 0 100vmax var(--border-color);
+    clip-path: inset(0 -100vmax);
+    pointer-events: none;
+  }
+
   @include style.mobile {
     flex-direction: row;
     justify-content: space-between;
